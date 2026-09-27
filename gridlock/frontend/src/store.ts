@@ -14,12 +14,16 @@ interface State {
   hoverId: string | null
   selectedId: string | null
   mapExpanded: boolean
+  ledgerPct: number
+  drawerH: number
   load: () => Promise<void>
   setTier: (t: TierFilter) => void
   setWindowOnly: (v: boolean) => void
   setHover: (id: string | null) => void
   select: (id: string | null) => void
   setMapExpanded: (v: boolean) => void
+  setLedgerPct: (pct: number) => void
+  setDrawerH: (px: number) => void
 }
 
 export const useStore = create<State>((set) => ({
@@ -32,6 +36,8 @@ export const useStore = create<State>((set) => ({
   hoverId: null,
   selectedId: null,
   mapExpanded: false,
+  ledgerPct: 60,
+  drawerH: 300,
 
   load: async () => {
     set({ loading: true, error: null })
@@ -51,4 +57,7 @@ export const useStore = create<State>((set) => ({
   setHover: (hoverId) => set({ hoverId }),
   select: (selectedId) => set({ selectedId, hoverId: null }),
   setMapExpanded: (mapExpanded) => set({ mapExpanded }),
+  setLedgerPct: (pct) => set({ ledgerPct: Math.min(75, Math.max(25, pct)) }),
+  setDrawerH: (px) =>
+    set({ drawerH: Math.min(Math.round(window.innerHeight * 0.7), Math.max(140, px)) }),
 }))

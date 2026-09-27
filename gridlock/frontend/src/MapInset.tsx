@@ -1,13 +1,30 @@
 import { useEffect, useRef, useState } from 'react'
 import * as maplibregl from 'maplibre-gl'
 import type { Map as MLMap } from 'maplibre-gl'
+// MapLibre derives its worker via `new URL('./maplibre-gl-worker.mjs', import.meta.url)`.
+// Vite's dep prebundle rewrites import.meta.url to /node_modules/.vite/deps/maplibre-gl.js,
+// where the worker file doesn't exist → 404 → worker dead → map can never paint.
+// Pin the real file (dev serves it, build emits it as an asset).
+import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?url'
 import 'maplibre-gl/dist/maplibre-gl.css'
 import type { FeatureCollection } from 'geojson'
 import { useStore } from './store'
 import { EXCLUDED_OPACITY, TIER_HALO, TIER_LABEL, UTILITY } from './palette'
 
+maplibregl.setWorkerUrl(workerUrl)
+
 // OpenFreeMap Liberty — free, no API key (START-GATE 04-1, user-supplied).
 const STYLE = 'https://tiles.openfreemap.org/styles/liberty'
+
+// No-tile fallback: plain background so data layers still render when the
+// remote style is unreachable (offline / blocked).
+const FALLBACK_STYLE = {
+  version: 8,
+  sources: {},
+  layers: [
+    { id: 'bg', type: 'background' as const, paint: { 'background-color': '#e3e9ef' } },
+  ],
+} as maplibregl.StyleSpecification
 
 const haloColor = [
   'match', ['get', 'tier'],
@@ -31,10 +48,17 @@ export default function MapInset() {
   const select = useStore((s) => s.select)
   const setMapExpanded = useStore((s) => s.setMapExpanded)
   const [showProjects, setShowProjects] = useState(true)
+  const [webgl2, setWebgl2] = useState(true)
+  const applyRef = useRef<() => void>(() => {})
 
   // init once
   useEffect(() => {
     if (!hostRef.current) return
+    // MapLibre v6 hard-requires WebGL2 — guard instead of a silent blank pane.
+    if (!document.createElement('canvas').getContext('webgl2')) {
+      setWebgl2(false)
+      return
+    }
     const map = new maplibregl.Map({
       container: hostRef.current,
       style: STYLE,
@@ -44,11 +68,41 @@ export default function MapInset() {
     })
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-left')
     mapRef.current = map
+
+    // Effect-closure locals (not refs — StrictMode remounts must re-arm).
+    let styleLoaded = false
+    let fellBack = false
+    map.on('error', (e) => {
+      if (styleLoaded) {
+        console.warn('[map]', e.error)
+        return
+      }
+      // First style unreachable → swap once to the no-tile fallback.
+      if (fellBack) return
+      fellBack = true
+      console.warn('[map] style failed, falling back to plain background:', e.error)
+      map.setStyle(FALLBACK_STYLE)
+    })
+    // Fires on initial style load AND after any setStyle swap.
+    map.on('style.load', () => {
+      styleLoaded = true
+      applyRef.current()
+    })
+
+    // Delegated listeners live on the Map and survive setStyle — register
+    // exactly once here (registering inside apply() would duplicate them).
+    map.on('mouseenter', 'halos', () => (map.getCanvas().style.cursor = 'pointer'))
+    map.on('mouseleave', 'halos', () => (map.getCanvas().style.cursor = ''))
+    map.on('click', 'halos', (e) => {
+      const f = e.features?.[0]
+      if (f?.properties?.id) select(f.properties.id as string)
+    })
+
     return () => {
       map.remove()
       mapRef.current = null
     }
-  }, [])
+  }, [select])
 
   // sources + layers (style is async; run once data lands)
   useEffect(() => {
@@ -137,20 +191,16 @@ export default function MapInset() {
             ],
           },
         })
-        map.on('mouseenter', 'halos', () => (map.getCanvas().style.cursor = 'pointer'))
-        map.on('mouseleave', 'halos', () => (map.getCanvas().style.cursor = ''))
-        map.on('click', 'halos', (e) => {
-          const f = e.features?.[0]
-          if (f?.properties?.id) select(f.properties.id as string)
-        })
       } else {
         const ovl = map.getSource('overlaps')
         if (ovl && 'setData' in ovl) (ovl as { setData: (d: unknown) => void }).setData(haloFC)
       }
     }
 
+    // style.load (init effect) invokes the latest apply; also apply now if
+    // the style is already up (e.g. data arrived after load).
+    applyRef.current = apply
     if (map.isStyleLoaded()) apply()
-    else map.once('load', apply)
   }, [rows, projects, select])
 
   // two-way sync: focus + flyTo on hover/selection
@@ -202,7 +252,16 @@ export default function MapInset() {
         expanded ? 'fixed inset-0 z-40 bg-surface map-host' : 'absolute inset-0 map-host'
       }
     >
-      <div ref={hostRef} className="absolute inset-0" />
+      {webgl2 ? (
+        // h-full/w-full, not absolute inset-0: maplibre-gl.css forces
+        // .maplibregl-map { position: relative }, which would kill inset-0
+        // sizing and collapse the container to 0 height → blank pane.
+        <div ref={hostRef} className="h-full w-full" />
+      ) : (
+        <div className="absolute inset-0 flex items-center justify-center px-6 text-center text-[13px] text-ink-dim">
+          Map needs WebGL2 — unavailable in this browser.
+        </div>
+      )}
 
       {/* legend — always visible at all zooms */}
       <div className="absolute bottom-6 left-2 z-10 rounded border border-rule bg-surface/95 px-2.5 py-2 text-[10.5px] shadow-sm backdrop-blur">

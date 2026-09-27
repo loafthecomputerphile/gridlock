@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { PairDetail } from './types'
 import { TIER_HALO, TIER_LABEL } from './palette'
 import { useStore } from './store'
@@ -45,6 +45,9 @@ export default function Drawer() {
   const select = useStore((s) => s.select)
   const [detail, setDetail] = useState<PairDetail | null>(null)
   const [error, setError] = useState<string | null>(null)
+  const drawerH = useStore((s) => s.drawerH)
+  const setDrawerH = useStore((s) => s.setDrawerH)
+  const hDrag = useRef<{ y0: number; h0: number } | null>(null)
 
   useEffect(() => {
     if (!selectedId) {
@@ -73,8 +76,30 @@ export default function Drawer() {
     : null
 
   return (
-    <div className="shrink-0 border-t border-rule bg-surface shadow-[0_-4px_12px_rgba(15,23,42,0.06)]">
-      <div className="flex items-center justify-between border-b border-rule px-4 py-2">
+    <div
+      className="relative flex shrink-0 flex-col border-t border-rule bg-surface shadow-[0_-4px_12px_rgba(15,23,42,0.06)]"
+      style={{ height: drawerH }}
+    >
+      {/* height drag handle — pointer capture, clamp 140px–70vh in the setter */}
+      <div
+        role="separator"
+        aria-orientation="horizontal"
+        className="absolute inset-x-0 -top-[3px] z-10 h-1.5 cursor-row-resize"
+        style={{ touchAction: 'none' }}
+        onPointerDown={(e) => {
+          e.preventDefault()
+          e.currentTarget.setPointerCapture(e.pointerId)
+          hDrag.current = { y0: e.clientY, h0: useStore.getState().drawerH }
+        }}
+        onPointerMove={(e) => {
+          const d = hDrag.current
+          if (!d) return
+          setDrawerH(d.h0 - (e.clientY - d.y0))
+        }}
+        onPointerUp={() => (hDrag.current = null)}
+        onPointerCancel={() => (hDrag.current = null)}
+      />
+      <div className="flex shrink-0 items-center justify-between border-b border-rule px-4 py-2">
         <div className="flex items-center gap-3">
           <span className="font-semibold tracking-wide">Pair detail</span>
           {detail && (
@@ -99,7 +124,7 @@ export default function Drawer() {
         </button>
       </div>
 
-      <div className="max-h-[42vh] overflow-auto px-4 py-3">
+      <div className="min-h-0 flex-1 overflow-auto px-4 py-3">
         {error && <div className="text-[12px] text-[#DC2626]">failed to load pair: {error}</div>}
         {!error && !detail && <div className="text-[12px] text-ink-dim">loading…</div>}
         {detail && (

@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import { useStore, type TierFilter } from './store'
 import Ledger from './Ledger'
 import MapInset from './MapInset'
@@ -19,6 +19,11 @@ export default function App() {
   const setMapExpanded = useStore((s) => s.setMapExpanded)
   const select = useStore((s) => s.select)
   const load = useStore((s) => s.load)
+  const ledgerPct = useStore((s) => s.ledgerPct)
+  const setLedgerPct = useStore((s) => s.setLedgerPct)
+
+  const mainRef = useRef<HTMLElement>(null)
+  const splitDrag = useRef<{ x0: number; pct0: number; w: number } | null>(null)
 
   useEffect(() => {
     void load()
@@ -94,8 +99,11 @@ export default function App() {
       </header>
 
       {/* content: ledger (primary) + linked map inset */}
-      <main className="relative flex min-h-0 flex-1">
-        <section className="flex w-[60%] min-w-0 flex-col border-r border-rule">
+      <main ref={mainRef} className="relative flex min-h-0 flex-1">
+        <section
+          className="flex min-w-0 flex-col border-r border-rule"
+          style={{ width: `${ledgerPct}%` }}
+        >
           {loading && (
             <div className="flex h-full items-center justify-center text-ink-dim">
               loading overlaps…
@@ -115,7 +123,31 @@ export default function App() {
           {!loading && !error && <Ledger rows={filtered} />}
         </section>
 
-        <section className="relative w-[40%]">
+        {/* pane divider — pointer-capture drag, clamped 25–75% in the setter */}
+        <div
+          role="separator"
+          aria-orientation="vertical"
+          className="w-1.5 shrink-0 cursor-col-resize bg-rule hover:bg-ink-dim/40 active:bg-ink-dim/60"
+          style={{ touchAction: 'none' }}
+          onPointerDown={(e) => {
+            e.preventDefault()
+            e.currentTarget.setPointerCapture(e.pointerId)
+            splitDrag.current = {
+              x0: e.clientX,
+              pct0: useStore.getState().ledgerPct,
+              w: mainRef.current?.getBoundingClientRect().width ?? 1,
+            }
+          }}
+          onPointerMove={(e) => {
+            const d = splitDrag.current
+            if (!d) return
+            setLedgerPct(d.pct0 + ((e.clientX - d.x0) / d.w) * 100)
+          }}
+          onPointerUp={() => (splitDrag.current = null)}
+          onPointerCancel={() => (splitDrag.current = null)}
+        />
+
+        <section className="relative min-w-0 flex-1 overflow-hidden">
           <MapInset />
         </section>
       </main>
