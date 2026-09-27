@@ -37,6 +37,19 @@ EXEMPLAR_RADIUS = 150_000.0  # ponytail: scan cap for the 25-nearest excluded ex
 EXEMPLARS = 25          # START-GATE 03-1
 R_MI = 3958.7613
 
+# Phase 06-A bonus: shared-ROW acres. Acre math (exact, plan 06-A):
+# width_ft x length_ft / 43,560  ==  width_ft x 5,280 / 43,560 per mile
+# (100-150 ft ROW for >=230 kV ~= 12-18 acres/mile). Width is a visible UI
+# control; every dollar derived from it is labeled "illustrative assumption".
+DEFAULT_ROW_WIDTH_FT = 150.0
+FT_PER_MI = 5280.0
+SQFT_PER_ACRE = 43_560.0
+
+
+def shared_row_acres(d_m: float, width_ft: float = DEFAULT_ROW_WIDTH_FT) -> float:
+    """Closest-approach segment length x ROW width -> acres (06-A)."""
+    return width_ft * (d_m / 1609.344) * FT_PER_MI / SQFT_PER_ACRE
+
 # starter `overlaps` sheet header — CSV export contract (byte order matters)
 CSV_COLS = ["overlap_id", "distance_mi", "time_gap (day)", "utility_a",
             "project_id_a", "project_name_a", "utility_b", "project_id_b",
@@ -162,6 +175,7 @@ def build_overlaps() -> list[dict]:
             "shared_in_service_year": shared,
             "year_a": a["year"], "year_b": b["year"],
             "year_unknown": a["year"] is None or b["year"] is None,
+            "est_shared_row_acres": round(shared_row_acres(d_m), 3),
             "shortest_line": {"type": "LineString", "coordinates": coords},
         })
 

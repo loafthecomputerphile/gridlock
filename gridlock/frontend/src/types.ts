@@ -24,6 +24,8 @@ export interface OverlapRow {
   time_gap: number | null
   score: number
   year_unknown: boolean
+  /** acres at the engine default 150 ft ROW; UI rescales linearly by width control */
+  est_shared_row_acres: number
   shortest_line: ShortestLine
 }
 

@@ -42,3 +42,86 @@
     font-size: 10px;
   }
 }
+
+/* floating 3D project icons (MapInset markers) */
+@keyframes proj-bob {
+  50% {
+    transform: translateY(-7px);
+  }
+}
+.proj-icon {
+  width: 18px;
+  height: 18px;
+  margin-top: -18px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  cursor: pointer;
+  animation: proj-bob 2.2s ease-in-out infinite;
+  box-shadow:
+    0 0 0 1px rgba(15, 23, 42, 0.25),
+    0 0 12px 2px rgba(255, 255, 255, 0.9),
+    0 10px 6px -2px rgba(15, 23, 42, 0.45);
+}
+
+/* ball floats ABOVE its anchor: keyframes carry the base lift since the
+   marker wrapper owns MapLibre's positioning transform */
+.proj-icon {
+  margin-top: 0;
+}
+@keyframes proj-bob {
+  0%,
+  100% {
+    transform: translateY(-16px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* rest ON its dot: bob straddles the anchor so the ball covers the dot at
+   the low point instead of floating 8-16px above it */
+@keyframes proj-bob {
+  0%,
+  100% {
+    transform: translateY(-9px);
+  }
+  50% {
+    transform: translateY(-1px);
+  }
+}
+
+/* full project record card on icon hover */
+.proj-tip {
+  display: none;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 240px;
+  padding: 8px 10px;
+  background: rgba(255, 255, 255, 0.97);
+  border: 1px solid var(--color-rule);
+  border-radius: 6px;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.18);
+  font-size: 11px;
+  line-height: 1.4;
+  z-index: 30;
+  pointer-events: none;
+}
+.proj-tip-row {
+  display: flex;
+  gap: 8px;
+}
+.proj-tip-row > span:first-child {
+  flex: 0 0 76px;
+  color: var(--color-ink-dim);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 9px;
+  letter-spacing: 0.04em;
+  padding-top: 1px;
+}
+.proj-tip-row > span:last-child {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}

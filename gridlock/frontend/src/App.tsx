@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useStore, type TierFilter } from './store'
 import Ledger from './Ledger'
 import MapInset from './MapInset'
@@ -12,16 +12,76 @@ const TIERS: { id: TierFilter; label: string }[] = [
   { id: '<40 km', label: '<40' },
 ]
 
+function qValue(v: unknown): string {
+  return Array.isArray(v) ? v.join(', ') : String(v)
+}
+
+/** parsed query chips, above the table (START-GATE 05-3) */
+function QueryChips() {
+  const query = useStore((s) => s.query)
+  const clearQuery = useStore((s) => s.clearQuery)
+  if (!query || query.error || !query.parsed) return null
+  const ai = query.source === 'local' ? 'local parser' : 'AI parsed'
+  return (
+    <div className="flex shrink-0 flex-wrap items-center gap-1.5 border-b border-rule bg-surface-2 px-3 py-1.5">
+      <span
+        className="rounded-full px-2 py-0.5 text-[10.5px] font-semibold"
+        style={
+          query.source === 'local'
+            ? { color: '#64748B', background: '#64748B1a' }
+            : { color: '#7C3AED', background: '#7C3AED1a' }
+        }
+      >
+        {ai}
+      </span>
+      <span className="text-[11px] text-ink-dim">“{query.text}”</span>
+      <span className="text-[10px] text-ink-dim">→</span>
+      {query.parsed.filters.map((f, i) => (
+        <span
+          key={i}
+          className="rounded-full border border-rule bg-surface px-2 py-0.5 text-[11px] font-medium"
+        >
+          {f.col} {f.op} {qValue(f.value)}
+        </span>
+      ))}
+      {query.parsed.sort && (
+        <span className="rounded-full border border-rule bg-surface px-2 py-0.5 text-[11px] font-medium">
+          sort {query.parsed.sort.col} {query.parsed.sort.dir}
+        </span>
+      )}
+      {query.parsed.intent === 'count' && (
+        <span className="rounded-full bg-surface px-2 py-0.5 text-[11px] font-bold tabular-nums">
+          count = {query.row_count}
+        </span>
+      )}
+      <span className="ml-auto text-[11px] tabular-nums text-ink-dim">
+        n = {query.row_count}
+      </span>
+      <button
+        className="rounded px-1.5 py-0.5 text-[11px] text-ink-dim hover:bg-surface-3"
+        onClick={clearQuery}
+      >
+        clear ✕
+      </button>
+    </div>
+  )
+}
+
 export default function App() {
   const { rows, loading, error, tier, windowOnly } = useStore()
+  const query = useStore((s) => s.query)
+  const runQuery = useStore((s) => s.runQuery)
   const locatedCount = useStore((s) => s.projects.length)
   const setTier = useStore((s) => s.setTier)
   const setWindowOnly = useStore((s) => s.setWindowOnly)
+  const projFilter = useStore((s) => s.projFilter)
+  const selectProject = useStore((s) => s.selectProject)
   const setMapExpanded = useStore((s) => s.setMapExpanded)
   const select = useStore((s) => s.select)
   const load = useStore((s) => s.load)
   const ledgerPct = useStore((s) => s.ledgerPct)
   const setLedgerPct = useStore((s) => s.setLedgerPct)
+  const [ask, setAsk] = useState('')
 
   const mainRef = useRef<HTMLElement>(null)
   const splitDrag = useRef<{ x0: number; pct0: number; w: number } | null>(null)
@@ -40,16 +100,22 @@ export default function App() {
     return () => window.removeEventListener('keydown', onKey)
   }, [setMapExpanded, select])
 
+  // NL query narrows the base set; tier/window chips + map-icon projFilter apply on top
+  const base = query?.rows ?? rows
   const filtered = useMemo(
     () =>
-      rows.filter(
+      base.filter(
         (r) =>
           (tier === 'all' ||
             (tier === 'touch' ? r.tier === 'crossing' : r.tier === tier)) &&
-          (!windowOnly || r.shared_in_service_year != null),
+          (!windowOnly || r.shared_in_service_year != null) &&
+          (!projFilter || r.project_a === projFilter || r.project_b === projFilter),
       ),
-    [rows, tier, windowOnly],
+    [base, tier, windowOnly, projFilter],
   )
+  const sortKey = query?.parsed?.sort
+    ? `${query.parsed.sort.col}:${query.parsed.sort.dir}`
+    : 'default'
 
   const chip = (active: boolean) =>
     `h-6 px-2 rounded-full border text-[11px] font-medium ${
@@ -63,7 +129,7 @@ export default function App() {
       {/* header — Concept C command strip */}
       <header className="flex shrink-0 items-center gap-4 border-b border-rule bg-surface px-4 py-2">
         <div className="flex items-baseline gap-2">
-          <span className="text-[15px] font-bold tracking-[0.18em]">GRIDLOCK</span>
+          <span className="text-[15px] font-bold tracking-[0.18em]">CHUD</span>
           <span className="text-[11px] text-ink-dim">DESC × Georgia Power corridor overlaps</span>
         </div>
 
@@ -87,6 +153,16 @@ export default function App() {
           n = {filtered.length}
           {filtered.length !== rows.length ? ` / ${rows.length}` : ''}
         </span>
+
+        {projFilter && (
+          <button
+            className={chip(true)}
+            onClick={() => selectProject(null)}
+            title="Clear the linked-pairs filter (map icon click)"
+          >
+            linked: {projFilter} ✕
+          </button>
+        )}
 
         <div className="ml-auto flex items-center gap-2">
           <a
@@ -121,7 +197,12 @@ export default function App() {
               </button>
             </div>
           )}
-          {!loading && !error && <Ledger rows={filtered} />}
+          {!loading && !error && (
+            <>
+              <QueryChips />
+              <Ledger key={sortKey} rows={filtered} />
+            </>
+          )}
         </section>
 
         {/* pane divider — pointer-capture drag, clamped 25–75% in the setter */}
@@ -170,17 +251,62 @@ export default function App() {
         contributors (ODbL). Verify before relying on them.
       </footer>
 
-      {/* fixed command bar — phase-05 slots stubbed */}
+      {/* fixed command bar — NL table query (filter/sort/count only)
       <div className="flex h-10 shrink-0 items-center gap-3 border-t border-rule bg-surface px-4">
         <input
           className="h-7 flex-1 rounded border border-rule bg-surface-2 px-2.5 text-[12.5px] outline-none placeholder:text-ink-dim"
-          placeholder="Ask about a pair…"
-          disabled
+          placeholder="ask the table — e.g. “tier &lt;8 with 2026 service year, sort by score desc”"
+          value={ask}
+          disabled={query?.running}
+          onChange={(e) => setAsk(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' && ask.trim()) void runQuery(ask.trim())
+          }}
         />
-        <span className="rounded-full border border-rule px-2 py-0.5 text-[10.5px] text-ink-dim">
-          AI offline — wired in phase 05
-        </span>
+        {query?.running && (
+          <span className="rounded-full border border-rule px-2 py-0.5 text-[10.5px] text-ink-dim">
+            parsing…
+          </span>
+        )}
+        {query?.error && (
+          <span
+            className="max-w-[38ch] truncate rounded-full px-2 py-0.5 text-[10.5px]"
+            style={{ color: '#DB2777', background: '#DB27771a' }}
+            title={query.error}
+          >
+            rejected — {query.error}
+          </span>
+        )}
+        {query && !query.running && !query.error && (
+          <span
+            className="rounded-full px-2 py-0.5 text-[10.5px] font-medium"
+            style={
+              query.source === 'local'
+                ? { color: '#64748B', background: '#64748B1a' }
+                : { color: '#7C3AED', background: '#7C3AED1a' }
+            }
+          >
+            {query.source === 'local' ? 'local parser' : 'AI'} · {query.row_count} rows
+          </span>
+        )}
+        {query && (
+          <button
+            className="rounded px-1.5 py-0.5 text-[11px] text-ink-dim hover:bg-surface-3"
+            onClick={() => {
+              setAsk('')
+              useStore.getState().clearQuery()
+            }}
+          >
+            clear
+          </button>
+        )}
+        {!query && (
+          <span className="rounded-full border border-rule px-2 py-0.5 text-[10.5px] text-ink-dim">
+            filter / sort / count only
+          </span>
+        )}
       </div>
+      */}
     </div>
   )
 }

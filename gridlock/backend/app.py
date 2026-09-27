@@ -1,8 +1,10 @@
-"""Phase 03 API — canonical scoring engine behind FastAPI.
+"""Phase 03+05 API — canonical scoring engine + AI endpoints behind FastAPI.
 
-Run: uv run uvicorn backend.app:app --port 8000
+Run (single-port demo): uv run uvicorn backend.app:app --port 8000
 Endpoints: /api/health · /api/projects · /api/overlaps (?tier=&sort=score|distance|year&limit=)
            /api/pairs/{pair_id} · /api/export/overlaps.csv
+           /api/ai/brief (POST) · /api/ai/query (POST)
+           /  → built frontend (frontend/dist, SPA fallback) when present
 `rank` is the canonical order (score desc, distance asc) and stays stable when
 `sort` re-orders the response.
 """
@@ -16,18 +18,19 @@ import pandas as pd
 import shapely
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import Response
+from fastapi.responses import FileResponse, Response
 from pydantic import BaseModel
 from pyproj import Transformer
 from shapely.geometry import shape as shapely_shape
 from shapely.ops import transform as shapely_transform
 
 from . import engine
+from .ai import briefs, nlquery
 
 ROOT = Path(__file__).resolve().parents[1]
 PROC = ROOT / "data" / "processed"
 
-app = FastAPI(title="Gridlock Scoring API", version="0.3")
+app = FastAPI(title="Gridlock Scoring API", version="0.5")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:5173"],
@@ -64,6 +67,7 @@ class OverlapRow(BaseModel):
     time_gap: int | None = None
     score: int
     year_unknown: bool
+    est_shared_row_acres: float  # phase 06 bonus, at DEFAULT_ROW_WIDTH_FT
     shortest_line: dict
 
 
@@ -93,6 +97,14 @@ class PairDetail(OverlapRow):
     project_a_detail: ProjectRow
     project_b_detail: ProjectRow
     hifld_ref: dict | None = None  # nearest HIFLD transmission line (overlay+link)
+
+
+class BriefReq(BaseModel):
+    pair_id: str
+
+
+class QueryReq(BaseModel):
+    text: str
 
 
 def _load_projects() -> tuple[list[dict], int]:
@@ -205,11 +217,59 @@ def hifld_lines() -> Response:
                     media_type="application/geo+json")
 
 
+@app.get("/api/ref/osm-lines")
+def osm_lines() -> Response:
+    """Cached OSM power=line overlay (GA/SC, Overpass) as GeoJSON for the map."""
+    path = PROC / "_cache" / "osm_ga_sc_lines.geojson"
+    if not path.exists():
+        raise HTTPException(status_code=404,
+                            detail="run backend.convert_overpass_lines first")
+    return Response(path.read_text(encoding="utf-8"),
+                    media_type="application/geo+json")
+
+
 @app.get("/api/export/overlaps.csv")
 def export() -> Response:
     body = (PROC / "overlaps.csv").read_text(encoding="utf-8")
     return Response(body, media_type="text/csv",
                     headers={"Content-Disposition": 'attachment; filename="overlaps.csv"'})
+
+
+# ---------- phase 05 AI ----------
+@app.post("/api/ai/brief")
+def ai_brief(req: BriefReq) -> dict:
+    """Planner-prose pair brief. Always 200 — status carries live|cached|
+    rate-limited|unavailable; never a stack trace to the UI."""
+    known = any(r["overlap_id"].lower() == req.pair_id.lower() for r in OVERLAPS)
+    if not known:
+        raise HTTPException(status_code=404, detail=f"unknown pair_id: {req.pair_id}")
+    out = briefs.brief_for(req.pair_id, OVERLAPS, BY_ID)
+    return {k: out.get(k) for k in ("text", "source", "model", "status", "reason")}
+
+
+@app.post("/api/ai/query")
+def ai_query(req: QueryReq) -> dict:
+    """NL table query — filter/sort/count ONLY, whitelist-validated; local
+    keyword parser when the AI path fails; 422 when neither parses."""
+    out = nlquery.run_query(req.text, OVERLAPS)
+    if out["status"] == "rejected":
+        raise HTTPException(status_code=422, detail=out)
+    return {k: out[k] for k in ("parsed", "row_count", "rows", "source")}
+
+
+# ---------- single-port ship: built frontend at / (registered last = lowest precedence) ----------
+DIST = ROOT / "frontend" / "dist"
+
+if (DIST / "index.html").exists():
+
+    @app.get("/{full_path:path}", include_in_schema=False)
+    def spa(full_path: str):
+        if full_path.startswith("api/"):
+            raise HTTPException(status_code=404, detail="unknown api route")
+        target = (DIST / full_path).resolve()
+        if full_path and target.is_file() and target.is_relative_to(DIST):
+            return FileResponse(target)
+        return FileResponse(DIST / "index.html")  # SPA fallback
 
 
 if __name__ == "__main__":

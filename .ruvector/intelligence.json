@@ -1,0 +1,27 @@
+{
+  "patterns": {},
+  "memories": [],
+  "trajectories": [],
+  "errors": {},
+  "file_sequences": [],
+  "agents": {},
+  "edges": [],
+  "stats": {
+    "total_patterns": 0,
+    "total_memories": 0,
+    "total_trajectories": 0,
+    "total_errors": 0,
+    "session_count": 0,
+    "last_session": 0
+  },
+  "activeTrajectories": {
+    "traj_1790476124245_3zni0y2mg": {
+      "id": "traj_1790476124245_3zni0y2mg",
+      "context": "20260927022843-check-whether-the-map-renders-in: Check whether the map renders in the gridlock app",
+      "agent": "browser-session",
+      "file": null,
+      "steps": [],
+      "startTime": 1790476124245
+    }
+  }
+}

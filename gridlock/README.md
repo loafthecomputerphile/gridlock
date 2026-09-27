@@ -1,24 +1,118 @@
 # Gridlock
 
-Energy-project overlap explorer: score, map, and brief overlapping utility transmission/IRP projects (DESC × Georgia Power × Dominion).
+Energy-project overlap explorer: score, map, and brief overlapping utility
+transmission/IRP projects (DESC × Georgia Power × Dominion), with an AI pair
+brief and a natural-language table query.
 
-**Phase status:** 01–04 + 07 route-aware corridors done — see [docs/PROJECT-STATE.md](docs/PROJECT-STATE.md) for the phase tracker, locked decisions, and changelog.
+**Phase status:** 01–05 + 07 route-aware corridors done — see
+[docs/PROJECT-STATE.md](docs/PROJECT-STATE.md) for the phase tracker, locked
+decisions, and changelog.
 
-## Layout
+## 30-second demo (single port, offline-capable)
 
-- `backend/` — FastAPI app + data pipeline (phases 02–03)
-- `frontend/` — Vite / React / TypeScript app (phase 04)
+```bash
+cd frontend && npm run build   # once — builds the static UI into frontend/dist
+cd .. && uv run uvicorn backend.app:app --port 8000
+# open http://localhost:8000
+```
+
+1. **Ledger** loads ranked pairs (score desc) with the linked map inset —
+   click a row → the map frames that pair's tier-limit circle.
+2. **Click a pair** → the detail drawer opens: both project cards, nearest
+   HIFLD line, and the **AI pair brief** with its status chip (live / cached /
+   rate-limited + retry).
+3. **Type in the command bar** (bottom): `pairs with 2026 service year, sort
+   by score desc` → Enter → the parsed query appears as **chips above the
+   table** (source chip says AI or local parser) and the table narrows.
+4. Tiers chips / legend toggles / **export CSV** / **HIFLD** toggle as needed.
+5. **Offline proof:** with no network (and no API key), the app still loads,
+   the table and map work, briefs answer `cached`, and the NL chips answer
+   `local` — every chip state is truthful.
+
+No `OPENROUTER_API_KEY`? Everything still runs; briefs degrade to their
+`AI unavailable` chip and NL queries fall back to the local keyword parser.
+Add the key via env var or `gridlock/.env`, then
+`uv run python -m backend.ai.prewarm` to pre-generate top-10 briefs for the
+offline demo.
+
+## What's here
+
+- `backend/` — FastAPI app + data pipeline (phases 02–03), AI adapter + endpoints (05)
+- `backend/ai/` — provider adapter (OpenRouter, fallback model, disk JSON cache), prompts, briefs, NL query, prewarm
+- `frontend/` — Vite / React / TypeScript app (phase 04), served by FastAPI at `/`
 - `data/release/` — verbatim copy of the challenge release folder (ground truth)
-- `data/processed/` — canonical CSVs/GeoJSON (phase 02)
-- `scripts/` — smoke self-checks (`check_01.py`, …)
-
-## Quick start
+- `data/processed/` — canonical CSVs/GeoJSON (phase 02), `ai_cache/` (brief/query cache)
+- `scripts/` — smoke self-checks (`check_01.py` … `check_05.py`)
 
 ```bash
 uv sync                      # Python env (3.12)
 cd frontend && npm install   # frontend deps
 uv run python scripts/check_01.py
 ```
+
+## AI integration (phase 05)
+
+Two features, both behind a **provider-neutral adapter**
+(`backend/ai/adapter.py`) so the provider can be swapped later:
+
+1. **Pair brief** — `POST /api/ai/brief` injects only the pair's own facts
+   (names, utilities, distance, tier, score, windows, time gap, confidence,
+   geometry basis) into a planner-voice prompt; the model writes 3–4 sentences
+   of coordination prose and is told never to invent numbers. The drawer shows
+   a status chip: **live / cached / rate-limited / unavailable + Retry**.
+2. **NL table query** — `POST /api/ai/query` turns a plain-English request
+   into a whitelist-validated `{filters, sort, intent}` JSON that is applied
+   server-side to the overlaps table. **Filter/sort/count only** — no SQL, no
+   free-form answers, nothing executes; anything outside the column whitelist
+   is rejected (422). When the model is down, a local keyword parser produces
+   the same shape with `source: local`, and the chips above the table say
+   which source parsed them.
+
+Hardening: `OPENROUTER_API_KEY` read from env or `.env` (never committed;
+the app runs degraded without it), pinned primary model
+`meta-llama/llama-3.3-70b-instruct:free` with fallback to a second free model
+on 429/5xx/timeout (2 retries with backoff on 429 only), 15 s timeout, and a
+disk JSON cache keyed by `sha256(model + prompt_version + payload)` —
+read-first on every call, so the demo is deterministic offline.
+
+## Data provenance (release folder = ground truth)
+
+Every source file under `data/release/` (verbatim copy of the challenge
+release folder):
+
+| File | Used for |
+|---|---|
+| `ShellHacks_Challenge_Gridlock.docx` | challenge outline / scope |
+| `Finding_Real_Locations_Guide.docx` | the ONLY location method used (see below) |
+| `Projects_Overlaps.xlsx` | starter workbook: 6-row golden fixture + export schema |
+| `Project Listings/Dominion Energy/2024-2028-2million-and-above-project-descriptions.pdf` | Dominion 2024–2028 project list (44 pp, PDF extraction) |
+| `Project Listings/Georgia Power/2025 IRP Volume 3 PUBLIC DISCLOSURE.pdf` | GPC 2025 IRP Vol. 3 (668 pp, sponsor-column filter) |
+| `Opportunities/Software_Engineer_Intern_Listing.docx` | Sperry Tech AI framing (README only) |
+
+Processed outputs and their QA live in `docs/DATA-NOTES.md`.
+
+**CEII:** this build uses **public files only** from the release folder plus
+public reference layers (OSM, HIFLD public viewer). **No exact critical-asset
+routes are included** — corridor geometry is a planning-level proxy, and
+unlocatable projects are excluded rather than guessed.
+
+**Freshness (live cross-check spot):** the release data is the build's data.
+During the build, a few sources were re-fetched live as a spot check — OSM
+Overpass and the HIFLD service both drift against the release listings
+(numbers and drift noted in `docs/DATA-NOTES.md`); the release folder remains
+ground truth on any conflict.
+
+## Scoring rule (canonical)
+
+score = tier points (crossing=100, <1.6 km=60, <8 km=40, <40 km=20) + 15 if
+build windows overlap, total capped at 100; tie-break by smaller closest-point
+distance. Build window = `[in-service year, in-service year + 1]`. All
+distance math in EPSG:5070. Time gap is *scored* by year (the window rule
+above) and *displayed* as days (`time_gap` = |date A − date B| in days).
+
+**Honesty caveat:** all distances here are **corridor proximity, not surveyed
+distance** — separations between planning-level corridor geometries, never
+as-built clearances.
 
 ## How we solved the straight-line problem
 
@@ -83,3 +177,18 @@ grey underlay, and each pair's detail drawer links its closest point to the
 nearest HIFLD line (`voltage class · owner · distance`). Purely
 display + disclosure — it never feeds scoring or endpoint location
 (`uv run python backend/fetch_hifld_lines.py` to refresh the cache).
+
+## Why AI, and why this AI (Sperry Tech framing)
+
+Sperry Tech's **AI Department "builds software and machine learning
+capabilities for the business"** for its construction-parent company: per the
+release intern listing (`data/release/Opportunities/
+Software_Engineer_Intern_Listing.docx`), that means **extraction pipelines
+from business systems**, **validation and data-quality checks**,
+**training-data preparation**, and **document parsing and metadata
+extraction**. This app mirrors that exact stack against utility filings: PDF
+extraction (668-pp IRP + 44-pp project list → structured rows) → validation
+against the starter workbook's golden fixture → **AI-written coordination
+briefs** over the validated pairs and a **natural-language query** over the
+result table — precisely the challenge's ask to integrate AI where the data
+actually is.

@@ -47,6 +47,15 @@ const TIER_DIAMETER_M: Record<string, number | undefined> = {
   excluded: 40000,
 }
 
+// dome height (m) per tier for the extruded pair-zone puck
+const tierHeight = [
+  'match', ['get', 'tier'],
+  '<1.6 km', 900,
+  '<8 km', 1600,
+  '<40 km', 2600,
+  2000,
+] as const
+
 // Ring around a point, radius in meters. ponytail: equirectangular degrees —
 // <0.1% error at the ≤20 km radii we use; go spherical only if precision complaints.
 const circleRing = (lon: number, lat: number, r: number): [number, number][] => {
@@ -78,14 +87,17 @@ export default function MapInset() {
   const expanded = useStore((s) => s.mapExpanded)
   const hiddenTiers = useStore((s) => s.hiddenTiers)
   const select = useStore((s) => s.select)
+  const selectProject = useStore((s) => s.selectProject)
   const setHover = useStore((s) => s.setHover)
   const toggleTier = useStore((s) => s.toggleTier)
   const setMapExpanded = useStore((s) => s.setMapExpanded)
-  const [showProjects, setShowProjects] = useState(true)
   const [showHifld, setShowHifld] = useState(true)
   const [hifldStatus, setHifldStatus] = useState<'loading' | 'ok' | 'error'>('loading')
+  const [showOsm, setShowOsm] = useState(true)
+  const [osmStatus, setOsmStatus] = useState<'loading' | 'ok' | 'error'>('loading')
   const [legendOpen, setLegendOpen] = useState(true)
   const [webgl2, setWebgl2] = useState(true)
+  const projMarkers = useRef<maplibregl.Marker[]>([])
   const applyRef = useRef<() => void>(() => {})
   // HIFLD reference overlay (user request): fetched once, applied when ready
   const hifldRef = useRef<FeatureCollection | null>(null)
@@ -93,6 +105,10 @@ export default function MapInset() {
   // toggle intent lives in a ref so layer creation (async, after fetch) reads
   // the CURRENT choice even when the user toggled before the fetch resolved
   const hifldVisRef = useRef(true)
+  // OSM power=line overlay (Overpass GA/SC download) — same pattern as HIFLD
+  const osmRef = useRef<FeatureCollection | null>(null)
+  const osmLoading = useRef(false)
+  const osmVisRef = useRef(true)
 
   // init once
   useEffect(() => {
@@ -107,6 +123,9 @@ export default function MapInset() {
       style: STYLE,
       center: [-81.35, 33.75],
       zoom: 6.3,
+      // 3D: tilted camera so extrusions read as vertical
+      pitch: 60,
+      bearing: -18,
       attributionControl: { compact: true },
     })
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-left')
@@ -162,6 +181,8 @@ export default function MapInset() {
     })
 
     return () => {
+      projMarkers.current.forEach((m) => m.remove())
+      projMarkers.current = []
       map.remove()
       mapRef.current = null
     }
@@ -192,6 +213,29 @@ export default function MapInset() {
       })
   }, [])
 
+  // OSM overlay: same independent fetch as HIFLD (10 MB — own status chip)
+  useEffect(() => {
+    if (osmLoading.current || osmRef.current) return
+    osmLoading.current = true
+    fetch('/api/ref/osm-lines')
+      .then((r) => {
+        if (!r.ok) throw new Error(`HTTP ${r.status}`)
+        return r.json()
+      })
+      .then((fc: FeatureCollection) => {
+        osmLoading.current = false
+        if (!fc?.features?.length) throw new Error('empty FeatureCollection')
+        osmRef.current = fc
+        setOsmStatus('ok')
+        applyRef.current()
+      })
+      .catch((e) => {
+        osmLoading.current = false
+        setOsmStatus('error')
+        console.warn('[map] OSM lines fetch failed:', e)
+      })
+  }, [])
+
   // sources + layers (style is async; run once data lands)
   useEffect(() => {
     const map = mapRef.current
@@ -200,14 +244,20 @@ export default function MapInset() {
     const apply = () => {
       const projFC: FeatureCollection = {
         type: 'FeatureCollection',
-        features: projects.map((p) => ({
-          type: 'Feature',
-          properties: {
-            util: p.utility.startsWith('Georgia') ? 'GPC' : 'DESC',
-            id: p.project_id,
-          },
-          geometry: p.geometry as FeatureCollection['features'][number]['geometry'],
-        })),
+        features: projects.map((p) => {
+          // full record rides along so icon hovers can show the rest of the data
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          const { geometry, ...meta } = p
+          return {
+            type: 'Feature',
+            properties: {
+              ...meta,
+              util: p.utility.startsWith('Georgia') ? 'GPC' : 'DESC',
+              id: p.project_id,
+            },
+            geometry: geometry as FeatureCollection['features'][number]['geometry'],
+          }
+        }),
       }
       const haloFC: FeatureCollection = {
         type: 'FeatureCollection',
@@ -240,53 +290,134 @@ export default function MapInset() {
           ]
         }),
       }
+      // gap-point dots: for the selected pair, one dot where each project's
+      // corridor sits closest (shortest_line emits [on A, on B] → utilities order)
+      const dotFC: FeatureCollection = {
+        type: 'FeatureCollection',
+        features: rows.flatMap((r) =>
+          r.tier === 'crossing'
+            ? [] // touch dot already drawn by halo-dots
+            : r.shortest_line.coordinates.map((c, i) => ({
+                type: 'Feature' as const,
+                properties: {
+                  id: r.overlap_id,
+                  tier: r.tier,
+                  util: r.utilities[i] === 'Georgia Power' ? 'GPC' : 'DESC',
+                },
+                geometry: { type: 'Point' as const, coordinates: c },
+              })),
+        ),
+      }
 
       const src = map.getSource('projects')
       if (src && 'setData' in src) {
         ;(src as { setData: (d: unknown) => void }).setData(projFC)
       } else {
         map.addSource('projects', { type: 'geojson', data: projFC })
-        map.addLayer({
-          id: 'project-lines',
-          type: 'line',
-          source: 'projects',
-          filter: ['==', ['geometry-type'], 'LineString'],
-          paint: {
-            'line-color': utilityColor as unknown as string,
-            'line-width': 1.4,
-            'line-opacity': 0.75,
-          },
-        })
+        // corridor line layer removed (user: "remove all lines") — points only
+        // flat dot layer suppressed: projects render as floating 3D icons below
         map.addLayer({
           id: 'project-points',
           type: 'circle',
           source: 'projects',
           filter: ['==', ['geometry-type'], 'Point'],
-          paint: {
-            'circle-radius': 3.5,
-            'circle-color': utilityColor as unknown as string,
-            'circle-opacity': 0.8,
-            'circle-stroke-width': 1,
-            'circle-stroke-color': '#ffffff',
-          },
+          layout: { visibility: 'none' },
+          paint: { 'circle-radius': 0 },
         })
       }
 
-      // pair zone circles — inserted under corridors (hifld → circles → corridors,
-      // bottom to top) so the translucent fills never mute the proposals
-      const circleBefore = map.getLayer('project-lines') ? 'project-lines' : undefined
+      // hovering 3D project icons — every project gets one; non-point geometries
+      // (corridor lines/polygons) anchor at their middle coordinate.
+      // wrapper (MapLibre positions it via transform) + animated inner ball —
+      // putting the animation on the marker element itself clobbers its position
+      const midCoord = (g: unknown): [number, number] | null => {
+        const leaves: [number, number][] = []
+        const walk = (x: unknown) => {
+          if (Array.isArray(x)) {
+            if (typeof x[0] === 'number' && typeof x[1] === 'number') leaves.push([x[0], x[1]])
+            else x.forEach(walk)
+          } else if (x && typeof x === 'object') {
+            Object.values(x).forEach(walk)
+          }
+        }
+        walk(g)
+        return leaves.length ? leaves[Math.floor(leaves.length / 2)] : null
+      }
+      projMarkers.current.forEach((m) => m.remove())
+      projMarkers.current = projFC.features.flatMap((f) => {
+        const pos = midCoord(f.geometry)
+        if (!pos) return []
+        const props = f.properties ?? {}
+        const el = document.createElement('div')
+        const ball = document.createElement('div')
+        ball.className = 'proj-icon'
+        ball.style.background = props.util === 'GPC' ? UTILITY.GPC : UTILITY.DESC
+        // hover card: full project record (everything /api/projects returned)
+        const tip = document.createElement('div')
+        tip.className = 'proj-tip'
+        const show: [string, unknown][] = [
+          ['Name', props.name],
+          ['ID', props.id],
+          ['Utility', props.utility],
+          ['Type', props.type],
+          ['Voltage', props.voltage_kv],
+          ['From', props.endpoint_a],
+          ['To', props.endpoint_b],
+          ['County', props.county],
+          ['In service', props.in_service_date],
+          ['Status', props.status],
+          ['Cost', props.cost_usd],
+          ['Sponsor', props.sponsor],
+          ['Confidence', props.confidence],
+          ['Grounding', props.geometry_source],
+          ['Source', props.source_file ? `${props.source_file} p.${props.source_page}` : ''],
+          ['Notes', props.notes],
+        ]
+        for (const [k, v] of show) {
+          const s = v == null ? '' : String(v)
+          if (!s) continue
+          const row = document.createElement('div')
+          row.className = 'proj-tip-row'
+          const kk = document.createElement('span')
+          kk.textContent = k
+          const vv = document.createElement('span')
+          vv.textContent = s
+          row.append(kk, vv)
+          tip.appendChild(row)
+        }
+        ball.onclick = () => selectProject(String(props.id))
+        ball.onmouseenter = () => {
+          tip.style.display = 'block'
+          setHover(String(props.id))
+        }
+        ball.onmouseleave = () => {
+          tip.style.display = 'none'
+          setHover(null)
+        }
+        el.append(ball, tip)
+        return [new maplibregl.Marker({ element: el }).setLngLat(pos).addTo(map)]
+      })
+
+      // pair zone circles — no corridor layer below anymore, HIFLD anchors under them
+      const circleBefore: string | undefined = undefined
       if (!map.getSource('pair-circles')) {
-        const { hiddenTiers, hoverId, selectedId } = useStore.getState()
-        const focus = hoverId ?? selectedId ?? ''
-        const vis = tierVisible(hiddenTiers)
+        // circles + gap dots show ONLY for the clicked row (user spec) — an
+        // explicit row click beats the tier chips, which still gate the many
+        // crossing dots below
+        const sel = ['==', ['get', 'id'], useStore.getState().selectedId ?? ''] as unknown as maplibregl.ExpressionSpecification
         map.addSource('pair-circles', { type: 'geojson', data: circleFC })
         map.addLayer(
           {
             id: 'pair-circles',
-            type: 'fill',
+            type: 'fill-extrusion',
             source: 'pair-circles',
-            filter: ['all', ['!=', ['get', 'tier'], 'crossing'], vis],
-            paint: { 'fill-color': haloColor as unknown as string, 'fill-opacity': 0.1 },
+            filter: ['all', sel],
+            paint: {
+              'fill-extrusion-color': haloColor as unknown as string,
+              'fill-extrusion-height': tierHeight as unknown as number,
+              'fill-extrusion-base': 0,
+              'fill-extrusion-opacity': 0.4,
+            },
           },
           circleBefore,
         )
@@ -295,7 +426,7 @@ export default function MapInset() {
             id: 'pair-circle-edge',
             type: 'line',
             source: 'pair-circles',
-            filter: ['all', ['!=', ['get', 'tier'], 'crossing'], vis],
+            filter: ['all', sel],
             paint: {
               'line-color': haloColor as unknown as string,
               'line-width': 1.5,
@@ -317,7 +448,7 @@ export default function MapInset() {
             id: 'pair-circle-focus',
             type: 'line',
             source: 'pair-circles',
-            filter: ['all', ['==', ['get', 'id'], focus], ['!=', ['get', 'tier'], 'crossing'], vis],
+            filter: ['all', sel],
             paint: {
               'line-color': haloColor as unknown as string,
               'line-width': 3,
@@ -326,9 +457,28 @@ export default function MapInset() {
           },
           circleBefore,
         )
+        map.addSource('pair-dots', { type: 'geojson', data: dotFC })
+        map.addLayer(
+          {
+            id: 'pair-dots',
+            type: 'circle',
+            source: 'pair-dots',
+            filter: ['all', sel],
+            paint: {
+              'circle-radius': 5,
+              'circle-color': utilityColor as unknown as string,
+              'circle-opacity': 0.9,
+              'circle-stroke-width': 1.5,
+              'circle-stroke-color': '#ffffff',
+            },
+          },
+          circleBefore,
+        )
       } else {
         const cs = map.getSource('pair-circles')
         if (cs && 'setData' in cs) (cs as { setData: (d: unknown) => void }).setData(circleFC)
+        const ds = map.getSource('pair-dots')
+        if (ds && 'setData' in ds) (ds as { setData: (d: unknown) => void }).setData(dotFC)
       }
 
       if (!map.getSource('overlaps')) {
@@ -367,13 +517,31 @@ export default function MapInset() {
         if (ovl && 'setData' in ovl) (ovl as { setData: (d: unknown) => void }).setData(haloFC)
       }
 
-      // HIFLD reference lines — sits under our corridors (beforeId), muted slate
+      // HIFLD reference lines — sits under the pair circles (beforeId), muted slate
       if (hifldRef.current) {
         const hs = map.getSource('hifld-lines')
         if (hs && 'setData' in hs) {
           ;(hs as { setData: (d: unknown) => void }).setData(hifldRef.current)
         } else {
           map.addSource('hifld-lines', { type: 'geojson', data: hifldRef.current })
+          const before = map.getLayer('pair-circles') ? 'pair-circles' : undefined
+          // white glow casing under the lines — reads as "lifted" at pitch
+          // (MapLibre can't extrude lines; casing is the cheap stand-in)
+          map.addLayer(
+            {
+              id: 'hifld-lines-glow',
+              type: 'line',
+              source: 'hifld-lines',
+              layout: { visibility: hifldVisRef.current ? 'visible' : 'none' },
+              paint: {
+                'line-color': '#cbd5e1',
+                'line-opacity': 0.5,
+                'line-width': 5,
+                'line-blur': 3,
+              },
+            },
+            before,
+          )
           map.addLayer(
             {
               id: 'hifld-lines',
@@ -399,8 +567,56 @@ export default function MapInset() {
                 ],
               },
             },
-            // under our corridors so overlay never buries the proposal
-            map.getLayer('project-lines') ? 'project-lines' : undefined,
+            before,
+          )
+        }
+      }
+
+      // OSM power=line overlay (Overpass GA/SC) — violet to read apart from
+      // the slate HIFLD layer, width by kV (0 = voltage tag missing)
+      if (osmRef.current) {
+        const os = map.getSource('osm-lines')
+        if (os && 'setData' in os) {
+          ;(os as { setData: (d: unknown) => void }).setData(osmRef.current)
+        } else {
+          map.addSource('osm-lines', { type: 'geojson', data: osmRef.current })
+          const beforeOsm = map.getLayer('pair-circles') ? 'pair-circles' : undefined
+          // violet glow casing — pops the lines "upward" against the basemap
+          map.addLayer(
+            {
+              id: 'osm-lines-glow',
+              type: 'line',
+              source: 'osm-lines',
+              layout: { visibility: osmVisRef.current ? 'visible' : 'none' },
+              paint: {
+                'line-color': '#C4B5FD',
+                'line-opacity': 0.55,
+                'line-width': 6,
+                'line-blur': 3,
+              },
+            },
+            beforeOsm,
+          )
+          map.addLayer(
+            {
+              id: 'osm-lines',
+              type: 'line',
+              source: 'osm-lines',
+              layout: {
+                visibility: osmVisRef.current ? 'visible' : 'none',
+              },
+              paint: {
+                'line-color': '#7C3AED',
+                'line-opacity': 0.9,
+                'line-width': [
+                  'case',
+                  ['>=', ['get', 'kv'], 345], 2.8,
+                  ['>=', ['get', 'kv'], 100], 1.8,
+                  1.1,
+                ],
+              },
+            },
+            beforeOsm,
           )
         }
       }
@@ -415,16 +631,22 @@ export default function MapInset() {
   // spotlight + tier visibility (filters only — hover never moves the camera)
   useEffect(() => {
     const map = mapRef.current
-    if (!map || !map.getLayer('pair-circle-edge') || !map.getLayer('halo-dots')) return
+    if (
+      !map ||
+      !map.getLayer('pair-circle-edge') ||
+      !map.getLayer('pair-dots') ||
+      !map.getLayer('halo-dots')
+    )
+      return
     const focus = hoverId ?? selectedId ?? ''
     const vis = tierVisible(hiddenTiers)
-    const notCrossing = ['!=', ['get', 'tier'], 'crossing'] as const
-    map.setFilter('pair-circles', ['all', notCrossing, vis] as never)
-    map.setFilter('pair-circle-edge', ['all', notCrossing, vis] as never)
-    map.setFilter(
-      'pair-circle-focus',
-      ['all', ['==', ['get', 'id'], focus], notCrossing, vis] as never,
-    )
+    // circles + gap dots track the clicked row only (no tier gate — one
+    // explicit selection; hiddenTiers still filters the crossing dots)
+    const sel = ['==', ['get', 'id'], selectedId ?? ''] as unknown as maplibregl.ExpressionSpecification
+    map.setFilter('pair-circles', ['all', sel] as never)
+    map.setFilter('pair-circle-edge', ['all', sel] as never)
+    map.setFilter('pair-circle-focus', ['all', sel] as never)
+    map.setFilter('pair-dots', ['all', sel] as never)
     map.setFilter('halo-dots', ['all', ['==', ['get', 'tier'], 'crossing'], vis] as never)
     map.setFilter(
       'halo-dot-focus',
@@ -480,18 +702,19 @@ export default function MapInset() {
     const map = mapRef.current
     if (!map || !map.getLayer('hifld-lines')) return
     map.setLayoutProperty('hifld-lines', 'visibility', showHifld ? 'visible' : 'none')
+    if (map.getLayer('hifld-lines-glow'))
+      map.setLayoutProperty('hifld-lines-glow', 'visibility', showHifld ? 'visible' : 'none')
   }, [showHifld])
 
-  const toggleProjects = () => {
+  // OSM overlay toggle — same ref-then-push pattern as HIFLD
+  useEffect(() => {
+    osmVisRef.current = showOsm
     const map = mapRef.current
-    const next = !showProjects
-    setShowProjects(next)
-    if (map) {
-      for (const id of ['project-lines', 'project-points']) {
-        if (map.getLayer(id)) map.setLayoutProperty(id, 'visibility', next ? 'visible' : 'none')
-      }
-    }
-  }
+    if (!map || !map.getLayer('osm-lines')) return
+    map.setLayoutProperty('osm-lines', 'visibility', showOsm ? 'visible' : 'none')
+    if (map.getLayer('osm-lines-glow'))
+      map.setLayoutProperty('osm-lines-glow', 'visibility', showOsm ? 'visible' : 'none')
+  }, [showOsm])
 
   const chip =
     'h-7 px-2 rounded border border-rule bg-surface/95 text-[11px] font-medium shadow-sm hover:bg-surface-3'
@@ -558,9 +781,12 @@ export default function MapInset() {
           <span className="text-ink-dim">┃</span>
           <span>grey lines: HIFLD existing transmission network (reference)</span>
         </div>
-        <div className="flex items-start gap-1.5">
-          <span className="text-ink-dim">—</span>
-          <span>thin line: transmission corridor — the power lines between two points</span>
+        <div
+          className="flex items-start gap-1.5"
+          title="OSM power=line ways inside US-GA + US-SC (Overpass API), width by voltage tag. Reference only — corridor scoring never uses it."
+        >
+          <span style={{ color: '#7C3AED' }}>┃</span>
+          <span>violet lines: OSM power lines, GA + SC (width = kV)</span>
         </div>
         <div
           className="flex items-start gap-1.5"
@@ -571,14 +797,17 @@ export default function MapInset() {
         </div>
         <div
           className="flex items-start gap-1.5"
-          title="Circle centered between the two projects; its diameter is the tier limit itself (1.6 / 8 / 40 km), so both projects always sit inside."
+          title="Shown only for the clicked row: circle centered between the two projects, diameter = the tier limit itself (1.6 / 8 / 40 km) so both projects sit inside; the dots mark each project's closest point."
         >
           <span className="text-ink-dim">◯</span>
-          <span>circle: pair zone — diameter = tier limit (1.6 / 8 / 40 km), color = tier</span>
+          <span>
+            circle: clicked pair&apos;s zone — diameter = tier limit (1.6 / 8 / 40 km); dots = its
+            two locations
+          </span>
         </div>
         <div className="flex items-start gap-1.5">
           <span className="text-ink-dim">✦</span>
-          <span>bright glow: hovered / selected pair — hover a row or a circle</span>
+          <span>bright glow: hovered / selected pair — hover a row</span>
         </div>
         <div className="my-1.5 h-px bg-rule" />
         <div className="mb-1 font-semibold tracking-wide text-ink-dim uppercase">Corridor grounding</div>
@@ -633,9 +862,6 @@ export default function MapInset() {
 
       {/* [+/-] [layers] [fullscreen] */}
       <div className="absolute top-2 right-2 z-10 flex gap-1.5">
-        <button className={chip} onClick={toggleProjects} title="Toggle project corridors">
-          {showProjects ? 'hide' : 'show'} corridors
-        </button>
         {hifldStatus === 'loading' && (
           <span className={`${chip} text-ink-dim`} title="Fetching HIFLD transmission overlay…">
             HIFLD loading…
@@ -649,12 +875,32 @@ export default function MapInset() {
             HIFLD unavailable
           </span>
         )}
+        {osmStatus === 'loading' && (
+          <span className={`${chip} text-ink-dim`} title="Fetching OSM power=line overlay…">
+            OSM loading…
+          </span>
+        )}
+        {osmStatus === 'error' && (
+          <span
+            className={chip}
+            title="OSM overlay unavailable — is the backend running on :8000? If the cache is missing run: uv run python backend.convert_overpass_lines"
+          >
+            OSM unavailable
+          </span>
+        )}
         <button
           className={chip}
           onClick={() => setShowHifld((v) => !v)}
           title="Toggle HIFLD existing transmission lines (HIFLD/ORNL, SC/GA subset)"
         >
           {showHifld ? 'hide' : 'show'} HIFLD
+        </button>
+        <button
+          className={chip}
+          onClick={() => setShowOsm((v) => !v)}
+          title="Toggle OSM power=line overlay (Overpass, GA+SC states)"
+        >
+          {showOsm ? 'hide' : 'show'} OSM
         </button>
         <button
           className={chip}

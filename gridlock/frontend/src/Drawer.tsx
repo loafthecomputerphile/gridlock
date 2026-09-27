@@ -1,13 +1,14 @@
 import { useEffect, useRef, useState } from 'react'
+import type { ReactNode } from 'react'
 import type { PairDetail } from './types'
 import { TIER_HALO, TIER_LABEL } from './palette'
 import { useStore } from './store'
 
-function Field({ k, v }: { k: string; v: unknown }) {
+function Field({ k, v }: { k: string; v: ReactNode }) {
   return (
     <div>
       <div className="text-[9.5px] font-semibold tracking-wide text-ink-dim uppercase">{k}</div>
-      <div className="text-[12px]">{v == null || v === '' ? '—' : String(v)}</div>
+      <div className="text-[12px]">{v == null || v === '' ? '—' : v}</div>
     </div>
   )
 }
@@ -29,7 +30,18 @@ function ProjectCard({ p, accent }: { p: PairDetail['project_a_detail']; accent:
         <Field k="County" v={p.county} />
         <Field k="In service" v={p.in_service_date} />
         <Field k="Status" v={p.status} />
-        <Field k="Cost" v={p.cost_usd} />
+        <Field
+          k="Cost"
+          v={
+            /redact/i.test(p.cost_usd) ? (
+              <span title="Cost REDACTED in the source release — never invented (GPC side has no cost data)">
+                -- <span className="text-ink-dim">(redacted in source)</span>
+              </span>
+            ) : (
+              p.cost_usd
+            )
+          }
+        />
         <Field k="Sponsor" v={p.sponsor} />
         <Field k="Confidence" v={p.confidence} />
         <Field k="Grounding" v={p.geometry_source} />
@@ -41,11 +53,67 @@ function ProjectCard({ p, accent }: { p: PairDetail['project_a_detail']; accent:
   )
 }
 
+/** phase-05 AI brief chip — hues deliberately outside the tier palette
+ * (red/orange/yellow/blue/green are tier/utility colors). */
+const BRIEF_CHIP: Record<string, { label: string; fg: string }> = {
+  live: { label: 'AI live', fg: '#7C3AED' },
+  cached: { label: 'cached', fg: '#0891B2' },
+  'rate-limited': { label: 'rate-limited', fg: '#DB2777' },
+  unavailable: { label: 'AI unavailable', fg: '#64748B' },
+  loading: { label: 'asking model…', fg: '#64748B' },
+}
+
+interface BriefState {
+  text: string | null
+  status: string
+  source: string | null
+  model: string | null
+  reason: string | null
+}
+
+/** 06-A: acres = width_ft × length_mi × 5,280 ÷ 43,560 (engine formula, live inputs) */
+function AssumptionTable({ detail }: { detail: PairDetail }) {
+  const widthFt = useStore((s) => s.rowWidthFt)
+  const usdPerAcre = useStore((s) => s.usdPerAcre)
+  const lengthMi = detail.min_distance_km / 1.609344
+  const acres = (widthFt * lengthMi * 5280) / 43560
+  const usd = acres * usdPerAcre
+  const row = (k: string, v: string) => (
+    <tr className="border-b border-rule last:border-0">
+      <td className="py-1 pr-4 text-ink-dim">{k}</td>
+      <td className="py-1 text-right tabular-nums">{v}</td>
+    </tr>
+  )
+  return (
+    <div className="mb-3 rounded border border-rule bg-surface-2 px-3 py-2.5">
+      <div className="mb-1.5 text-[11.5px] font-semibold tracking-wide text-ink uppercase">
+        Shared-ROW cost estimate{' '}
+        <span className="font-normal italic text-ink-dim">illustrative assumption</span>
+      </div>
+      <table className="text-[12px]">
+        <tbody>
+          {row('Closest-approach segment length', `${lengthMi.toFixed(3)} mi (${detail.min_distance_km.toFixed(2)} km)`)}
+          {row('ROW width (ledger control)', `${widthFt} ft`)}
+          {row('Acre math', `width_ft × 5,280 ÷ 43,560 per mile → ${acres.toFixed(2)} ac`)}
+          {row('$ / acre (ledger control)', `$${usdPerAcre.toLocaleString('en-US')}`)}
+          {row('Est. $ (illustrative)', `$${Math.round(usd).toLocaleString('en-US')}`)}
+        </tbody>
+      </table>
+      <div className="mt-1.5 text-[10.5px] text-ink-dim">
+        Not a quote. Inputs shown above; GPC project costs are REDACTED in the source
+        release, so no project-side dollar is inferred from them.
+      </div>
+    </div>
+  )
+}
+
 export default function Drawer() {
   const selectedId = useStore((s) => s.selectedId)
   const select = useStore((s) => s.select)
   const [detail, setDetail] = useState<PairDetail | null>(null)
   const [error, setError] = useState<string | null>(null)
+  const [brief, setBrief] = useState<BriefState | null>(null)
+  const [briefAttempt, setBriefAttempt] = useState(0)
   const drawerH = useStore((s) => s.drawerH)
   const setDrawerH = useStore((s) => s.setDrawerH)
   const hDrag = useRef<{ y0: number; h0: number } | null>(null)
@@ -53,11 +121,13 @@ export default function Drawer() {
   useEffect(() => {
     if (!selectedId) {
       setDetail(null)
+      setBrief(null)
       return
     }
     let live = true
     setError(null)
     setDetail(null)
+    setBrief({ text: null, status: 'loading', source: null, model: null, reason: null })
     fetch(`/api/pairs/${encodeURIComponent(selectedId)}`)
       .then((r) => {
         if (!r.ok) throw new Error(`api ${r.status}`)
@@ -65,16 +135,44 @@ export default function Drawer() {
       })
       .then((d: PairDetail) => live && setDetail(d))
       .catch((e) => live && setError(e instanceof Error ? e.message : String(e)))
+    fetch('/api/ai/brief', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ pair_id: selectedId }),
+    })
+      .then((r) => r.json())
+      .then((d) =>
+        live &&
+        setBrief({
+          text: d.text ?? null,
+          status: d.status ?? 'unavailable',
+          source: d.source ?? null,
+          model: d.model ?? null,
+          reason: d.reason ?? null,
+        }),
+      )
+      .catch(() =>
+        live &&
+        setBrief({ text: null, status: 'unavailable', source: null, model: null, reason: 'network error' }),
+      )
     return () => {
       live = false
     }
-  }, [selectedId])
+  }, [selectedId, briefAttempt])
 
   if (!selectedId) return null
 
   const mid = detail?.shortest_line.coordinates?.length
     ? detail.shortest_line.coordinates[Math.floor(detail.shortest_line.coordinates.length / 2)]
     : null
+  const chipKey = !brief
+    ? null
+    : brief.status === 'ok'
+      ? brief.source === 'cached'
+        ? 'cached'
+        : 'live'
+      : brief.status
+  const chip = chipKey ? (BRIEF_CHIP[chipKey] ?? BRIEF_CHIP.unavailable) : null
 
   return (
     <div
@@ -135,8 +233,10 @@ export default function Drawer() {
                 {detail.project_a} × {detail.project_b}
               </span>
               <span>{detail.min_distance_km.toFixed(2)} km min separation</span>
+
               <span>
                 service years {detail.year_a ?? '?'} / {detail.year_b ?? '?'}
+
               </span>
               <span>{detail.time_gap != null ? `${detail.time_gap} d apart` : 'time gap —'}</span>
               <span>
@@ -167,11 +267,48 @@ export default function Drawer() {
               <ProjectCard p={detail.project_b_detail} accent="#059669" />
             </div>
 
-            {/* phase-05 slot */}
-            <div className="rounded border border-dashed border-rule bg-surface-2 px-3 py-2.5 text-[11.5px] text-ink-dim">
-              <span className="font-semibold tracking-wide text-ink uppercase">AI pair brief</span>{' '}
-              — slot reserved; the shared-row narrative lands in phase 05.
+            {/* phase 06 bonus: shared-ROW cost assumption table (inputs live in the ledger bar) */}
+            <AssumptionTable detail={detail} />
+
+            {/* phase-05: AI pair brief — status chip + retry, degraded states honest 
+            <div className="rounded border border-rule bg-surface-2 px-3 py-2.5">
+              <div className="mb-1.5 flex items-center gap-2">
+                <span className="text-[11.5px] font-semibold tracking-wide text-ink uppercase">
+                  AI pair brief
+                </span>
+                {brief && chip && (
+                  <span
+                    className="rounded-full px-2 py-0.5 text-[10.5px] font-medium"
+                    style={{ color: chip.fg, background: `${chip.fg}1a` }}
+                  >
+                    {chip.label}
+                  </span>
+                )}
+                {brief?.model && (
+                  <span className="text-[10px] text-ink-dim">{brief.model}</span>
+                )}
+                {brief && brief.status !== 'ok' && brief.status !== 'loading' && (
+                  <button
+                    className="rounded border border-rule px-2 py-0.5 text-[10.5px] hover:bg-surface-3"
+                    onClick={() => setBriefAttempt((n) => n + 1)}
+                  >
+                    retry
+                  </button>
+                )}
+              </div>
+              {!brief || brief.status === 'loading' ? (
+                <div className="text-[12px] text-ink-dim">asking the model…</div>
+              ) : brief.text ? (
+                <p className="text-[12.5px] leading-relaxed">{brief.text}</p>
+              ) : (
+                <div className="text-[12px] text-ink-dim">
+                  Brief unavailable{brief.reason ? ` — ${brief.reason}` : ''}. No cached
+                  copy for this pair yet; add OPENROUTER_API_KEY and retry to generate
+                  one for the offline demo.
+                </div>
+              )}
             </div>
+            */}
           </>
         )}
       </div>

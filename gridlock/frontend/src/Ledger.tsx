@@ -20,63 +20,82 @@ const col = createColumnHelper<Features, OverlapRow>()
 
 // ponytail: mixed accessor TValue (number|string|null) — cast once instead of
 // fighting v9's per-column generics; every column here is read as ReactNode
-const columns = [
-  col.accessor('rank', { header: '#', enableSorting: false, cell: (c) => c.getValue() }),
-  col.accessor('project_a', {
-    header: 'Project A',
-    cell: (c) => (
-      <span title={c.row.original.name_a}>
-        <Dot utility={c.row.original.utilities[0] ?? ''} /> {c.getValue()}
-      </span>
-    ),
-  }),
-  col.accessor('project_b', {
-    header: 'Project B',
-    cell: (c) => (
-      <span title={c.row.original.name_b}>
-        <Dot utility={c.row.original.utilities[1] ?? c.row.original.utilities[0] ?? ''} />{' '}
-        {c.getValue()}
-      </span>
-    ),
-  }),
-  col.accessor('utilities', {
-    header: 'Utility',
-    enableSorting: false,
-    cell: (c) => c.getValue().join(' × '),
-  }),
-  col.accessor('min_distance_km', {
-    header: 'Min dist (km)',
-    cell: (c) => c.getValue().toFixed(2),
-  }),
-  col.accessor('tier', {
-    header: 'Tier',
-    cell: (c) => (
-      <span className="inline-flex items-center gap-1.5 whitespace-nowrap">
-        <span
-          className="inline-block h-2 w-2 rounded-full"
-          style={{ background: TIER_HALO[c.getValue()] }}
-        />
-        {TIER_LABEL[c.getValue()]}
-      </span>
-    ),
-  }),
-  col.accessor('shared_in_service_year', {
-    header: 'Svc year',
-    cell: (c) => c.getValue() ?? '—',
-  }),
-  col.accessor('time_gap', {
-    header: 'Gap (d)',
-    cell: (c) => (c.getValue() == null ? '—' : `${c.getValue()} d`),
-  }),
-  col.accessor('score', { header: 'Score', cell: (c) => c.getValue() }),
-  // ponytail: no API field yet — plan schema keeps the column, always "--" until 05
-  col.accessor(() => null, {
-    id: 'est_shared_row_acres',
-    header: 'Est. row acres',
-    enableSorting: false,
-    cell: () => '--',
-  }),
-] as unknown as ColumnDef<Features, OverlapRow>[]
+// Phase 06 bonus: acres/$ columns recompute from the visible assumption
+// controls (engine value is at the 150 ft default; acres are linear in width).
+const ENGINE_WIDTH_FT = 150
+
+function makeColumns(widthFt: number, usdPerAcre: number) {
+  return [
+    col.accessor('rank', { header: '#', enableSorting: false, cell: (c) => c.getValue() }),
+    col.accessor('project_a', {
+      header: 'Project A',
+      cell: (c) => (
+        <span title={c.row.original.name_a}>
+          <Dot utility={c.row.original.utilities[0] ?? ''} /> {c.getValue()}
+        </span>
+      ),
+    }),
+    col.accessor('project_b', {
+      header: 'Project B',
+      cell: (c) => (
+        <span title={c.row.original.name_b}>
+          <Dot utility={c.row.original.utilities[1] ?? c.row.original.utilities[0] ?? ''} />{' '}
+          {c.getValue()}
+        </span>
+      ),
+    }),
+    col.accessor('utilities', {
+      header: 'Utility',
+      enableSorting: false,
+      cell: (c) => c.getValue().join(' × '),
+    }),
+    col.accessor('min_distance_km', {
+      header: 'Min dist (km)',
+      cell: (c) => c.getValue().toFixed(2),
+    }),
+    col.accessor('tier', {
+      header: 'Tier',
+      cell: (c) => (
+        <span className="inline-flex items-center gap-1.5 whitespace-nowrap">
+          <span
+            className="inline-block h-2 w-2 rounded-full"
+            style={{ background: TIER_HALO[c.getValue()] }}
+          />
+          {TIER_LABEL[c.getValue()]}
+        </span>
+      ),
+    }),
+    col.accessor('shared_in_service_year', {
+      header: 'Svc year',
+      cell: (c) => c.getValue() ?? '—',
+    }),
+    col.accessor('time_gap', {
+      header: 'Gap (d)',
+      cell: (c) => (c.getValue() == null ? '—' : `${c.getValue()} d`),
+    }),
+    col.accessor('score', { header: 'Score', cell: (c) => c.getValue() }),
+    col.accessor('est_shared_row_acres', {
+      header: 'Est. acres',
+      cell: (c) => {
+        const acres = (c.getValue() as number) * (widthFt / ENGINE_WIDTH_FT)
+        return <span title="illustrative assumption — closest-approach segment × ROW width">{acres.toFixed(2)}</span>
+      },
+    }),
+    col.accessor('est_shared_row_acres', {
+      id: 'est_usd',
+      header: 'Est. $ (ill.)',
+      cell: (c) => {
+        const acres = (c.getValue() as number) * (widthFt / ENGINE_WIDTH_FT)
+        const usd = acres * usdPerAcre
+        return (
+          <span title={`illustrative assumption: ${acres.toFixed(2)} ac × $${usdPerAcre.toLocaleString('en-US')}/ac`}>
+            ${Math.round(usd).toLocaleString('en-US')}
+          </span>
+        )
+      },
+    }),
+  ] as unknown as ColumnDef<Features, OverlapRow>[]
+}
 
 function Dot({ utility }: { utility: string }) {
   const color = utility.startsWith('Georgia') ? UTILITY.GPC : UTILITY.DESC
@@ -101,7 +120,16 @@ function TierChip({ tier }: { tier: OverlapRow['tier'] }) {
 export default function Ledger({ rows }: { rows: OverlapRow[] }) {
   const [visible, setVisible] = useState(PAGE)
   const { selectedId, setHover, select } = useStore()
+  const rowWidthFt = useStore((s) => s.rowWidthFt)
+  const usdPerAcre = useStore((s) => s.usdPerAcre)
+  const setRowWidthFt = useStore((s) => s.setRowWidthFt)
+  const setUsdPerAcre = useStore((s) => s.setUsdPerAcre)
   const bodyRef = useRef<HTMLTableSectionElement>(null)
+
+  const columns = useMemo(
+    () => makeColumns(rowWidthFt, usdPerAcre),
+    [rowWidthFt, usdPerAcre],
+  )
 
   const table = useTable({
     features,
@@ -140,6 +168,34 @@ export default function Ledger({ rows }: { rows: OverlapRow[] }) {
 
   return (
     <div className="flex h-full flex-col">
+      {/* phase 06 bonus: visible assumption inputs — every $ is illustrative */}
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 border-b border-rule bg-surface-2 px-3 py-1.5 text-[10.5px] text-ink-dim">
+        <span className="font-semibold tracking-wide uppercase">Est. assumptions</span>
+        <label className="flex items-center gap-1">
+          ROW width
+          <input
+            type="number"
+            min={10}
+            max={300}
+            value={rowWidthFt}
+            onChange={(e) => setRowWidthFt(Number(e.target.value))}
+            className="w-16 rounded border border-rule bg-surface px-1 py-0.5 text-[11px] text-ink"
+          />
+          ft
+        </label>
+        <label className="flex items-center gap-1">
+          $/acre
+          <input
+            type="number"
+            min={0}
+            step={1000}
+            value={usdPerAcre}
+            onChange={(e) => setUsdPerAcre(Number(e.target.value))}
+            className="w-24 rounded border border-rule bg-surface px-1 py-0.5 text-[11px] text-ink"
+          />
+        </label>
+        <span className="italic">illustrative assumption — inputs shown, not a quote</span>
+      </div>
       <div className="min-h-0 flex-1 overflow-auto">
         <table className="w-full border-separate border-spacing-0 text-[12px]">
           <thead>
@@ -235,19 +291,32 @@ function TierChipLegend() {
 /** START-GATE 04-4: explainer + nearest candidates when nothing survives the filter */
 function EmptyState() {
   const all = useStore((s) => s.rows)
+  const query = useStore((s) => s.query)
+  const clearQuery = useStore((s) => s.clearQuery)
   const select = useStore((s) => s.select)
   const nearest = useMemo(
     () => [...all].sort((a, b) => a.min_distance_km - b.min_distance_km).slice(0, 5),
     [all],
   )
+  const queryActive = !!query && !query.error && !!query.parsed
   return (
     <div className="flex h-full flex-col items-center justify-center gap-4 p-8 text-center">
       <div className="max-w-md">
         <h2 className="mb-1 text-base font-semibold">No pairs survive this filter</h2>
-        <p className="text-[12.5px] text-ink-dim">
-          Every candidate either exceeds the 40&nbsp;km analysis radius or falls outside the
-          selected service-year window. Loosen the tier filter or turn off “window only”.
-        </p>
+        {queryActive ? (
+          <p className="text-[12.5px] text-ink-dim">
+            Your table query matched {query.row_count} rows, then the tier/window chips
+            narrowed it to zero. Clear the query chips above or loosen the tier filter.{' '}
+            <button className="underline hover:text-ink" onClick={clearQuery}>
+              clear query
+            </button>
+          </p>
+        ) : (
+          <p className="text-[12.5px] text-ink-dim">
+            Every candidate either exceeds the 40&nbsp;km analysis radius or falls outside the
+            selected service-year window. Loosen the tier filter or turn off “window only”.
+          </p>
+        )}
       </div>
       <div className="w-full max-w-sm rounded border border-rule bg-surface-2 p-3 text-left">
         <div className="mb-1.5 text-[10.5px] font-semibold tracking-wide text-ink-dim uppercase">
