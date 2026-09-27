@@ -1,0 +1,4283 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "DESC_4",
+    "name": "Queensboro - Ft Johnson 115 kV & Queensboro-Bayfront 115kV (Queensboro-James Island Sect)",
+    "utility": "Dominion Energy South Carolina",
+    "type": "line",
+    "endpoint_a": "Queensboro Sub",
+    "endpoint_b": "Ft Johnson Sub",
+    "in_service_date": "2023-12-31",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.967332,
+     32.722793
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "DESC_6",
+    "name": "Union Pier 115-13.8 kV Sub: Tap",
+    "utility": "Dominion Energy South Carolina",
+    "type": "substation",
+    "endpoint_a": "Union Pier",
+    "endpoint_b": "",
+    "in_service_date": "2027-12-31",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -84.50947594099995,
+     33.55304442100004
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "DESC_7",
+    "name": "Okatie 230-115kV Substation, Jasper \u2013 Yemassee 230kV #1 Fold-in",
+    "utility": "Dominion Energy South Carolina",
+    "type": "substation",
+    "endpoint_a": "Okatie",
+    "endpoint_b": "Yemassee",
+    "in_service_date": "2024-12-31",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -80.9448103,
+      32.2956335
+     ],
+     [
+      -80.86376335199998,
+      32.69792762800006
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "DESC_8",
+    "name": "Cainhoy - Hamlin 115kV: Rebuild Line and Cainhoy \u2013 Hamlin 115 kV #2: Construct New 115 kV Line",
+    "utility": "Dominion Energy South Carolina",
+    "type": "line",
+    "endpoint_a": "Cainhoy",
+    "endpoint_b": "Hamlin",
+    "in_service_date": "2025-12-01",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -79.84227565,
+      32.941402
+     ],
+     [
+      -79.78844085,
+      32.859937
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "DESC_9",
+    "name": "Eastover - Square D 115kV: Rebuild",
+    "utility": "Dominion Energy South Carolina",
+    "type": "line",
+    "endpoint_a": "Eastover",
+    "endpoint_b": "Square D",
+    "in_service_date": "2024-06-01",
+    "confidence": "unconfirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -80.64187994099996,
+      33.887567938000075
+     ],
+     [
+      -71.0783276,
+      42.352065
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "DESC_10",
+    "name": "Burton-St Helena 115kV: Rebuild Burton-Frogmore Transmission Section",
+    "utility": "Dominion Energy South Carolina",
+    "type": "line",
+    "endpoint_a": "Burton",
+    "endpoint_b": "St Helena",
+    "in_service_date": "2024-12-31",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -80.72075811599996,
+      32.43655608300003
+     ],
+     [
+      -80.5606622,
+      32.3868607
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "DESC_11",
+    "name": "Burton-St Helena 115kV: Frogmore Distribution - St Helena",
+    "utility": "Dominion Energy South Carolina",
+    "type": "line",
+    "endpoint_a": "Burton-St Helena",
+    "endpoint_b": "St Helena",
+    "in_service_date": "2025-12-31",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -80.72075811599996,
+      32.43655608300003
+     ],
+     [
+      -80.5606622,
+      32.3868607
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "DESC_12",
+    "name": "VCS1-Denny Terrace 230kV & VCS1-Pineland 230kV: Rebuild Single Circuit Sections",
+    "utility": "Dominion Energy South Carolina",
+    "type": "line",
+    "endpoint_a": "VCS1",
+    "endpoint_b": "Denny Terrace",
+    "in_service_date": "2026-12-31",
+    "confidence": "unconfirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -80.9,
+      33.8
+     ],
+     [
+      -81.06145604699998,
+      34.05756276300008
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "DESC_13",
+    "name": "Wateree-Killian 230kV: Rebuild",
+    "utility": "Dominion Energy South Carolina",
+    "type": "line",
+    "endpoint_a": "Wateree",
+    "endpoint_b": "Killian",
+    "in_service_date": "2028-12-31",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -80.7023194,
+      34.33465775
+     ],
+     [
+      -81.2651824,
+      32.566698
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "DESC_5",
+    "name": "Okatie-Bluffton 115kV: Rebuild",
+    "utility": "Dominion Energy South Carolina",
+    "type": "line",
+    "endpoint_a": "Okatie Sub",
+    "endpoint_b": "Bluffton Sub",
+    "in_service_date": "2025-06-01",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -81.032495,
+      32.333758
+     ],
+     [
+      -80.853384,
+      32.235027
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "DESC_14",
+    "name": "Hopkins-CIP 230kV: Rebuild",
+    "utility": "Dominion Energy South Carolina",
+    "type": "line",
+    "endpoint_a": "Hopkins",
+    "endpoint_b": "CIP",
+    "in_service_date": "2025-12-31",
+    "confidence": "unconfirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -84.39814186799998,
+      30.45310437300003
+     ],
+     [
+      -80.6671613,
+      28.1726667
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "DESC_15",
+    "name": "Faber Place-Bayfront 115kV: Rebuild North Bridge Terrace to Bayfront Section",
+    "utility": "Dominion Energy South Carolina",
+    "type": "line",
+    "endpoint_a": "Faber Place",
+    "endpoint_b": "Bayfront",
+    "in_service_date": "2028-12-31",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -80.01462405000001,
+      32.8500798
+     ],
+     [
+      -79.9634237,
+      32.742122
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "DESC_16",
+    "name": "Square D - Hopkins 115kV: Rebuild",
+    "utility": "Dominion Energy South Carolina",
+    "type": "line",
+    "endpoint_a": "Square D",
+    "endpoint_b": "Hopkins",
+    "in_service_date": "2024-09-30",
+    "confidence": "unconfirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.0783276,
+      42.352065
+     ],
+     [
+      -84.39814186799998,
+      30.45310437300003
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "DESC_1",
+    "name": "Stevens Creek - Hooks 115kV/LR Plumb Branch 46kV Rebuilds",
+    "utility": "Dominion Energy South Carolina",
+    "type": "line",
+    "endpoint_a": "Stevens Creek Sub",
+    "endpoint_b": "Hooks Sub",
+    "in_service_date": "2024-12-31",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.051362,
+     33.562599
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "DESC_17",
+    "name": "Stevens Creek - Hooks 115kV/LR Plumb Branch 46kV",
+    "utility": "Dominion Energy South Carolina",
+    "type": "line",
+    "endpoint_a": "Stevens Creek",
+    "endpoint_b": "Hooks",
+    "in_service_date": "2025-12-31",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -82.05347072699999,
+      33.561547716000064
+     ],
+     [
+      -79.0914166,
+      34.170585
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "DESC_18",
+    "name": "Edenwood Sub: #1 & #2 230-115kV Autobanks, Replace with 336MVA",
+    "utility": "Dominion Energy South Carolina",
+    "type": "substation",
+    "endpoint_a": "Edenwood Sub",
+    "endpoint_b": "",
+    "in_service_date": "2024-12-25",
+    "confidence": "unconfirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.9,
+     33.8
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "DESC_19",
+    "name": "Williams St Sub: Replace Sw House & Relays, AM Williams Sub: Replace Sw House, and McMeekin Sub: Add Sw House",
+    "utility": "Dominion Energy South Carolina",
+    "type": "substation",
+    "endpoint_a": "Williams St Sub",
+    "endpoint_b": "",
+    "in_service_date": "2028-12-31",
+    "confidence": "unconfirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -83.391373,
+     42.2712828
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "DESC_20",
+    "name": "Harleyville 115KV Transmission Tap \u2013 Construct (1.4 miles)",
+    "utility": "Dominion Energy South Carolina",
+    "type": "line",
+    "endpoint_a": "Harleyville",
+    "endpoint_b": "",
+    "in_service_date": "2027-03-31",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.45116580000001,
+     33.20990695
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "DESC_21",
+    "name": "Summerville: Replace and Spare 230-115kV 336MVA Auto Bank",
+    "utility": "Dominion Energy South Carolina",
+    "type": "line",
+    "endpoint_a": "Summerville",
+    "endpoint_b": "",
+    "in_service_date": "2024-12-31",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -85.3375288,
+     34.47191445
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "DESC_22",
+    "name": "Canadys-Ritter 115KV-Rebld SPDC 230/115KV 1272 (Approx 18 Miles)",
+    "utility": "Dominion Energy South Carolina",
+    "type": "line",
+    "endpoint_a": "Canadys",
+    "endpoint_b": "Ritter",
+    "in_service_date": "2026-06-01",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -80.62039299099996,
+      33.06433632900007
+     ],
+     [
+      -81.6342151,
+      30.4548001
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "DESC_23",
+    "name": "Yemassee\u2013 Ritter 230kV #1 & #2: Construct SPDC with B-1272",
+    "utility": "Dominion Energy South Carolina",
+    "type": "line",
+    "endpoint_a": "Yemassee",
+    "endpoint_b": "Ritter",
+    "in_service_date": "2026-06-01",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -80.86376335199998,
+      32.69792762800006
+     ],
+     [
+      -81.6342151,
+      30.4548001
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "DESC_24",
+    "name": "Riverport Tap: Construct Tap",
+    "utility": "Dominion Energy South Carolina",
+    "type": "line",
+    "endpoint_a": "Riverport Tap",
+    "endpoint_b": "",
+    "in_service_date": "2025-12-31",
+    "confidence": "unconfirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.9,
+     33.8
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "DESC_3",
+    "name": "Jasper \u2013 Okatie 230 kV #2: Construct",
+    "utility": "Dominion Energy South Carolina",
+    "type": "line",
+    "endpoint_a": "Jasper Sub",
+    "endpoint_b": "Okatie Sub",
+    "in_service_date": "2025-12-31",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -81.1246,
+      32.35912
+     ],
+     [
+      -81.032495,
+      32.333758
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "DESC_25",
+    "name": "Wagener 115kV Tap: Construct Tap",
+    "utility": "Dominion Energy South Carolina",
+    "type": "line",
+    "endpoint_a": "Wagener",
+    "endpoint_b": "",
+    "in_service_date": "2025-12-31",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.36056595,
+     33.6501119
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "DESC_26",
+    "name": "Church Creek - Ritter 230kV - Replace 38 Large Angles and Dead Ends",
+    "utility": "Dominion Energy South Carolina",
+    "type": "line",
+    "endpoint_a": "Church Creek",
+    "endpoint_b": "Ritter",
+    "in_service_date": "2024-06-01",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -80.0702792,
+      32.8303196
+     ],
+     [
+      -81.6342151,
+      30.4548001
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "DESC_27",
+    "name": "VCS2-Ward 230kV: Rebuild Line",
+    "utility": "Dominion Energy South Carolina",
+    "type": "line",
+    "endpoint_a": "VCS2",
+    "endpoint_b": "Ward",
+    "in_service_date": "2029-12-31",
+    "confidence": "unconfirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -80.9,
+      33.8
+     ],
+     [
+      -81.729829,
+      33.857915
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "DESC_28",
+    "name": "Goose Creek Reservoir: Rebuild Transmission Line Crossings",
+    "utility": "Dominion Energy South Carolina",
+    "type": "line",
+    "endpoint_a": "Goose Creek Reservoir",
+    "endpoint_b": "",
+    "in_service_date": "2024-12-31",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.0251633,
+     32.95333
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "DESC_29",
+    "name": "Summerville 115kV Loop: Rebuild",
+    "utility": "Dominion Energy South Carolina",
+    "type": "line",
+    "endpoint_a": "Summerville",
+    "endpoint_b": "",
+    "in_service_date": "2024-12-31",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -85.3375288,
+     34.47191445
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "DESC_30",
+    "name": "St George - Sumter 230kV Tie: Rebuild Line from Santee Substation - Duke/Progress Energy Tie",
+    "utility": "Dominion Energy South Carolina",
+    "type": "substation",
+    "endpoint_a": "St George",
+    "endpoint_b": "Sumter",
+    "in_service_date": "2025-12-31",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -80.5756534,
+      33.1859958
+     ],
+     [
+      -80.32397610000001,
+      33.8976611
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "DESC_31",
+    "name": "Coit \u2013 Gills Creek 115kV: Construct",
+    "utility": "Dominion Energy South Carolina",
+    "type": "line",
+    "endpoint_a": "Coit",
+    "endpoint_b": "Gills Creek",
+    "in_service_date": "2024-12-31",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -81.0406335,
+      33.9802269
+     ],
+     [
+      -80.9901211,
+      33.9162837
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "DESC_2",
+    "name": "Hooks - Thurmond 115kV Tie: Rebuild",
+    "utility": "Dominion Energy South Carolina",
+    "type": "line",
+    "endpoint_a": "Hooks Sub",
+    "endpoint_b": "Thurmond Sub",
+    "in_service_date": "2024-12-31",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.195931,
+     33.660127
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "DESC_32",
+    "name": "Batesburg - Saluda County 115kV: Rebuild",
+    "utility": "Dominion Energy South Carolina",
+    "type": "line",
+    "endpoint_a": "Batesburg",
+    "endpoint_b": "Saluda County",
+    "in_service_date": "2025-12-31",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -81.56443525,
+      33.91348665
+     ],
+     [
+      -81.7468082,
+      34.0008125
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "DESC_33",
+    "name": "Scout 230 kV Sub and Fold-in: Construct",
+    "utility": "Dominion Energy South Carolina",
+    "type": "substation",
+    "endpoint_a": "Scout",
+    "endpoint_b": "",
+    "in_service_date": "2026-03-31",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.6976071,
+     32.3596409
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "DESC_34",
+    "name": "Dawson 230kV Sub and Fold-in: Construct and Rebuild",
+    "utility": "Dominion Energy South Carolina",
+    "type": "substation",
+    "endpoint_a": "Dawson",
+    "endpoint_b": "",
+    "in_service_date": "2025-10-01",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -84.13357535,
+     34.3781185
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "DESC_35",
+    "name": "Urquhart \u2013 Toolebeck 115kV line: Rebuild",
+    "utility": "Dominion Energy South Carolina",
+    "type": "line",
+    "endpoint_a": "Urquhart",
+    "endpoint_b": "Toolebeck",
+    "in_service_date": "2026-08-12",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -81.91026152799998,
+      33.43316119400004
+     ],
+     [
+      -81.66932715,
+      33.5346321
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "DESC_36",
+    "name": "Williams-Summerville 230kV: Upgrade to SPDC B1272 ACSR",
+    "utility": "Dominion Energy South Carolina",
+    "type": "line",
+    "endpoint_a": "Williams",
+    "endpoint_b": "Summerville",
+    "in_service_date": "2027-05-01",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -79.93216785,
+      33.0176985
+     ],
+     [
+      -85.3375288,
+      34.47191445
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "DESC_37",
+    "name": "Cainhoy 115 kV Tap: Construct",
+    "utility": "Dominion Energy South Carolina",
+    "type": "line",
+    "endpoint_a": "Cainhoy",
+    "endpoint_b": "",
+    "in_service_date": "2027-12-31",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.84227565,
+     32.941402
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "DESC_38",
+    "name": "Jack Primus 115 kV Tap: Construct",
+    "utility": "Dominion Energy South Carolina",
+    "type": "line",
+    "endpoint_a": "Jack Primus",
+    "endpoint_b": "",
+    "in_service_date": "2027-12-31",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.90460193599995,
+     32.919444456000065
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "DESC_39",
+    "name": "Church Creek \u2013 Faber Place \u2013 Charleston Transmission: Add 230kV Line",
+    "utility": "Dominion Energy South Carolina",
+    "type": "line",
+    "endpoint_a": "Church Creek",
+    "endpoint_b": "Faber Place",
+    "in_service_date": "2027-05-01",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -80.0702792,
+      32.8303196
+     ],
+     [
+      -80.01462405000001,
+      32.8500798
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "DESC_40",
+    "name": "Eastover \u2013 Sumter 115kV DEP Tie: Rebuild with 1272 ACSR",
+    "utility": "Dominion Energy South Carolina",
+    "type": "line",
+    "endpoint_a": "Eastover",
+    "endpoint_b": "Sumter",
+    "in_service_date": "2026-05-31",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -80.64187994099996,
+      33.887567938000075
+     ],
+     [
+      -80.32397610000001,
+      33.8976611
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "DESC_41",
+    "name": "Cameron Jct \u2013 Elloree 46 kV Rebuild",
+    "utility": "Dominion Energy South Carolina",
+    "type": "line",
+    "endpoint_a": "Cameron Jct",
+    "endpoint_b": "Elloree",
+    "in_service_date": "2026-12-31",
+    "confidence": "unconfirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -94.2683356,
+      39.7388008
+     ],
+     [
+      -80.5797245,
+      33.5323844
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "DESC_42",
+    "name": "Elloree \u2013 Santee City 46 kV: Rebuild",
+    "utility": "Dominion Energy South Carolina",
+    "type": "line",
+    "endpoint_a": "Elloree",
+    "endpoint_b": "Santee City",
+    "in_service_date": "2027-12-31",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -80.5797245,
+      33.5323844
+     ],
+     [
+      -79.0204265,
+      33.5918021
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "DESC_43",
+    "name": "Urquhart \u2013 Aiken PSA 46 kV: Rebuild",
+    "utility": "Dominion Energy South Carolina",
+    "type": "line",
+    "endpoint_a": "Urquhart",
+    "endpoint_b": "Aiken PSA",
+    "in_service_date": "2027-12-31",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -81.91026152799998,
+      33.43316119400004
+     ],
+     [
+      -81.9128731,
+      33.4695
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "DESC_44",
+    "name": "Cameron Jct \u2013 Cameron \u2013 St Matthews 46 kV Rebuild",
+    "utility": "Dominion Energy South Carolina",
+    "type": "line",
+    "endpoint_a": "Cameron Jct",
+    "endpoint_b": "Cameron",
+    "in_service_date": "2028-12-31",
+    "confidence": "unconfirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -94.2683356,
+      39.7388008
+     ],
+     [
+      -80.70899589999999,
+      33.563666350000005
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_4",
+    "name": "MITCHELL - NORTH TIFTON 230KV RECONDUCTOR",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "Mitchell Substation",
+    "endpoint_b": "North Tifton Substation",
+    "in_service_date": "2025-05-01",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -84.133843,
+      31.447121
+     ],
+     [
+      -83.54913,
+      31.478089
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_6",
+    "name": "ADAMSVILLE - JACK MCDONOUGH 230KV LINE REBUILD",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "ADAMSVILLE",
+    "endpoint_b": "JACK MCDONOUGH",
+    "in_service_date": "2025-06-01",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -84.505209,
+      33.7592737
+     ],
+     [
+      -84.47677999999996,
+      33.82283800000005
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_7",
+    "name": "ECHECONNEE-WELLSTON 115KV REBUILD",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "ECHECONNEE-WELLSTON",
+    "endpoint_b": "",
+    "in_service_date": "2025-06-01",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -83.7063883,
+     32.6762843
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_8",
+    "name": "GRID - BREMEN - CROOKED CREEK (APC) 115 KV PROJECT",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "GRID",
+    "endpoint_b": "BREMEN",
+    "in_service_date": "2025-06-01",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -84.3804241,
+      33.7540941
+     ],
+     [
+      -85.14271595,
+      33.70919245
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_5",
+    "name": "JESUP - LUDOWICI PRIMARY 115KV REBUILD",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "JESUP",
+    "endpoint_b": "LUDOWICI PRIMARY",
+    "in_service_date": "2025-06-01",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -81.924947,
+      31.603106
+     ],
+     [
+      -81.743703,
+      31.721597
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_9",
+    "name": "NORCROSS 230KV BUS 1-3 SERIES BUS TIE BREAKER INSTALLATION",
+    "utility": "Georgia Power",
+    "type": "substation",
+    "endpoint_a": "NORCROSS",
+    "endpoint_b": "",
+    "in_service_date": "2025-06-01",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -84.21379044799994,
+     33.93247966700005
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_10",
+    "name": "PINE GROVE PRIMARY 115 KV DUAL STAGE CAPACITOR BANK",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "PINE GROVE PRIMARY",
+    "endpoint_b": "",
+    "in_service_date": "2025-06-01",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -83.22798689999999,
+     30.88164845
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_11",
+    "name": "SMART VALVE INSTALLATION",
+    "utility": "Georgia Power",
+    "type": "substation",
+    "endpoint_a": "SMART VALVE INSTALLATION",
+    "endpoint_b": "",
+    "in_service_date": "2025-06-01",
+    "confidence": "unconfirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -83.4,
+     32.7
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_12",
+    "name": "THALMANN AND COLERAIN 23O KV LINE RELAY PANEL UPGRADES",
+    "utility": "Georgia Power",
+    "type": "substation",
+    "endpoint_a": "THALMANN",
+    "endpoint_b": "",
+    "in_service_date": "2025-06-01",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.68088286399995,
+     31.29349783400005
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_13",
+    "name": "VILLA RICA LOW SIDE BREAKER",
+    "utility": "Georgia Power",
+    "type": "substation",
+    "endpoint_a": "VILLA RICA LOW SIDE BREAKER",
+    "endpoint_b": "",
+    "in_service_date": "2025-06-01",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -84.85634553899996,
+     33.74072807400006
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_14",
+    "name": "CAMDEN INDUSTRIAL PARK",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "CAMDEN INDUSTRIAL PARK",
+    "endpoint_b": "",
+    "in_service_date": "2025-06-01",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.54108195799995,
+     34.302185939000026
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_15",
+    "name": "JEFFERSON STREET#3 - NORTHWEST (WHITE) 115 KV RECONDUCTOR",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "JEFFERSON STREET#3",
+    "endpoint_b": "NORTHWEST",
+    "in_service_date": "2025-12-01",
+    "confidence": "unconfirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -84.7688479,
+      33.3940883
+     ],
+     [
+      -82.3397947,
+      29.6560953
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_16",
+    "name": "ANTHONY SHOALS STATCOM SYSTEM",
+    "utility": "Georgia Power",
+    "type": "substation",
+    "endpoint_a": "ANTHONY SHOALS STATCOM SYSTEM",
+    "endpoint_b": "",
+    "in_service_date": "2025-12-31",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.63624199999998,
+     34.001806000000045
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_17",
+    "name": "CC - CASS PINE- HILL VIEW 230 KV LINE- CC IMPROVEMENTS",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "CASS PINE- HILL VIEW",
+    "endpoint_b": "",
+    "in_service_date": "2025-12-31",
+    "confidence": "unconfirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -83.4,
+     32.7
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_18",
+    "name": "CC - PROJECT CHRONOS- SK/HYUNDAI",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "PROJECT CHRONOS- SK/HYUNDAI",
+    "endpoint_b": "",
+    "in_service_date": "2025-12-31",
+    "confidence": "unconfirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -83.4,
+     32.7
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_19",
+    "name": "CC - QTS FAYETTEVILLE TRANSMISSION NEEDS",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "QTS FAYETTEVILLE TRANSMISSION NEEDS",
+    "endpoint_b": "",
+    "in_service_date": "2026-04-01",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -78.91615293799998,
+     35.02042192000005
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_20",
+    "name": "ADAMSVILLE - BUZZARD ROOST 230KV REBUILD AND JUMPER UPGRADE",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "ADAMSVILLE",
+    "endpoint_b": "BUZZARD ROOST",
+    "in_service_date": "2026-06-01",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -84.505209,
+      33.7592737
+     ],
+     [
+      -81.90258871899994,
+      34.16891113200006
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_21",
+    "name": "BLANKETS CREEK \u2013 WOODSTOCK 115KV LINE REBUILD",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "BLANKETS CREEK",
+    "endpoint_b": "WOODSTOCK",
+    "in_service_date": "2026-06-01",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -84.50801229999999,
+      34.18575675
+     ],
+     [
+      -84.51310825,
+      34.08661455
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_22",
+    "name": "CC - GARRETT ROAD SWITCHING STATION - TRAE LANE",
+    "utility": "Georgia Power",
+    "type": "substation",
+    "endpoint_a": "GARRETT ROAD SWITCHING STATION",
+    "endpoint_b": "",
+    "in_service_date": "2026-06-01",
+    "confidence": "unconfirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -83.4,
+     32.7
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_23",
+    "name": "CC - STONEWALL TELL ROAD (TA REALTY)",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "STONEWALL TELL ROAD",
+    "endpoint_b": "",
+    "in_service_date": "2026-06-01",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -84.5527443,
+     33.6055359
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_24",
+    "name": "EAST POINT RELAY MODERNIZATION",
+    "utility": "Georgia Power",
+    "type": "substation",
+    "endpoint_a": "EAST POINT RELAY MODERNIZATION",
+    "endpoint_b": "",
+    "in_service_date": "2026-06-01",
+    "confidence": "unconfirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -83.4,
+     32.7
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_25",
+    "name": "FENWICK STREET - SAND BAR FERRY 115KV (RECONDUCTOR/REBUILD)",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "FENWICK STREET",
+    "endpoint_b": "SAND BAR FERRY",
+    "in_service_date": "2026-06-01",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -81.9665066,
+      33.4686625
+     ],
+     [
+      -81.9225725,
+      33.4485609
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_26",
+    "name": "GOAT ROCK 230KV SWITCH, JUMPER, & LINE TRAP REPLACEMENT",
+    "utility": "Georgia Power",
+    "type": "substation",
+    "endpoint_a": "GOAT ROCK",
+    "endpoint_b": "",
+    "in_service_date": "2026-06-01",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -85.08260704499997,
+     32.60824715600006
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_27",
+    "name": "GORDON-N DUBLIN 115KV (GORDON-ENGL MCI J) REBUILD",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "GORDON-N DUBLIN",
+    "endpoint_b": "",
+    "in_service_date": "2026-06-01",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -84.92635341799996,
+     34.44112436000006
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_28",
+    "name": "GRADY - MORROW (WHITE) 115KV REBUILD",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "GRADY",
+    "endpoint_b": "MORROW",
+    "in_service_date": "2026-06-01",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -85.03082065000001,
+      30.5758288
+     ],
+     [
+      -84.33346165,
+      33.60593095
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_29",
+    "name": "GRADY 230/115KV RELAY MODERNIZATION",
+    "utility": "Georgia Power",
+    "type": "substation",
+    "endpoint_a": "GRADY",
+    "endpoint_b": "",
+    "in_service_date": "2026-06-01",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -85.03082065000001,
+     30.5758288
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_30",
+    "name": "GRID - GAINESVILLE #2 EQUIPMENT REPLACEMENT",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "GRID",
+    "endpoint_b": "GAINESVILLE #2 EQUIPMENT REPLACEMENT",
+    "in_service_date": "2026-06-01",
+    "confidence": "unconfirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -84.3804241,
+      33.7540941
+     ],
+     [
+      -83.4,
+      32.7
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_31",
+    "name": "HAMMOND - WEISS DAM 115KV LINE REBUILD",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "HAMMOND",
+    "endpoint_b": "WEISS DAM",
+    "in_service_date": "2026-06-01",
+    "confidence": "unconfirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -80.85674184999999,
+      33.7318414
+     ],
+     [
+      -85.7416327,
+      34.1745401
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_32",
+    "name": "KATHLEEN AREA IMPROVEMENTS",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "KATHLEEN AREA IMPROVEMENTS",
+    "endpoint_b": "",
+    "in_service_date": "2026-06-01",
+    "confidence": "unconfirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -83.4,
+     32.7
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_33",
+    "name": "KLONDIKE RELAY MODERNIZATION",
+    "utility": "Georgia Power",
+    "type": "substation",
+    "endpoint_a": "KLONDIKE RELAY MODERNIZATION",
+    "endpoint_b": "",
+    "in_service_date": "2026-06-01",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -84.12644802999995,
+     33.638013416000035
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_34",
+    "name": "MORROW 115KV RELAY UPGRADE",
+    "utility": "Georgia Power",
+    "type": "substation",
+    "endpoint_a": "MORROW",
+    "endpoint_b": "",
+    "in_service_date": "2026-06-01",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -84.33346165,
+     33.60593095
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_35",
+    "name": "PALMYRA REACTOR REMOVAL",
+    "utility": "Georgia Power",
+    "type": "substation",
+    "endpoint_a": "PALMYRA REACTOR REMOVAL",
+    "endpoint_b": "",
+    "in_service_date": "2026-06-01",
+    "confidence": "unconfirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -83.4,
+     32.7
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_2",
+    "name": "SAV: MCINTOSH - PURRYSBURG 230KV REACTORS",
+    "utility": "Georgia Power",
+    "type": "substation",
+    "endpoint_a": "MCINTOSH",
+    "endpoint_b": "PURRYSBURG",
+    "in_service_date": "2026-06-01",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.175112,
+     32.352116
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_36",
+    "name": "SCOTTDALE RELAY MODERNIZATION",
+    "utility": "Georgia Power",
+    "type": "substation",
+    "endpoint_a": "SCOTTDALE RELAY MODERNIZATION",
+    "endpoint_b": "",
+    "in_service_date": "2026-06-01",
+    "confidence": "unconfirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -83.4,
+     32.7
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_37",
+    "name": "UNION CITY - YATES 230 KV WHITE LINE REBUILD",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "UNION CITY",
+    "endpoint_b": "YATES",
+    "in_service_date": "2026-04-01",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -84.50947594099995,
+      33.55304442100004
+     ],
+     [
+      -84.89651825599998,
+      33.461273875000074
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_38",
+    "name": "UNION CITY - YATES 230KV (WHITE) SWITCH AND TRAP REPLACEMENT",
+    "utility": "Georgia Power",
+    "type": "substation",
+    "endpoint_a": "UNION CITY",
+    "endpoint_b": "YATES",
+    "in_service_date": "2026-06-01",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -84.50947594099995,
+      33.55304442100004
+     ],
+     [
+      -84.89651825599998,
+      33.461273875000074
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_39",
+    "name": "CC - PROJECT PAYTON BAINBRIDGE",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "PROJECT PAYTON BAINBRIDGE",
+    "endpoint_b": "",
+    "in_service_date": "2026-06-30",
+    "confidence": "unconfirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -83.4,
+     32.7
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_40",
+    "name": "OHARA BREAKER REPLACEMENT",
+    "utility": "Georgia Power",
+    "type": "substation",
+    "endpoint_a": "OHARA BREAKER REPLACEMENT",
+    "endpoint_b": "",
+    "in_service_date": "2026-10-01",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -84.36726694999999,
+     33.482023792000064
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_41",
+    "name": "DRESDEN LINE PROTECTIVE RELAYING",
+    "utility": "Georgia Power",
+    "type": "substation",
+    "endpoint_a": "DRESDEN LINE PROTECTIVE RELAYING",
+    "endpoint_b": "",
+    "in_service_date": "2026-12-01",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -84.90548155699997,
+     33.35158806600003
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_42",
+    "name": "CC - CASS PINE 230/25 NEW SUB - QCELLS - CC IMPROVEMENTS",
+    "utility": "Georgia Power",
+    "type": "substation",
+    "endpoint_a": "CASS PINE 230/25 NEW SUB",
+    "endpoint_b": "",
+    "in_service_date": "2026-12-31",
+    "confidence": "unconfirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -83.4,
+     32.7
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_43",
+    "name": "GRADY-WEST END 115KV REBUILD",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "GRADY-WEST END",
+    "endpoint_b": "",
+    "in_service_date": "2026-12-31",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -84.426583,
+     33.7371505
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_44",
+    "name": "MORROW - MOUNTAIN VIEW 115 KV REBUILD",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "MORROW",
+    "endpoint_b": "MOUNTAIN VIEW",
+    "in_service_date": "2026-12-31",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -84.33346165,
+      33.60593095
+     ],
+     [
+      -84.3902038,
+      33.6417761
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_45",
+    "name": "CC - EMBLEM RIVERSIDE CUSTOMER SUB (FLEXENTIAL)",
+    "utility": "Georgia Power",
+    "type": "substation",
+    "endpoint_a": "EMBLEM RIVERSIDE CUSTOMER SUB",
+    "endpoint_b": "",
+    "in_service_date": "2027-03-01",
+    "confidence": "unconfirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -83.4,
+     32.7
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_46",
+    "name": "MORROW - YATES COMMON 115KV LINE UPGRADE",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "MORROW",
+    "endpoint_b": "YATES COMMON",
+    "in_service_date": "2027-05-01",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -84.33346165,
+      33.60593095
+     ],
+     [
+      -84.90419779999999,
+      33.46164115
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_47",
+    "name": "POSSUM BRANCH - YATES COMMON 115KV REBUILD (YATES TO CLEM)",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "POSSUM BRANCH",
+    "endpoint_b": "YATES COMMON",
+    "in_service_date": "2027-05-01",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -83.5615298,
+      30.8514046
+     ],
+     [
+      -84.90419779999999,
+      33.46164115
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_48",
+    "name": "CC - GULLATT ROAD TRANSMISSION IMPROVEMENTS",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "GULLATT ROAD TRANSMISSION IMPROVEMENTS",
+    "endpoint_b": "",
+    "in_service_date": "2027-06-01",
+    "confidence": "unconfirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -83.4,
+     32.7
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_49",
+    "name": "CC - MICROSOFT - SHUGART (CCO06)",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "MICROSOFT",
+    "endpoint_b": "",
+    "in_service_date": "2027-06-01",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -84.517024,
+     33.6392624
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_50",
+    "name": "CC - SUMMER LAKE - VILLA RICA 230KV REBUILD (CC IMPROVMNT)",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "SUMMER LAKE",
+    "endpoint_b": "",
+    "in_service_date": "2027-06-01",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -84.6520737,
+     30.7624953
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_51",
+    "name": "CC - TA REALTY ELLENWOOD NETWORK IMPROVEMENTS",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "TA REALTY ELLENWOOD NETWORK IMPROVEMENTS",
+    "endpoint_b": "",
+    "in_service_date": "2027-06-01",
+    "confidence": "unconfirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -83.4,
+     32.7
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_52",
+    "name": "DOYLE - LG&E MONROE 230KV - JACKS CREEK LOOP IN",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "DOYLE",
+    "endpoint_b": "LG&E MONROE",
+    "in_service_date": "2027-06-01",
+    "confidence": "unconfirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -83.69878605,
+      33.8379245
+     ],
+     [
+      -83.4,
+      32.7
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_53",
+    "name": "JESUP - OFFERMAN 115KV REBUILD",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "JESUP",
+    "endpoint_b": "OFFERMAN",
+    "in_service_date": "2027-06-01",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -81.924947,
+      31.603106
+     ],
+     [
+      -82.14372979399997,
+      31.423014770000066
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_54",
+    "name": "LAWRENCEVILLE - WINDER 115KV LINE REBUILD",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "LAWRENCEVILLE",
+    "endpoint_b": "WINDER",
+    "in_service_date": "2027-06-01",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -84.0007988,
+      33.985981
+     ],
+     [
+      -83.75316277799999,
+      33.99555534900003
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_55",
+    "name": "LAWRENCEVILLE - WINDER PRIMARY 230KV LINE REBUILD",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "LAWRENCEVILLE",
+    "endpoint_b": "WINDER PRIMARY",
+    "in_service_date": "2027-06-01",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -84.0007988,
+      33.985981
+     ],
+     [
+      -83.7531307,
+      33.9954594
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_56",
+    "name": "SANDERSVILLE #1 - WADLEY PRI. 115KV REBUILD/RECONDUCTOR",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "SANDERSVILLE #1",
+    "endpoint_b": "WADLEY PRI.",
+    "in_service_date": "2027-06-01",
+    "confidence": "unconfirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -82.919749,
+      33.244385
+     ],
+     [
+      -83.4,
+      32.7
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_3",
+    "name": "SAV: GOSHEN (SAV) - MCINTOSH 115KV LINE REBUILD",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "GOSHEN",
+    "endpoint_b": "MCINTOSH",
+    "in_service_date": "2027-06-01",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -81.209472,
+      32.248701
+     ],
+     [
+      -81.182105,
+      32.352116
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_57",
+    "name": "CC - TOMOCHICHI 500/230KV SOLUTION (CC NETWORK IMPROVEMENTS)",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "TOMOCHICHI",
+    "endpoint_b": "",
+    "in_service_date": "2027-07-15",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.0929067,
+     32.0781406
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_58",
+    "name": "GRID - ARKWRIGHT - LLOYD SHOALS 115KV",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "GRID",
+    "endpoint_b": "ARKWRIGHT",
+    "in_service_date": "2027-07-30",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -84.3804241,
+      33.7540941
+     ],
+     [
+      -83.69884066299994,
+      32.927129455000056
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_59",
+    "name": "ATHENA - EAST WATKINSVILLE 115 KV (REBUILD)",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "ATHENA",
+    "endpoint_b": "EAST WATKINSVILLE",
+    "in_service_date": "2027-12-31",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -83.34612491499996,
+      33.97661739100005
+     ],
+     [
+      -83.38446942899998,
+      33.86037743500003
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_60",
+    "name": "CC - HILL VIEW & GRASSY HOLLOW SUB - CC IMPROVEMENTS",
+    "utility": "Georgia Power",
+    "type": "substation",
+    "endpoint_a": "HILL VIEW",
+    "endpoint_b": "",
+    "in_service_date": "2027-12-31",
+    "confidence": "unconfirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -77.6671963,
+     35.4404395
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_61",
+    "name": "DYER ROAD - EAST ROANOKE 115KV (REBUILD)",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "DYER ROAD",
+    "endpoint_b": "EAST ROANOKE",
+    "in_service_date": "2027-12-31",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -85.2672835,
+      34.9171919
+     ],
+     [
+      -83.2476923,
+      31.7059341
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_62",
+    "name": "AULTMAN ROAD-PERRY 115KV LINE REBUILD",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "AULTMAN ROAD-PERRY",
+    "endpoint_b": "",
+    "in_service_date": "2028-06-01",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -83.70200699999998,
+     32.455453000000034
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_63",
+    "name": "CC - EAST VILLA RICA AREA SWITCHING STATION (CC IMPROVEMENT)",
+    "utility": "Georgia Power",
+    "type": "substation",
+    "endpoint_a": "EAST VILLA RICA AREA SWITCHING STATION",
+    "endpoint_b": "",
+    "in_service_date": "2028-06-01",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -84.85634553899996,
+     33.74072807400006
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_64",
+    "name": "CC - VILLA RICA UPGRADES (CC NETWORK IMPROVEMENTS)",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "VILLA RICA UPGRADES",
+    "endpoint_b": "",
+    "in_service_date": "2028-06-01",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -84.85634553899996,
+     33.74072807400006
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_65",
+    "name": "FITZGERALD - PITTS 115 KV LINE REBUILD",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "FITZGERALD",
+    "endpoint_b": "PITTS",
+    "in_service_date": "2028-06-01",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -83.29241139999999,
+      31.72933455
+     ],
+     [
+      -83.56279799999999,
+      31.986578000000065
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_66",
+    "name": "JACK MCDONOUGH - NORTHWEST (BLACK) 230KV RECONDUCTOR",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "JACK MCDONOUGH",
+    "endpoint_b": "NORTHWEST",
+    "in_service_date": "2028-06-01",
+    "confidence": "unconfirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -84.47677999999996,
+      33.82283800000005
+     ],
+     [
+      -82.3397947,
+      29.6560953
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_67",
+    "name": "PITTMAN ROAD - WEST POINT DAM (USA) 115KV REBUILD",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "PITTMAN ROAD",
+    "endpoint_b": "WEST POINT DAM",
+    "in_service_date": "2028-06-01",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -84.5847216,
+      33.6412254
+     ],
+     [
+      -85.19038985,
+      32.9186235
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_68",
+    "name": "PLANT YATES BREAKER AND HALF STATION",
+    "utility": "Georgia Power",
+    "type": "plant",
+    "endpoint_a": "PLANT YATES BREAKER",
+    "endpoint_b": "",
+    "in_service_date": "2028-06-01",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -84.89651825599998,
+     33.461273875000074
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_69",
+    "name": "SMART VALVES AT EAST VILLA RICA SWITCHING STATION",
+    "utility": "Georgia Power",
+    "type": "substation",
+    "endpoint_a": "SMART VALVES AT EAST VILLA RICA SWITCHING STATION",
+    "endpoint_b": "",
+    "in_service_date": "2028-06-01",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -84.85634553899996,
+     33.74072807400006
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_70",
+    "name": "SOUTH MACON 115KV BUSES 1 & 2 REPLACEMENT",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "SOUTH MACON",
+    "endpoint_b": "",
+    "in_service_date": "2028-06-01",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -83.61431780000001,
+     32.6087711
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_71",
+    "name": "UNION CITY - YATES 230KV (BLACK) LINE REBUILD",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "UNION CITY",
+    "endpoint_b": "YATES",
+    "in_service_date": "2028-06-01",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -84.50947594099995,
+      33.55304442100004
+     ],
+     [
+      -84.89651825599998,
+      33.461273875000074
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_72",
+    "name": "FIRST AVENUE - NORTH COLUMBUS 115KV LINE REBUILD",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "FIRST AVENUE",
+    "endpoint_b": "NORTH COLUMBUS",
+    "in_service_date": "2028-12-01",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -80.8509207,
+      31.9902512
+     ],
+     [
+      -84.9648625,
+      32.5675126
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_73",
+    "name": "ASHLEY PARK-WANSLEY 500KV",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "ASHLEY PARK-WANSLEY",
+    "endpoint_b": "",
+    "in_service_date": "2029-06-01",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -85.03357495799997,
+     33.41233788100004
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_74",
+    "name": "BLAKELY PRIMARY - HUCKLEBERRY 115KV REBUILD",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "BLAKELY PRIMARY",
+    "endpoint_b": "HUCKLEBERRY",
+    "in_service_date": "2029-06-01",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -84.90598025,
+      31.371554000000003
+     ],
+     [
+      -82.5576372,
+      31.0046595
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_75",
+    "name": "BROADWAY - ECHECONNEE 115 KV LINE REBUILD",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "BROADWAY",
+    "endpoint_b": "ECHECONNEE",
+    "in_service_date": "2029-06-01",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -83.6588016,
+      32.7727145
+     ],
+     [
+      -83.700462,
+      32.6851436
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_76",
+    "name": "BUTLER - THOMASTON 230KV LINE CONVERSION",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "BUTLER",
+    "endpoint_b": "THOMASTON",
+    "in_service_date": "2029-06-01",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -84.2897288,
+      32.5710217
+     ],
+     [
+      -84.3125168,
+      32.8999225
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_77",
+    "name": "BUZZARD ROOST - FACTORY SHOALS 230KV NEW LINE",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "BUZZARD ROOST",
+    "endpoint_b": "FACTORY SHOALS",
+    "in_service_date": "2029-06-01",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -81.90258871899994,
+      34.16891113200006
+     ],
+     [
+      -83.8283004,
+      33.4467303
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_78",
+    "name": "CONYERS - KLONDIKE 230 KV SECOND LINE",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "CONYERS",
+    "endpoint_b": "KLONDIKE",
+    "in_service_date": "2029-06-01",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -84.0176904,
+      33.6676103
+     ],
+     [
+      -84.12644802999995,
+      33.638013416000035
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_79",
+    "name": "GLENWOOD SPRINGS - PORTERDALE PRIMARY 230KV LINE SWITCH REPL",
+    "utility": "Georgia Power",
+    "type": "substation",
+    "endpoint_a": "GLENWOOD SPRINGS",
+    "endpoint_b": "PORTERDALE PRIMARY",
+    "in_service_date": "2029-06-01",
+    "confidence": "unconfirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -83.3956318,
+      33.3127901
+     ],
+     [
+      -83.4,
+      32.7
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_80",
+    "name": "LLOYD SHOALS - PORTERDALE PRIMARY 115KV REBUILD",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "LLOYD SHOALS",
+    "endpoint_b": "PORTERDALE PRIMARY",
+    "in_service_date": "2029-06-01",
+    "confidence": "unconfirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -83.84327110799995,
+      33.320730798000056
+     ],
+     [
+      -83.4,
+      32.7
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_81",
+    "name": "LOWER RIVER - WEBB (APC) 115KV RECONDUCTOR",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "LOWER RIVER",
+    "endpoint_b": "WEBB",
+    "in_service_date": "2029-06-01",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -85.2869786,
+      33.6142204
+     ],
+     [
+      -85.28887716799994,
+      31.25125636200005
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_82",
+    "name": "MCEVER ROAD - SHOAL CREEK 115KV REBUILD",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "MCEVER ROAD",
+    "endpoint_b": "SHOAL CREEK",
+    "in_service_date": "2029-06-01",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -83.87380125,
+      34.2728832
+     ],
+     [
+      -83.6684748,
+      33.8765883
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_83",
+    "name": "MCMANUS - WEST BRUNSWICK 115KV REBUILD",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "MCMANUS",
+    "endpoint_b": "WEST BRUNSWICK",
+    "in_service_date": "2029-06-01",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -81.54592304199997,
+      31.212857477000057
+     ],
+     [
+      -81.5586568,
+      31.2799089
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_84",
+    "name": "NORCROSS - NORTH DRUID HILLS 115KV REBUILD",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "NORCROSS",
+    "endpoint_b": "NORTH DRUID HILLS",
+    "in_service_date": "2029-06-01",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -84.21379044799994,
+      33.93247966700005
+     ],
+     [
+      -84.3193797,
+      33.820589
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_85",
+    "name": "SOUTH BAINBRIDGE - SINAI (FPL) 115KV LINE RECONDUCTOR",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "SOUTH BAINBRIDGE",
+    "endpoint_b": "SINAI",
+    "in_service_date": "2029-06-01",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -83.61431780000001,
+      32.6087711
+     ],
+     [
+      -84.90080033899994,
+      30.66385771800003
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_86",
+    "name": "BAY CREEK - CONYERS 230KV REBUILD",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "BAY CREEK",
+    "endpoint_b": "CONYERS",
+    "in_service_date": "2029-12-31",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -83.88235055000001,
+      33.8681196
+     ],
+     [
+      -84.0176904,
+      33.6676103
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_87",
+    "name": "ANNISTON - HAMMOND 230KV LINE",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "ANNISTON",
+    "endpoint_b": "HAMMOND",
+    "in_service_date": "2030-06-01",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -84.3375713,
+      33.7516721
+     ],
+     [
+      -80.85674184999999,
+      33.7318414
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_88",
+    "name": "ATKINSON - NORTHSIDE DRIVE 115KV REBUILD",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "ATKINSON",
+    "endpoint_b": "NORTHSIDE DRIVE",
+    "in_service_date": "2030-06-01",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -82.8839362,
+      31.3030105
+     ],
+     [
+      -81.54977842899996,
+      30.418261921000067
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_89",
+    "name": "ATKINSON - NORTHWEST 115KV REBUILD",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "ATKINSON",
+    "endpoint_b": "NORTHWEST",
+    "in_service_date": "2030-06-01",
+    "confidence": "unconfirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -82.8839362,
+      31.3030105
+     ],
+     [
+      -82.3397947,
+      29.6560953
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_90",
+    "name": "CC - NORTH GEORGIA DATA NETWORK UPGRADES",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "NORTH GEORGIA DATA NETWORK UPGRADES",
+    "endpoint_b": "",
+    "in_service_date": "2030-06-01",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.63998013699995,
+     30.329359209000074
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_91",
+    "name": "CORNELIA - TALLULAH LODGE 115KV REBUILD",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "CORNELIA",
+    "endpoint_b": "TALLULAH LODGE",
+    "in_service_date": "2030-06-01",
+    "confidence": "unconfirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -83.5271166,
+      34.5114883
+     ],
+     [
+      -83.4,
+      32.7
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_92",
+    "name": "EAST POINT - TRIBUTARY 230KV REBUILD",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "EAST POINT",
+    "endpoint_b": "TRIBUTARY",
+    "in_service_date": "2030-06-01",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -84.46219725,
+      33.675453000000005
+     ],
+     [
+      -84.6426467,
+      33.7129313
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_93",
+    "name": "EAST POINT - UNION CITY 230KV BLACK LINE RECONDUCTOR",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "EAST POINT",
+    "endpoint_b": "UNION CITY",
+    "in_service_date": "2030-06-01",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -84.46219725,
+      33.675453000000005
+     ],
+     [
+      -84.50947594099995,
+      33.55304442100004
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_94",
+    "name": "ECHECONNEE-WELLSTON 115KV LINE REBUILD",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "ECHECONNEE-WELLSTON",
+    "endpoint_b": "",
+    "in_service_date": "2030-06-01",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -83.7063883,
+     32.6762843
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_95",
+    "name": "FARLEY (APC)-TAZEWELL 500KV",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "FARLEY",
+    "endpoint_b": "TAZEWELL",
+    "in_service_date": "2030-06-01",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -85.11632374999999,
+      31.22361375
+     ],
+     [
+      -84.440221,
+      32.379482
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_96",
+    "name": "GAINESVILLE #2 - MCEVER ROAD 115 KV REBUILD",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "GAINESVILLE #2",
+    "endpoint_b": "MCEVER ROAD",
+    "in_service_date": "2030-06-01",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -83.8240663,
+      34.2978794
+     ],
+     [
+      -83.87380125,
+      34.2728832
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_97",
+    "name": "GLENWOOD SPRINGS - LAKE OCONEE 115KV LINE REBUILD",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "GLENWOOD SPRINGS",
+    "endpoint_b": "LAKE OCONEE",
+    "in_service_date": "2030-06-01",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -83.3956318,
+      33.3127901
+     ],
+     [
+      -83.24745105,
+      33.4595297
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_98",
+    "name": "GOAT ROCK REACTORS INSTALLATION",
+    "utility": "Georgia Power",
+    "type": "substation",
+    "endpoint_a": "GOAT ROCK REACTORS INSTALLATION",
+    "endpoint_b": "",
+    "in_service_date": "2030-06-01",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -85.08260704499997,
+     32.60824715600006
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_99",
+    "name": "GOLDENS CREEK - WARRENTON PRIMARY 230KV REBUILD",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "GOLDENS CREEK",
+    "endpoint_b": "WARRENTON PRIMARY",
+    "in_service_date": "2030-06-01",
+    "confidence": "unconfirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -83.9268703,
+      36.7217515
+     ],
+     [
+      -82.68740599999995,
+      33.380584000000056
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_100",
+    "name": "GORDON-SANDERSVILLE #1 115KV LINE REBUILD (DEEPSTEP-SAND #6)",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "GORDON-SANDERSVILLE #1",
+    "endpoint_b": "",
+    "in_service_date": "2030-06-01",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -84.92635341799996,
+     34.44112436000006
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_101",
+    "name": "GOSHEN AREA STRATEGIC SOLUTION",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "GOSHEN AREA STRATEGIC SOLUTION",
+    "endpoint_b": "",
+    "in_service_date": "2030-06-01",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.99516499999999,
+     33.31961700000005
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_102",
+    "name": "JEFFERSON ROAD - WINDER PRIMARY 115KV REBUILD",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "JEFFERSON ROAD",
+    "endpoint_b": "WINDER PRIMARY",
+    "in_service_date": "2030-06-01",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -83.57946774799996,
+      33.97785707000003
+     ],
+     [
+      -83.7531307,
+      33.9954594
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_103",
+    "name": "KETTLE CREEK PRIMARY - PINE GROVE PRIMARY 115KV REBUILD",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "KETTLE CREEK PRIMARY",
+    "endpoint_b": "PINE GROVE PRIMARY",
+    "in_service_date": "2030-06-01",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -82.39925699999998,
+      31.22328300000004
+     ],
+     [
+      -83.22798689999999,
+      30.88164845
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_104",
+    "name": "NEW CAVENDER DRIVE - TRIBUTARY 230KV LINE",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "NEW CAVENDER DRIVE",
+    "endpoint_b": "TRIBUTARY",
+    "in_service_date": "2030-06-01",
+    "confidence": "unconfirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -83.4,
+      32.7
+     ],
+     [
+      -84.6426467,
+      33.7129313
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_105",
+    "name": "NORTH SPA 230KV STRATEGIC PROJECT",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "NORTH SPA",
+    "endpoint_b": "",
+    "in_service_date": "2030-06-01",
+    "confidence": "unconfirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -73.852174,
+     43.019556
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_106",
+    "name": "TALLULAH LODGE - TOCCOA 115 KV REBUILD",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "TALLULAH LODGE",
+    "endpoint_b": "TOCCOA",
+    "in_service_date": "2030-06-01",
+    "confidence": "unconfirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -83.4,
+      32.7
+     ],
+     [
+      -83.35273405000001,
+      34.58094625
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_107",
+    "name": "TRIBUTARY - THORNTON RD 230KV REBUILD",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "TRIBUTARY",
+    "endpoint_b": "THORNTON RD",
+    "in_service_date": "2030-06-01",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -84.6426467,
+      33.7129313
+     ],
+     [
+      -84.5899009,
+      33.7475523
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_108",
+    "name": "THOMASTON 230 NEW BUILD SUB",
+    "utility": "Georgia Power",
+    "type": "substation",
+    "endpoint_a": "THOMASTON 230 NEW BUILD SUB",
+    "endpoint_b": "",
+    "in_service_date": "2030-11-01",
+    "confidence": "unconfirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -83.4,
+     32.7
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_109",
+    "name": "BAINBRIDGE TRANSMISSION: EAST RIVER ROAD, EAST BAINBRIDGE",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "BAINBRIDGE TRANSMISSION",
+    "endpoint_b": "",
+    "in_service_date": "2030-12-31",
+    "confidence": "unconfirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.2777552,
+     36.8126135
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_110",
+    "name": "GLENWOOD SPRINGS 115KV CAP BANK",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "GLENWOOD SPRINGS",
+    "endpoint_b": "",
+    "in_service_date": "2030-12-31",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -83.3956318,
+     33.3127901
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_111",
+    "name": "EAST POINT - UNION CITY (WHITE) 230KV REBUILD",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "EAST POINT",
+    "endpoint_b": "UNION CITY",
+    "in_service_date": "2031-05-01",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -84.46219725,
+      33.675453000000005
+     ],
+     [
+      -84.50947594099995,
+      33.55304442100004
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_112",
+    "name": "AVERY - HOPEWELL 115KV RECONDUCTOR",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "AVERY",
+    "endpoint_b": "HOPEWELL",
+    "in_service_date": "2031-06-01",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -84.3857643,
+      34.216988900000004
+     ],
+     [
+      -84.2834055,
+      34.1741923
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_113",
+    "name": "BOWEN #10 500/230KV AUTOBANK REPLACEMENT",
+    "utility": "Georgia Power",
+    "type": "substation",
+    "endpoint_a": "BOWEN #10",
+    "endpoint_b": "",
+    "in_service_date": "2031-06-01",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -84.92301438799996,
+     34.12405231900004
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_114",
+    "name": "HATCH - WADLEY 500 KV LINE STRATEGIC PROJECT",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "HATCH",
+    "endpoint_b": "WADLEY",
+    "in_service_date": "2031-06-01",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -82.34769735,
+      31.9346568
+     ],
+     [
+      -82.39746554999999,
+      32.80856115
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_115",
+    "name": "ARKWRIGHT BUS AND JUMPER REPLACEMENT",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "ARKWRIGHT BUS",
+    "endpoint_b": "",
+    "in_service_date": "2033-06-01",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -83.69884066299994,
+     32.927129455000056
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_116",
+    "name": "BAY CREEK - CONYERS 230KV LIMITING ELEMENT REPLACEMENT",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "BAY CREEK",
+    "endpoint_b": "CONYERS",
+    "in_service_date": "2033-06-01",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -83.88235055000001,
+      33.8681196
+     ],
+     [
+      -84.0176904,
+      33.6676103
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_1",
+    "name": "EVANS PRIMARY - THURMOND DAM (USA) #5 115KV REBUILD",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "EVANS PRIMARY",
+    "endpoint_b": "THURMOND DAM #5",
+    "in_service_date": "2033-06-01",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -82.168648,
+      33.543994
+     ],
+     [
+      -82.195931,
+      33.660127
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_117",
+    "name": "EVANS PRIMARY - THURMOND DAM (USA) #6 115KV REBUILD",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "EVANS PRIMARY",
+    "endpoint_b": "THURMOND DAM (USA) #6",
+    "in_service_date": "2033-06-01",
+    "confidence": "unconfirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -82.168648,
+      33.543994
+     ],
+     [
+      -83.4,
+      32.7
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_118",
+    "name": "MCEVER ROAD - SHOAL CREEK 115KV REBUILD PHASE III",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "MCEVER ROAD",
+    "endpoint_b": "SHOAL CREEK",
+    "in_service_date": "2033-06-01",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -83.87380125,
+      34.2728832
+     ],
+     [
+      -83.6684748,
+      33.8765883
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_119",
+    "name": "MCGRAU FORD - MIDDLE FORK 500KV LINE PROJECT",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "MCGRAU FORD",
+    "endpoint_b": "MIDDLE FORK",
+    "in_service_date": "2033-06-01",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -84.33700645,
+      34.3264526
+     ],
+     [
+      -83.3586118,
+      34.4225382
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_120",
+    "name": "THOMSON PRIMARY 230/115KV SECOND TRANSFORMER",
+    "utility": "Georgia Power",
+    "type": "substation",
+    "endpoint_a": "THOMSON PRIMARY",
+    "endpoint_b": "",
+    "in_service_date": "2033-06-01",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.41278457699997,
+     33.45263552600005
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_121",
+    "name": "WINDER PRIMARY 230KV BUS 1-2 PARALLEL BUS-TIE INSTALLATION",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "WINDER PRIMARY",
+    "endpoint_b": "",
+    "in_service_date": "2033-06-01",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -83.7531307,
+     33.9954594
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_122",
+    "name": "PINE GROVE PRIMARY - WEST VALDOSTA 115 KV RECONDUCTOR",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "PINE GROVE PRIMARY",
+    "endpoint_b": "WEST VALDOSTA",
+    "in_service_date": "2033-12-31",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -83.22798689999999,
+      30.88164845
+     ],
+     [
+      -83.25125299999996,
+      30.83264900000006
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_123",
+    "name": "DAWSON CROSSING - GAINESVILLE #1 115 KV",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "DAWSON CROSSING",
+    "endpoint_b": "GAINESVILLE #1",
+    "in_service_date": "2034-06-01",
+    "confidence": "likely",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -84.13357535,
+      34.3781185
+     ],
+     [
+      -83.234255,
+      34.370946
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "project_id": "GPC_124",
+    "name": "EVANS PRIMARY - THOMSON PRIMARY 115KV REBUILD",
+    "utility": "Georgia Power",
+    "type": "line",
+    "endpoint_a": "EVANS PRIMARY",
+    "endpoint_b": "THOMSON PRIMARY",
+    "in_service_date": "2034-12-31",
+    "confidence": "confirmed",
+    "geometry_basis": "straight corridor (endpoint geocode)",
+    "geometry_note": "corridor proximity, not surveyed distance"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -82.168648,
+      33.543994
+     ],
+     [
+      -82.41278457699997,
+      33.45263552600005
+     ]
+    ]
+   }
+  }
+ ]
+}

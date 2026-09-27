@@ -8,6 +8,13 @@ Build window = [in-service year, in-service year + 1]; missing year -> bonus 0
 DESC x GPC cross pairs (starter workbook scope). Excluded rows (>40 km) kept
 as the 25 nearest exemplars (START-GATE 03-1).
 
+Phase 03.5 (plan "07"): corridor geoms in the geojson are route-aware
+(OSM-snapped / buffered — backend/build_routes.py), so `distance_m` is a
+polyline-to-polyline separation and feeds the tier thresholds directly
+(START-GATE 03.5 Q4: no confidence multiplier). `distance_center_mi` reads
+the stored legacy centers (center_lat/center_lon props) so the guide/golden
+center metric is unaffected by snapping.
+
 Run: uv run python backend/engine.py   (rebuilds data/processed/overlaps.csv)
 """
 from __future__ import annotations
@@ -121,7 +128,12 @@ def build_overlaps() -> list[dict]:
     info = {}
     for pos in np.concatenate([desc_pos, gpc_pos]):
         p = gdf.iloc[int(pos)]
-        c = geom4326[int(pos)].centroid
+        # 03.5: legacy straight-line center (golden/guide metric) stored as props
+        clat, clon = p.get("center_lat"), p.get("center_lon")
+        if clat is not None and not pd.isna(clat) and clon is not None and not pd.isna(clon):
+            c = shapely.Point(float(clon), float(clat))
+        else:
+            c = geom4326[int(pos)].centroid
         info[int(pos)] = {
             "project_id": p["project_id"], "name": p["name"], "utility": p["utility"],
             "year": year_of(p["in_service_date"]), "date": to_date(p["in_service_date"]),

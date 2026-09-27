@@ -32,6 +32,7 @@ function ProjectCard({ p, accent }: { p: PairDetail['project_a_detail']; accent:
         <Field k="Cost" v={p.cost_usd} />
         <Field k="Sponsor" v={p.sponsor} />
         <Field k="Confidence" v={p.confidence} />
+        <Field k="Grounding" v={p.geometry_source} />
         <Field k="Geometry" v={p.geometry_basis} />
         <Field k="Source" v={p.source_file ? `${p.source_file} p.${p.source_page}` : null} />
         <Field k="Notes" v={p.notes} />

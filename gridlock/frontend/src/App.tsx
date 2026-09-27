@@ -156,12 +156,15 @@ export default function App() {
 
       {/* honesty footer (report) */}
       <footer className="shrink-0 border-t border-rule bg-surface-2 px-4 py-1 text-[10.5px] text-ink-dim">
-        Distances are straight-line separations between corridor geometries — not as-built
-        clearances. Tiers &amp; score from the v0.3 engine; ≥160&nbsp;m halo bands are schematic.
-        Basemap © <a href="https://openfreemap.org/" className="underline">OpenFreeMap</a>, ©{' '}
+        Route-aware corridors: this build moves past the brief&apos;s straight-line sketches by
+        snapping projects to real OSM power lines where infrastructure exists within 10&nbsp;km
+        (grounding tag per project: snapped / buffered / fallback), and declaring a 10&nbsp;km
+        uncertainty buffer where it doesn&apos;t. Distances are computed separations between
+        corridor geometries — not as-built clearances. Tiers &amp; score from the v0.3 engine;
+        ≥160&nbsp;m halo bands are schematic. Basemap ©{' '}
+        <a href="https://openfreemap.org/" className="underline">OpenFreeMap</a>, ©{' '}
         <a href="https://www.openstreetmap.org/copyright" className="underline">OpenStreetMap</a>{' '}
-        contributors (ODbL). Distances, tiers and scores are computed — verify before relying on
-        them.
+        contributors (ODbL). Verify before relying on them.
       </footer>
 
       {/* fixed command bar — phase-05 slots stubbed */}

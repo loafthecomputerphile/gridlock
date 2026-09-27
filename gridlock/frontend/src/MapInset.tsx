@@ -333,6 +333,12 @@ export default function MapInset() {
   const chip =
     'h-7 px-2 rounded border border-rule bg-surface/95 text-[11px] font-medium shadow-sm hover:bg-surface-3'
 
+  // legend counts for the grounding section (geometry_source per project)
+  const counts = { osm_snapped: 0, buffered_estimate: 0, straight_fallback: 0 }
+  for (const p of projects) {
+    if (p.geometry_source in counts) counts[p.geometry_source as keyof typeof counts]++
+  }
+
   return (
     <div
       className={
@@ -400,6 +406,29 @@ export default function MapInset() {
         <div className="flex items-start gap-1.5">
           <span className="text-ink-dim">✦</span>
           <span>bright glow: hovered / selected pair — hover a row or a line</span>
+        </div>
+        <div className="my-1.5 h-px bg-rule" />
+        <div className="mb-1 font-semibold tracking-wide text-ink-dim uppercase">Corridor grounding</div>
+        <div
+          className="flex items-start gap-1.5"
+          title="geometry_source=osm_snapped — corridor follows an actual OSM power=line way within 10 km (routing proxy), snap distance on the detail drawer."
+        >
+          <span className="text-ink-dim">≈</span>
+          <span>snapped: routed along a real OSM power line ({counts.osm_snapped})</span>
+        </div>
+        <div
+          className="flex items-start gap-1.5"
+          title="geometry_source=buffered_estimate — no OSM power line within 10 km; straight corridor kept with a declared 10 km uncertainty buffer."
+        >
+          <span className="text-ink-dim">~</span>
+          <span>buffered: straight sketch ±10 km, no OSM line nearby ({counts.buffered_estimate})</span>
+        </div>
+        <div
+          className="flex items-start gap-1.5"
+          title="geometry_source=straight_fallback — single-endpoint project with no OSM power line within 10 km; plotted at its geocoded point."
+        >
+          <span className="text-ink-dim">·</span>
+          <span>fallback: single point, no OSM line nearby ({counts.straight_fallback})</span>
         </div>
         <div className="my-1.5 h-px bg-rule" />
         <div className="mb-1 font-semibold tracking-wide text-ink-dim uppercase">Utility</div>

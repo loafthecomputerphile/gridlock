@@ -78,6 +78,7 @@ class ProjectRow(BaseModel):
     source_page: str
     notes: str
     geometry_basis: str
+    geometry_source: str
     confidence: str
     geometry: dict
 
@@ -96,6 +97,7 @@ def _load_projects() -> list[dict]:
         f = geo[r["project_id"]]
         rows.append({**r.to_dict(),
                      "geometry_basis": f["properties"]["geometry_basis"],
+                     "geometry_source": f["properties"].get("geometry_source", ""),
                      "confidence": f["properties"]["confidence"],
                      "geometry": f["geometry"]})
     return rows

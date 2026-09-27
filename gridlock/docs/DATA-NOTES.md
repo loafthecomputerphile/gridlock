@@ -62,3 +62,45 @@ Ground truth = `data\release\` (verbatim copy of `research\Sperry-Tech-Challenge
 **Outputs** (`data/processed/`): `projects.csv` (15 cols), `gazetteer.csv` (7 cols), `gridlock_projects.geojson` (geometry_basis on every feature), `pairs_metrics.csv` (pair fields `distance_center_mi, distance_closest_mi, time_gap_days`; dropped `min(center, closest) ≥ 40 km` — no tighter prefilter, 44×122 pairs is cheap).
 
 **Final build stats (check_02 ALL PASS):** 168 projects (DESC=44, GPC=124), 205 gazetteer endpoints — 109 confirmed / 59 likely / 37 unconfirmed (sources: nominatim 62, hifld 55, overpass 47, state-centroid 27, starter 14), 211 pairs, 168 geojson features. Golden 6/6 exact ±0.1 mi and exact time_gap; midpoint-vs-`lat_center` max deviation 0.000 mi; EPSG:5070 vs haversine delta ≤0.046 mi (informational).
+
+## 5. Route-aware corridors (phase 03.5 / plan "07")
+
+**Method** (`backend/build_routes.py`, START-GATE answers Q1=c snap+buffer · Q2=10 km · Q3=b legacy+new golden · Q4=direct feed, no multiplier):
+
+- **Overpass pull** (one query, cached `_cache/overpass_power.json`, 28.1 MB):
+  204,679 elements — 15,810 `power=line` ways + 183,554 `power=tower` nodes +
+  5,315 substations. Towers are counted but **pruned from the cache** after the
+  pull (unused by snapping; keeps the repo sane) — mechanical, noted here.
+- **Snap rule:** nearest `power=line` way within **10 km of both endpoints**
+  (min summed endpoint distance wins); geometry = `substring(way,
+  project(a), project(b))` in EPSG:5070. Guards: reject if snapped length
+  < 0.5 × straight length (both endpoints collapsed onto one crossing) or
+  > 2 × straight length + 10 km (unrelated detour). Single-way proxy — no
+  multi-way pathfinding (documented ceiling).
+- **Result:** `osm_snapped` **105 (62.5 %)**, `buffered_estimate` 59,
+  `straight_fallback` 4 — all 168 tagged, no nulls. Buffer is a declared
+  uncertainty band (`buffer_m` prop), not a score modifier (Q4).
+- **Legacy preservation:** the phase-02 straight geojson is cached once at
+  `_cache/gridlock_projects_straight.geojson`; `distance_m_legacy_straightline`
+  (old closest-point column, now meters) recomputes from it, and
+  `center_lat`/`center_lon` props pin the guide/center-golden metric so
+  snapping can never move the workbook centers. `pairs_metrics.csv`: 211 rows
+  (same set — inclusion = min(center, legacy, route) < 40 km).
+
+**Golden handling (Q3b):** both tests live in `scripts/check_07.py` —
+LEGACY (center haversine ±0.1 mi, exact gap, unchanged) and ROUTE (engine
+distance for the same 6 pairs: 0.587 / 3.241 / 3.403 / 6.852 / 8.377 /
+8.426 mi). Hand-verification basis per pair is in the check's header comment:
+snapped-way voltage tags vs the PDF/IRP project titles (115/230/46 kV all
+match), snap distances 1.8 m–1.8 km, route ≤ center for every pair, none
+excluded. One caveat logged: **DESC_5** (115 kV) snapped to a 230 kV-tagged
+way (parallel ROW, 1.8 km snap).
+
+**Finding (eyeball, plan Verify):** all 34 `crossing` rows are
+`buffered_estimate × buffered_estimate` — **zero involve snapped geometry** —
+and they pre-date this phase (the identical pairs are 0.0 m in the cached
+straight geojson). Root cause is phase-02 geocode debt: `Square D`
+(Nominatim, *unconfirmed*) → Cambridge, MA, making DESC_16 a 1,777 km line
+(9 crossings); `Killian` (~150 km off, *likely*) making DESC_13 a 204 km line
+(2 crossings). Disclosed in README; not silently fixed (phase-02
+automated-QA answer stands — fix requires user direction).

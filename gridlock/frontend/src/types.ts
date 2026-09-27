@@ -44,6 +44,7 @@ export interface ProjectRow {
   source_page: string
   notes: string
   geometry_basis: string
+  geometry_source: 'osm_snapped' | 'buffered_estimate' | 'straight_fallback'
   confidence: string
   geometry: { type: string; coordinates: unknown }
 }
