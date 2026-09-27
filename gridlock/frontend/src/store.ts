@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import type { OverlapRow, ProjectRow } from './types'
+import type { OverlapRow, ProjectRow, Tier } from './types'
 
 /** Tier chip filter — 'touch' maps to the engine's "crossing" tier. */
 export type TierFilter = 'all' | 'touch' | '<1.6 km' | '<8 km' | '<40 km'
@@ -16,8 +16,11 @@ interface State {
   mapExpanded: boolean
   ledgerPct: number
   drawerH: number
+  /** Tiers hidden ON THE MAP (legend toggles; independent of the table chips). */
+  hiddenTiers: Tier[]
   load: () => Promise<void>
   setTier: (t: TierFilter) => void
+  toggleTier: (t: Tier) => void
   setWindowOnly: (v: boolean) => void
   setHover: (id: string | null) => void
   select: (id: string | null) => void
@@ -36,8 +39,10 @@ export const useStore = create<State>((set) => ({
   hoverId: null,
   selectedId: null,
   mapExpanded: false,
-  ledgerPct: 60,
+  ledgerPct: 50,
   drawerH: 300,
+  // start tight: touching + <1.6 only, rest via legend toggles
+  hiddenTiers: ['<8 km', '<40 km', 'excluded'],
 
   load: async () => {
     set({ loading: true, error: null })
@@ -52,7 +57,23 @@ export const useStore = create<State>((set) => ({
     }
   },
 
-  setTier: (tier) => set({ tier }),
+  // chip selection also reveals its tier(s) on the map (legend stays independently toggleable)
+  setTier: (tier) =>
+    set((s) => {
+      const reveal: Tier[] =
+        tier === 'all'
+          ? ['crossing', '<1.6 km', '<8 km', '<40 km', 'excluded']
+          : tier === 'touch'
+            ? ['crossing']
+            : [tier as Tier]
+      return { tier, hiddenTiers: s.hiddenTiers.filter((t) => !reveal.includes(t)) }
+    }),
+  toggleTier: (t) =>
+    set((s) => ({
+      hiddenTiers: s.hiddenTiers.includes(t)
+        ? s.hiddenTiers.filter((x) => x !== t)
+        : [...s.hiddenTiers, t],
+    })),
   setWindowOnly: (windowOnly) => set({ windowOnly }),
   setHover: (hoverId) => set({ hoverId }),
   select: (selectedId) => set({ selectedId, hoverId: null }),

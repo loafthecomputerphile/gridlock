@@ -37,6 +37,13 @@ const haloColor = [
 
 const utilityColor = ['match', ['get', 'util'], 'GPC', UTILITY.GPC, UTILITY.DESC] as const
 
+// Base halos sit dim; halo-focus/halo-dot-focus pop the hovered/selected pair.
+// 0.35 was invisible for the pale <40/<8 tiers on the light basemap (user bug:
+// "cannot see 8 and 40 km lines when selected") — 0.65 keeps focus distinct.
+const DIM_OPACITY = 0.65
+const tierVisible = (hidden: string[]) =>
+  ['!', ['in', ['get', 'tier'], ['literal', hidden]]] as unknown as maplibregl.ExpressionSpecification
+
 export default function MapInset() {
   const hostRef = useRef<HTMLDivElement>(null)
   const mapRef = useRef<MLMap | null>(null)
@@ -45,9 +52,13 @@ export default function MapInset() {
   const hoverId = useStore((s) => s.hoverId)
   const selectedId = useStore((s) => s.selectedId)
   const expanded = useStore((s) => s.mapExpanded)
+  const hiddenTiers = useStore((s) => s.hiddenTiers)
   const select = useStore((s) => s.select)
+  const setHover = useStore((s) => s.setHover)
+  const toggleTier = useStore((s) => s.toggleTier)
   const setMapExpanded = useStore((s) => s.setMapExpanded)
   const [showProjects, setShowProjects] = useState(true)
+  const [legendOpen, setLegendOpen] = useState(true)
   const [webgl2, setWebgl2] = useState(true)
   const applyRef = useRef<() => void>(() => {})
 
@@ -68,6 +79,8 @@ export default function MapInset() {
     })
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-left')
     mapRef.current = map
+    // ponytail: dev-only probe hook for headless browser checks (stripped from prod builds)
+    if (import.meta.env.DEV) (window as unknown as { __map?: MLMap }).__map = map
 
     // Effect-closure locals (not refs — StrictMode remounts must re-arm).
     let styleLoaded = false
@@ -91,9 +104,27 @@ export default function MapInset() {
 
     // Delegated listeners live on the Map and survive setStyle — register
     // exactly once here (registering inside apply() would duplicate them).
-    map.on('mouseenter', 'halos', () => (map.getCanvas().style.cursor = 'pointer'))
-    map.on('mouseleave', 'halos', () => (map.getCanvas().style.cursor = ''))
+    map.on('mouseenter', 'halos', (e) => {
+      map.getCanvas().style.cursor = 'pointer'
+      setHover((e.features?.[0]?.properties?.id as string | undefined) ?? null)
+    })
+    map.on('mouseleave', 'halos', () => {
+      map.getCanvas().style.cursor = ''
+      setHover(null)
+    })
     map.on('click', 'halos', (e) => {
+      const f = e.features?.[0]
+      if (f?.properties?.id) select(f.properties.id as string)
+    })
+    map.on('mouseenter', 'halo-dots', (e) => {
+      map.getCanvas().style.cursor = 'pointer'
+      setHover((e.features?.[0]?.properties?.id as string | undefined) ?? null)
+    })
+    map.on('mouseleave', 'halo-dots', () => {
+      map.getCanvas().style.cursor = ''
+      setHover(null)
+    })
+    map.on('click', 'halo-dots', (e) => {
       const f = e.features?.[0]
       if (f?.properties?.id) select(f.properties.id as string)
     })
@@ -102,7 +133,7 @@ export default function MapInset() {
       map.remove()
       mapRef.current = null
     }
-  }, [select])
+  }, [select, setHover])
 
   // sources + layers (style is async; run once data lands)
   useEffect(() => {
@@ -126,7 +157,11 @@ export default function MapInset() {
         features: rows.map((r) => ({
           type: 'Feature',
           properties: { id: r.overlap_id, tier: r.tier },
-          geometry: r.shortest_line,
+          // crossing pairs have zero-length lines → render as a dot at the touch point
+          geometry:
+            r.tier === 'crossing'
+              ? ({ type: 'Point', coordinates: r.shortest_line.coordinates[0] } as const)
+              : r.shortest_line,
         })),
       }
 
@@ -163,32 +198,70 @@ export default function MapInset() {
 
       if (!map.getSource('overlaps')) {
         map.addSource('overlaps', { type: 'geojson', data: haloFC })
-        // glow casing — sits under the crisp halo line
-        map.addLayer({
-          id: 'halo-focus',
-          type: 'line',
-          source: 'overlaps',
-          filter: ['==', ['get', 'id'], ''],
-          paint: {
-            'line-color': haloColor as unknown as string,
-            'line-width': 10,
-            'line-opacity': 0.35,
-            'line-blur': 1.5,
-          },
-        })
+        // Fresh state at creation; the spotlight effect re-applies on change.
+        const { hiddenTiers, hoverId, selectedId } = useStore.getState()
+        const focus = hoverId ?? selectedId ?? ''
+        const vis = tierVisible(hiddenTiers)
+        // dim base lines — the spotlight comes from halo-focus above
         map.addLayer({
           id: 'halos',
           type: 'line',
           source: 'overlaps',
+          filter: ['all', ['!=', ['get', 'tier'], 'crossing'], vis],
           paint: {
             'line-color': haloColor as unknown as string,
-            'line-width': 3.5,
+            'line-width': 4,
             'line-opacity': [
               'case',
               ['==', ['get', 'tier'], 'excluded'],
               EXCLUDED_OPACITY,
-              0.95,
+              // palest color needs the most opacity to read on light basemap
+              ['==', ['get', 'tier'], '<40 km'],
+              0.8,
+              DIM_OPACITY,
             ],
+          },
+        })
+        map.addLayer({
+          id: 'halo-focus',
+          type: 'line',
+          source: 'overlaps',
+          filter: [
+            'all',
+            ['==', ['get', 'id'], focus],
+            ['!=', ['get', 'tier'], 'crossing'],
+            vis,
+          ],
+          paint: {
+            'line-color': haloColor as unknown as string,
+            'line-width': 6,
+            'line-opacity': 0.85,
+            'line-blur': 1.5,
+          },
+        })
+        // touching pairs are zero-length lines → draw as dots
+        map.addLayer({
+          id: 'halo-dots',
+          type: 'circle',
+          source: 'overlaps',
+          filter: ['all', ['==', ['get', 'tier'], 'crossing'], vis],
+          paint: {
+            'circle-radius': 4,
+            'circle-opacity': 0.55,
+            'circle-color': haloColor as unknown as string,
+          },
+        })
+        map.addLayer({
+          id: 'halo-dot-focus',
+          type: 'circle',
+          source: 'overlaps',
+          filter: ['all', ['==', ['get', 'id'], focus], ['==', ['get', 'tier'], 'crossing'], vis],
+          paint: {
+            'circle-radius': 8.5,
+            'circle-opacity': 1,
+            'circle-color': haloColor as unknown as string,
+            'circle-stroke-width': 1.5,
+            'circle-stroke-color': '#ffffff',
           },
         })
       } else {
@@ -203,15 +276,29 @@ export default function MapInset() {
     if (map.isStyleLoaded()) apply()
   }, [rows, projects, select])
 
-  // two-way sync: focus + flyTo on hover/selection
+  // spotlight + tier visibility (filters only — hover never moves the camera)
   useEffect(() => {
     const map = mapRef.current
     if (!map || !map.getLayer('halo-focus')) return
-    const focus = selectedId ?? hoverId
-    map.setFilter('halo-focus', ['==', ['get', 'id'], focus ?? ''])
-    if (!focus) return
-    const row = rows.find((r) => r.overlap_id === focus)
-    const coords = row?.shortest_line.coordinates
+    const focus = hoverId ?? selectedId ?? ''
+    const vis = tierVisible(hiddenTiers)
+    map.setFilter('halos', ['all', ['!=', ['get', 'tier'], 'crossing'], vis] as never)
+    map.setFilter(
+      'halo-focus',
+      ['all', ['==', ['get', 'id'], focus], ['!=', ['get', 'tier'], 'crossing'], vis] as never,
+    )
+    map.setFilter('halo-dots', ['all', ['==', ['get', 'tier'], 'crossing'], vis] as never)
+    map.setFilter(
+      'halo-dot-focus',
+      ['all', ['==', ['get', 'id'], focus], ['==', ['get', 'tier'], 'crossing'], vis] as never,
+    )
+  }, [hoverId, selectedId, hiddenTiers])
+
+  // camera moves on selection only
+  useEffect(() => {
+    const map = mapRef.current
+    if (!map || !selectedId) return
+    const coords = rows.find((r) => r.overlap_id === selectedId)?.shortest_line.coordinates
     if (!coords?.length) return
     const xs = coords.map((c) => c[0])
     const ys = coords.map((c) => c[1])
@@ -222,7 +309,7 @@ export default function MapInset() {
       ],
       { padding: 90, maxZoom: 10.5, duration: 700, essential: true },
     )
-  }, [hoverId, selectedId, rows])
+  }, [selectedId, rows])
 
   // fullscreen expand needs a resize pass
   useEffect(() => {
@@ -263,18 +350,56 @@ export default function MapInset() {
         </div>
       )}
 
-      {/* legend — always visible at all zooms */}
+      {/* legend — collapsible so it doesn't block the map */}
+      {legendOpen ? (
       <div className="absolute bottom-6 left-2 z-10 rounded border border-rule bg-surface/95 px-2.5 py-2 text-[10.5px] shadow-sm backdrop-blur">
-        <div className="mb-1 font-semibold tracking-wide text-ink-dim uppercase">Distance tier</div>
-        {(['crossing', '<1.6 km', '<8 km', '<40 km'] as const).map((t) => (
-          <div key={t} className="flex items-center gap-1.5">
-            <span className="inline-block h-0.5 w-4" style={{ background: TIER_HALO[t] }} />
-            {TIER_LABEL[t]}
-          </div>
-        ))}
-        <div className="flex items-center gap-1.5 opacity-50">
-          <span className="inline-block h-0.5 w-4" style={{ background: TIER_HALO.excluded }} />
-          excluded &gt;40 km
+        <button
+          className="mb-1 flex w-full items-center justify-between font-semibold tracking-wide text-ink-dim uppercase hover:text-ink"
+          onClick={() => setLegendOpen(false)}
+          title="Collapse legend"
+        >
+          <span>
+            Distance tier <span className="font-normal normal-case">· click to toggle</span>
+          </span>
+          <span className="ml-2 text-[12px]">–</span>
+        </button>
+        {(['crossing', '<1.6 km', '<8 km', '<40 km', 'excluded'] as const).map((t) => {
+          const on = !hiddenTiers.includes(t)
+          return (
+            <button
+              key={t}
+              onClick={() => toggleTier(t)}
+              aria-pressed={on}
+              title={on ? 'Hide this tier on the map' : 'Show this tier on the map'}
+              className={`flex w-full items-center gap-1.5 rounded px-0.5 text-left hover:bg-surface-3 ${
+                on ? '' : 'opacity-40'
+              }`}
+            >
+              <span className="inline-block h-0.5 w-4" style={{ background: TIER_HALO[t] }} />
+              <span className={on ? '' : 'line-through'}>{TIER_LABEL[t]}</span>
+            </button>
+          )
+        })}
+        <div className="my-1.5 h-px bg-rule" />
+        <div className="mb-1 font-semibold tracking-wide text-ink-dim uppercase">What you see</div>
+        <div className="flex items-start gap-1.5">
+          <span className="text-ink-dim">—</span>
+          <span>thin line: transmission corridor — the power lines between two points</span>
+        </div>
+        <div
+          className="flex items-start gap-1.5"
+          title="Point features sit at the one geocoded endpoint (often a substation or line terminal) or an approximate project center — not a dedicated substation layer."
+        >
+          <span className="text-ink-dim">●</span>
+          <span>dot: single-endpoint project, or a touching pair (tier color)</span>
+        </div>
+        <div className="flex items-start gap-1.5">
+          <span className="text-ink-dim">▬</span>
+          <span>band: straight-line gap between corridors — color = distance tier</span>
+        </div>
+        <div className="flex items-start gap-1.5">
+          <span className="text-ink-dim">✦</span>
+          <span>bright glow: hovered / selected pair — hover a row or a line</span>
         </div>
         <div className="my-1.5 h-px bg-rule" />
         <div className="mb-1 font-semibold tracking-wide text-ink-dim uppercase">Utility</div>
@@ -287,6 +412,15 @@ export default function MapInset() {
           Georgia Power (GPC)
         </div>
       </div>
+      ) : (
+        <button
+          className={`absolute bottom-6 left-2 z-10 ${chip}`}
+          onClick={() => setLegendOpen(true)}
+          title="Show legend"
+        >
+          legend ▲
+        </button>
+      )}
 
       {/* [+/-] [layers] [fullscreen] */}
       <div className="absolute top-2 right-2 z-10 flex gap-1.5">
