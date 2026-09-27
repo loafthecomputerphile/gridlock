@@ -40,8 +40,14 @@ def main() -> None:
     print(f"PASS health 200 (phases_done={h['phases_done']}, {len(h['data_files'])} data files)")
 
     r = c.get("/api/projects")
-    assert r.status_code == 200 and len(r.json()) == 168, f"projects: {r.status_code}"
-    print("PASS /api/projects (168 rows)")
+    assert r.status_code == 200, f"projects: {r.status_code}"
+    # guide-only policy: API serves located projects only; total comes from health
+    assert h["projects_total"] == 168, f"projects_total = {h['projects_total']}"
+    assert len(r.json()) == h["projects_located"], (
+        f"/api/projects {len(r.json())} vs health projects_located {h['projects_located']}")
+    assert h["projects_located"] <= h["projects_total"]
+    print(f"PASS /api/projects ({h['projects_located']} located of "
+          f"{h['projects_total']} total — unmapped excluded)")
 
     rows = c.get("/api/overlaps").json()
     idx = {(x["project_a"], x["project_b"]): x for x in rows}

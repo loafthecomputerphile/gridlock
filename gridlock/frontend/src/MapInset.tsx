@@ -411,6 +411,13 @@ export default function MapInset() {
         <div className="mb-1 font-semibold tracking-wide text-ink-dim uppercase">Corridor grounding</div>
         <div
           className="flex items-start gap-1.5"
+          title="Guide-only location policy (DATA-NOTES §6): projects the Finding guide could not locate are excluded from the map and pairs, not plotted at a guessed point."
+        >
+          <span className="text-ink-dim">▣</span>
+          <span>projects on map: {projects.length}</span>
+        </div>
+        <div
+          className="flex items-start gap-1.5"
           title="geometry_source=osm_snapped — corridor follows an actual OSM power=line way within 10 km (routing proxy), snap distance on the detail drawer."
         >
           <span className="text-ink-dim">≈</span>

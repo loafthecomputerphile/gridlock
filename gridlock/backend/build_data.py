@@ -2,11 +2,23 @@
 
 Run: uv run python backend/build_data.py
 
-Outputs: projects.csv, gazetteer.csv, gridlock_projects.geojson, pairs_metrics.csv
+Outputs: projects.csv, gazetteer.csv, gridlock_projects.geojson, pairs_metrics.csv,
+unmapped_projects.csv
 Guide method (DATA-NOTES §1): center = midpoint of two sub-points (one point if the
 other is unlocated); overlap = center haversine < 25 mi; every match labeled.
 Starter rows keep workbook endpoint names / coords / centers / dates verbatim
 (golden fidelity); everything else is geocoded live and labeled.
+
+Location policy (03.5 follow-up, user direction "use only data given in the
+Sperry Tech Challenge folder", DATA-NOTES §6): records come from the release
+folder; locations only from the folder's own Finding-guide method — OSM
+Overpass power-infrastructure name matches (unique, in the ENDPOINT'S hinted
+state) + Nominatim hits in the hinted state only. HIFLD and the state-centroid
+fallback are NOT in the guide and were removed (they produced the map's
+starburst lines / Cambridge-MA point). Projects the guide can't locate stay
+in projects.csv but get no geometry: one located endpoint -> single-point
+center, none -> excluded from geojson/pairs and listed in
+unmapped_projects.csv.
 """
 from __future__ import annotations
 
@@ -31,16 +43,23 @@ CACHE = PROC / "_cache"
 PROC.mkdir(parents=True, exist_ok=True)
 CACHE.mkdir(parents=True, exist_ok=True)
 
-HIFLD_URL = (
-    "https://services1.arcgis.com/CD5mKowwN6nIaqd8/arcgis/rest/services/"
-    "project_renewable_us_substations_2022/FeatureServer/10/query"
-)
 BBOX = {"xmin": -85.6, "ymin": 30.3, "xmax": -78.5, "ymax": 35.2}  # W,S,E,N
 R_MI = 3958.7613
 CHECKED_ON = "2026-09-26"
-# ponytail: hand-set territory centroids for total geocode failure; upgrade to TIGER
-# county centroids only if a real miss ever needs county accuracy.
-STATE_CENTROID = {"SC": (33.8, -80.9), "GA": (32.7, -83.4)}
+# Mechanical QA (DATA-NOTES §6): a candidate must land in the ENDPOINT's hinted
+# state (SC for DESC, GA for GPC) — rough rects with ~0.3° border fudge. The
+# territory bbox alone let cross-state name collisions through (Summerville→AL,
+# Hammond→SC), which drew the last of the nationwide junk lines.
+STATE_BOX = {"SC": (-83.7, 31.7, -78.2, 35.5), "GA": (-86.0, 30.0, -80.4, 35.5)}
+STATE_RE = {"SC": r", (SC|South Carolina)\b", "GA": r", (GA|Georgia)\b"}
+
+
+def state_ok(state: str, lat: float, lon: float) -> bool:
+    box = STATE_BOX.get(state)
+    if not box:
+        return True
+    x0, y0, x1, y1 = box
+    return x0 <= lon <= x1 and y0 <= lat <= y1
 
 _geo = None  # Nominatim singleton: min_delay_seconds applies across calls
 
@@ -265,32 +284,6 @@ def apply_starter(rows: list[dict], starter: pd.DataFrame, util: str) -> set[str
 
 # ---------------------------------------------------------------- Task C: geocode
 
-def fetch_hifld() -> list[dict]:
-    cache = CACHE / "hifld_bbox.json"
-    if cache.exists():
-        return json.loads(cache.read_text())
-    out = []
-    offset = 0
-    while True:
-        q = urllib.parse.urlencode({
-            "where": "1=1",
-            "geometry": json.dumps({**BBOX, "spatialReference": {"wkid": 4326}}),
-            "geometryType": "esriGeometryEnvelope", "inSR": "4326",
-            "spatialRel": "esriSpatialRelIntersects",
-            "outFields": "NAME,STATE,COUNTY,LATITUDE,LONGITUDE",
-            "returnGeometry": "false", "outSR": "4326",
-            "resultOffset": offset, "resultRecordCount": 2000, "f": "json",
-        })
-        j = http_json(f"{HIFLD_URL}?{q}")
-        feats = j.get("features", [])
-        out.extend(f["attributes"] for f in feats)
-        if not j.get("exceededTransferLimit") or not feats:
-            break
-        offset += 2000
-    cache.write_text(json.dumps(out))
-    return out
-
-
 def fetch_overpass() -> list[dict]:
     cache = CACHE / "overpass_subs.json"
     if cache.exists():
@@ -327,13 +320,16 @@ def hav_mi(la1, lo1, la2, lo2) -> float:
 
 def nominatim_geocode(name: str, state: str):
     """START-GATE: 1 req/s + retries with backoff (singleton enforces min_delay).
+    03.5 policy: a hit counts only if it is in the HINTED state (SC for DESC,
+    GA for GPC) — the old code accepted any SC/GA hit, and before that flagged
+    out-of-territory hits but still returned them (Square D -> Cambridge, MA).
     Returns (lat, lon, note) or None."""
     global _geo
     if _geo is None:
         from geopy.geocoders import Nominatim
         _geo = Nominatim(user_agent="gridlock-hackathon/0.1 (one-off project geocode)",
                          timeout=10)
-    for query, state_check in ((f"{name}, {state}", True), (name, False)):
+    for query in (f"{name}, {state}", name):
         hit = None
         for i in range(3):
             try:
@@ -349,13 +345,41 @@ def nominatim_geocode(name: str, state: str):
         if not hit:
             continue
         display = hit.address or ""
-        in_territory = bool(re.search(r", (SC|GA|South Carolina|Georgia)\b", display))
-        if state_check and not in_territory:
-            return hit.latitude, hit.longitude, f"nominatim:{display} [out-of-territory]"
-        if not state_check and not in_territory:
-            return hit.latitude, hit.longitude, f"nominatim:{display} [out-of-territory]"
+        if not re.search(STATE_RE[state], display):
+            continue  # wrong state -> miss, try next query form
         return hit.latitude, hit.longitude, f"nominatim:{display}"
     return None
+
+
+_rev_memo: dict = {}
+
+
+def reverse_in_state(lat: float, lon: float, state: str) -> bool:
+    """Guide confirm step (mechanical): Nominatim reverse-geocode the resolved
+    point; False only when the reverse address is DEFINITELY in the wrong
+    state (cross-state name collisions that pass the coarse STATE_BOX rects,
+    e.g. 'ANNISTON'). Network failure or empty address = keep (never nuke a
+    row on a flake)."""
+    global _geo
+    key = (round(lat, 3), round(lon, 3), state)
+    if key in _rev_memo:
+        return _rev_memo[key]
+    if _geo is None:
+        from geopy.geocoders import Nominatim
+        _geo = Nominatim(user_agent="gridlock-hackathon/0.1 (one-off project geocode)",
+                         timeout=10)
+    ok = True
+    try:
+        time.sleep(1.0)  # START-GATE: 1 req/s
+        loc = _geo.reverse((lat, lon), exactly_one=True, language="en")
+        display = (loc.address or "") if loc else ""
+        if display and not re.search(STATE_RE[state], display):
+            ok = False
+            print(f"  reverse-reject {lat:.4f},{lon:.4f} hint={state}: {display[:70]}")
+    except Exception as e:
+        print(f"  reverse error {lat:.4f},{lon:.4f}: {e}")
+    _rev_memo[key] = ok
+    return ok
 
 
 def layer_score(key: str, name: str) -> int:
@@ -370,34 +394,38 @@ def layer_score(key: str, name: str) -> int:
     return 0
 
 
-def best_layer(key: str, hifld: list[dict], osm: list[dict]):
-    """Best (score, state-miss, layer, lat, lon, source, county) for a norm key, or None."""
-    cands = []
-    for h in hifld:
-        s = layer_score(key, h.get("NAME") or "")
-        if s and h.get("LATITUDE") is not None:
-            cands.append((s, 0 if h.get("STATE") == hifld_state(h, key) else 1, 0,
-                          h["LATITUDE"], h["LONGITUDE"], "hifld", str(h.get("COUNTY") or "")))
-    for o in osm:
-        s = layer_score(key, o["name"])
-        if s:
-            cands.append((s, 1, 1, o["lat"], o["lon"], "overpass", ""))
-    cands.sort(key=lambda c: c[:3], reverse=True)
-    return cands[0] if cands else None
-
-
-def hifld_state(h, key) -> str:
-    return str(h.get("STATE") or "")
+def best_layer(key: str, osm: list[dict], state: str):
+    """Guide-only (03.5): OSM name match for a norm key, or None.
+    Candidates are pre-filtered to the hinted state (mechanical QA); exact
+    (score 3) beats containment (score 2); the winning tier must resolve to
+    ONE distinct location (rounded 3 dp) — ambiguous same-name hits are
+    rejected (guide: confirm or flag; we drop to Nominatim instead of guessing).
+    Returns (score, lat, lon, source, county)."""
+    pool = [o for o in osm if state_ok(state, o["lat"], o["lon"])]
+    for score in (3, 2):
+        hits = [o for o in pool if layer_score(key, o["name"]) == score]
+        if not hits:
+            continue
+        if len({(round(o["lat"], 3), round(o["lon"], 3)) for o in hits}) > 1:
+            return None  # ambiguous — do not guess
+        return (score, hits[0]["lat"], hits[0]["lon"], "overpass", "")
+    return None
 
 
 def build_gazetteer(endpoints: dict[str, tuple[str, str]], starter: pd.DataFrame) -> dict[str, dict]:
-    """endpoints: norm(name) -> (display name, state hint). Starter seeds always win."""
+    """endpoints: norm(name) -> (display name, state hint). Starter seeds always win.
+    03.5 guide-only policy: sources are starter / Overpass / in-territory Nominatim."""
     gaz_path = PROC / "gazetteer.csv"
     gaz: dict[str, dict] = {}
-    if gaz_path.exists():  # idempotent rerun: keep resolved rows, retry failures
+    if gaz_path.exists():  # idempotent rerun: keep guide-allowed rows, retry the rest
         for _, r in pd.read_csv(gaz_path).iterrows():
-            if r["source"] == "state-centroid":
-                continue  # past Nominatim miss — retry with fixed client
+            src, conf = r["source"], r["confidence"]
+            if src in ("hifld", "state-centroid"):
+                continue  # not in the Finding guide — re-resolve (likely unlocated)
+            if src == "nominatim" and conf == "unconfirmed":
+                continue  # old flag-but-keep bug: out-of-territory hit — re-resolve
+            if not state_ok(str(r["state_hint"]), float(r["lat"]), float(r["lon"])):
+                continue  # cross-state collision under the old lax rule — re-resolve
             gaz[norm(r["endpoint_name"])] = r.to_dict()
 
     for _, r in starter.iterrows():
@@ -408,71 +436,78 @@ def build_gazetteer(endpoints: dict[str, tuple[str, str]], starter: pd.DataFrame
                                  "source": "starter", "confidence": "confirmed", "checked_on": CHECKED_ON,
                                  "county": ""}
 
-    hifld = fetch_hifld()
-    print(f"HIFLD bbox rows: {len(hifld)} (plan est ~4019 — live drift, noted in DATA-NOTES)")
-    osm = []
-    for el in fetch_overpass():
-        c, tags = osm_coord(el), el.get("tags", {})
-        if c and tags.get("name"):
-            osm.append({"name": tags["name"], "lat": c[0], "lon": c[1]})
-    print(f"Overpass named substations: {len(osm)} (plan est ~5587 — live drift, noted)")
+    # Guide geocode layers: Overpass substations + (for line endpoints) power lines
+    # from the 03.5 pull — both are the guide's own "query ALL of a utility's
+    # tagged infrastructure" method, bbox-scoped to SC/GA.
+    osm: list[dict] = []
+    seen: set[tuple] = set()
+    for cache_name in ("overpass_subs.json", "overpass_power.json"):
+        p = CACHE / cache_name
+        if not p.exists():
+            continue
+        for el in json.loads(p.read_text()):
+            c, tags = osm_coord(el), el.get("tags", {})
+            if c and tags.get("name") and (tags["name"], round(c[0], 3)) not in seen:
+                seen.add((tags["name"], round(c[0], 3)))
+                osm.append({"name": tags["name"], "lat": c[0], "lon": c[1]})
+    if not (CACHE / "overpass_subs.json").exists():
+        # cold start only — pull once (cached thereafter)
+        for el in fetch_overpass():
+            c, tags = osm_coord(el), el.get("tags", {})
+            if c and tags.get("name"):
+                osm.append({"name": tags["name"], "lat": c[0], "lon": c[1]})
+    print(f"Overpass named power features: {len(osm)} (guide layers: substations + lines)")
 
-    # QA: starter seed vs live exact-name layer hit — disagreement = bug (per plan C)
+    # QA: starter seed vs live exact-name OSM hit — disagreement = eyeball (per plan C)
     for key, g in gaz.items():
         if g["source"] != "starter":
             continue
-        live = None
-        for h in hifld:
-            if (h.get("NAME") and norm(h["NAME"]) == key and h.get("LATITUDE") is not None):
-                live = (h["LATITUDE"], h["LONGITUDE"])
-                g["county"] = str(h.get("COUNTY") or "")
-                break
-        if live is None:
-            for o in osm:
-                if norm(o["name"]) == key:
-                    live = (o["lat"], o["lon"])
-                    break
+        live = next(((o["lat"], o["lon"]) for o in osm if norm(o["name"]) == key), None)
         if live:
             d = hav_mi(g["lat"], g["lon"], *live)
             if d > 1.5:
-                print(f"QA BUG: starter '{g['endpoint_name']}' vs live layer {d:.1f} mi apart")
+                print(f"QA BUG: starter '{g['endpoint_name']}' vs live OSM {d:.1f} mi apart")
 
     nom_calls = 0
+    nom_memo: dict[str, tuple | None] = {}
+    unlocated = []
     for key, (ep_name, state) in sorted(endpoints.items()):
         if key in gaz:
             continue
-        top = best_layer(key, hifld, osm)
-        if top and top[3] is not None:
-            distinct = set()
-            # multiple distinct coords at the same score -> flag for eyeball
-            for c2 in [top]:
-                distinct.add((round(c2[3], 3), round(c2[4], 3)))
-            for h in hifld:
-                if layer_score(key, h.get("NAME") or "") == top[0] and h.get("LATITUDE") is not None:
-                    distinct.add((round(h["LATITUDE"], 3), round(h["LONGITUDE"], 3)))
+        top = best_layer(key, osm, state)
+        if top:
             gaz[key] = {"endpoint_name": ep_name, "state_hint": state,
-                        "lat": float(top[3]), "lon": float(top[4]), "source": top[5],
-                        "confidence": "confirmed" if len(distinct) == 1 else "likely",
-                        "checked_on": CHECKED_ON, "county": top[6]}
+                        "lat": float(top[1]), "lon": float(top[2]), "source": top[3],
+                        "confidence": "confirmed" if top[0] == 3 else "likely",
+                        "checked_on": CHECKED_ON, "county": top[4]}
             continue
-        # Nominatim fallback
-        nom_calls += 1
-        hit = nominatim_geocode(ep_name, state)
+        # Nominatim fallback (in-territory only — out-of-territory = miss).
+        # memo: many PDFs repeat endpoint names across projects — one live query each.
+        if ep_name not in nom_memo:
+            nom_calls += 1
+            nom_memo[ep_name] = nominatim_geocode(ep_name, state)
+        hit = nom_memo[ep_name]
         if hit:
             lat, lon, note = hit
             gaz[key] = {"endpoint_name": ep_name, "state_hint": state, "lat": lat, "lon": lon,
-                        "source": "nominatim",
-                        "confidence": "unconfirmed" if "out-of-territory" in note else "likely",
+                        "source": "nominatim", "confidence": "likely",
                         "checked_on": CHECKED_ON, "county": "", "notes": note}
         else:
-            # START-GATE: county centroid + unconfirmed. County isn't derivable from the
-            # name alone -> territory-state centroid, labeled unconfirmed.
-            lat, lon = STATE_CENTROID[state]
-            gaz[key] = {"endpoint_name": ep_name, "state_hint": state, "lat": lat, "lon": lon,
-                        "source": "state-centroid", "confidence": "unconfirmed", "checked_on": CHECKED_ON,
-                        "county": "",
-                        "notes": "no layer/Nominatim hit; county not derivable -> state centroid"}
-    print(f"Nominatim calls: {nom_calls}")
+            # guide can't locate it — no gazetteer row; write_outputs drops the
+            # project's geometry (or the whole project if no endpoint resolves)
+            unlocated.append(ep_name)
+    # Guide confirm step: reverse-geocode every non-starter endpoint once; a
+    # definitive wrong-state reverse address drops the row (-> unlocated).
+    rejected = []
+    for key in [k for k, g in gaz.items() if g["source"] != "starter"]:
+        g = gaz[key]
+        if not reverse_in_state(float(g["lat"]), float(g["lon"]), str(g["state_hint"])):
+            rejected.append(g["endpoint_name"])
+            del gaz[key]
+    unlocated.extend(rejected)
+    print(f"Nominatim calls: {nom_calls} (+{len(_rev_memo)} reverse checks)")
+    if unlocated:
+        print(f"guide-unlocatable endpoints ({len(unlocated)}): {sorted(unlocated)}")
     return gaz
 
 
@@ -480,9 +515,8 @@ def build_gazetteer(endpoints: dict[str, tuple[str, str]], starter: pd.DataFrame
 
 def write_outputs(desc: list[dict], gpc: list[dict], gaz: dict[str, dict]) -> None:
     rows = desc + gpc
-    feats, centers, geoms_5070 = [], {}, {}
+    feats, centers, geoms_5070, unmapped = [], {}, {}, []
     to5070 = Transformer.from_crs("EPSG:4326", "EPSG:5070", always_xy=True)
-    warnings = []
 
     for r in rows:
         confs = []
@@ -501,11 +535,12 @@ def write_outputs(desc: list[dict], gpc: list[dict], gaz: dict[str, dict]) -> No
                     confs.append(g["confidence"])
                     if not r["county"] and g.get("county"):
                         r["county"] = g["county"]
+            # guide: one located point IS the center; zero located -> unmapped
             center = (sum(p[0] for p in pts) / len(pts), sum(p[1] for p in pts) / len(pts)) if pts else None
-            if center is None:
-                lat, lon = STATE_CENTROID["SC" if r["sponsor"] == "DESC" else "GA"]
-                center = (lat, lon)
-                warnings.append(f"{r['project_id']}: no endpoints resolved -> state centroid")
+
+        if center is None:
+            unmapped.append(r)
+            continue
 
         if len(pts) == 2:
             geom = {"type": "LineString", "coordinates": [[pts[0][1], pts[0][0]], [pts[1][1], pts[1][0]]]}
@@ -531,10 +566,18 @@ def write_outputs(desc: list[dict], gpc: list[dict], gaz: dict[str, dict]) -> No
                                      "geometry_note": "corridor proximity, not surveyed distance"},
                       "geometry": geom})
 
+    for r in unmapped:
+        r["notes"] += "; UNMAPPED: no endpoint locatable by the Finding-guide method (excluded from map/pairs)"
+
     proj_cols = ["project_id", "name", "utility", "type", "endpoint_a", "endpoint_b", "voltage_kv",
                  "in_service_date", "status", "cost_usd", "county", "sponsor",
                  "source_file", "source_page", "notes"]
     pd.DataFrame(rows)[proj_cols].to_csv(PROC / "projects.csv", index=False)
+
+    if unmapped:
+        pd.DataFrame(unmapped)[proj_cols].to_csv(PROC / "unmapped_projects.csv", index=False)
+    elif (PROC / "unmapped_projects.csv").exists():
+        (PROC / "unmapped_projects.csv").unlink()
 
     gaz_cols = ["endpoint_name", "state_hint", "lat", "lon", "source", "confidence", "checked_on"]
     pd.DataFrame(list(gaz.values()))[gaz_cols].to_csv(PROC / "gazetteer.csv", index=False)
@@ -544,10 +587,15 @@ def write_outputs(desc: list[dict], gpc: list[dict], gaz: dict[str, dict]) -> No
 
     # pairs: center haversine everywhere; closest-point in EPSG:5070. Keep any pair
     # with min(center, closest) < 40 km so both the guide view and tier view are covered.
+    # Unmapped projects have no center/geometry — skipped (03.5 guide-only policy).
     KM40_MI = 40 / 1.609344
     pairs = []
     for da in desc:
+        if da["project_id"] not in centers:
+            continue
         for gb in gpc:
+            if gb["project_id"] not in centers:
+                continue
             ca, cb = centers[da["project_id"]], centers[gb["project_id"]]
             d_center = hav_mi(*ca, *cb)
             d_closest = geoms_5070[da["project_id"]].distance(geoms_5070[gb["project_id"]]) / 1609.344
@@ -567,9 +615,11 @@ def write_outputs(desc: list[dict], gpc: list[dict], gaz: dict[str, dict]) -> No
     gaz_df = pd.DataFrame(list(gaz.values()))
     print("confidence:", gaz_df["confidence"].value_counts().to_dict())
     print("sources:", gaz_df["source"].value_counts().to_dict())
-    print(f"pairs_metrics: {len(pairs)} rows | geojson: {len(feats)} features")
-    if warnings:
-        print("WARN:", *warnings, sep="\n  ")
+    print(f"pairs_metrics: {len(pairs)} rows | geojson: {len(feats)} features | "
+          f"unmapped: {len(unmapped)}")
+    if unmapped:
+        print(f"unmapped_projects.csv written ({len(unmapped)}): "
+              f"{[r['project_id'] for r in unmapped]}")
     odd = gaz_df[gaz_df["confidence"] != "confirmed"]
     if len(odd):
         print(f"manual eyeball list ({len(odd)} non-confirmed endpoints):")

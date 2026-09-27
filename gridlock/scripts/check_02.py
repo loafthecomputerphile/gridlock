@@ -109,11 +109,20 @@ def check_outputs() -> None:
     print(f"PASS gazetteer.csv ({len(gaz)} endpoints, all confidence-labeled)")
 
     feats = json.loads((PROC / "gridlock_projects.geojson").read_text())["features"]
-    assert len(feats) == len(proj), f"geojson {len(feats)} vs projects {len(proj)}"
+    # guide-only policy (DATA-NOTES §6): unmapped projects have no feature
+    unm_path = PROC / "unmapped_projects.csv"
+    n_unmapped = len(pd.read_csv(unm_path)) if unm_path.exists() else 0
+    assert len(feats) + n_unmapped == len(proj), (
+        f"geojson {len(feats)} + unmapped {n_unmapped} != projects {len(proj)}")
+    fids = {f["properties"]["project_id"] for f in feats}
+    starter10 = [f"DESC_{i}" for i in range(1, 6)] + [f"GPC_{i}" for i in range(1, 6)]
+    missing = [s for s in starter10 if s not in fids]
+    assert not missing, f"starter projects missing from geojson: {missing}"
     assert all(f["properties"].get("geometry_basis") for f in feats), \
         "feature missing geometry_basis"
     assert all(f["geometry"] for f in feats), "feature missing geometry"
-    print(f"PASS geojson ({len(feats)} features, all geometry_basis present)")
+    print(f"PASS geojson ({len(feats)} features + {n_unmapped} unmapped = {len(proj)}; "
+          "all geometry_basis present, starter projects mapped)")
 
     pairs = pd.read_csv(PROC / "pairs_metrics.csv")
     idx = {(r.project_id_a, r.project_id_b): r for r in pairs.itertuples()}

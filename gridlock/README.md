@@ -2,7 +2,7 @@
 
 Energy-project overlap explorer: score, map, and brief overlapping utility transmission/IRP projects (DESC × Georgia Power × Dominion).
 
-**Phase status:** 01 foundation — see [docs/PROJECT-STATE.md](docs/PROJECT-STATE.md) for the phase tracker, locked decisions, and changelog.
+**Phase status:** 01–04 + 07 route-aware corridors done — see [docs/PROJECT-STATE.md](docs/PROJECT-STATE.md) for the phase tracker, locked decisions, and changelog.
 
 ## Layout
 
@@ -57,11 +57,21 @@ unknown. This build does not ship that as-is:
    as a labeled legacy reference next to the new route-aware golden
    (`scripts/check_07.py`) — nothing was silently replaced.
 
-**Honest numbers:** the snap rate is **62.5 % (105 of 168 projects)**; the
-rest are disclosed as buffered/fallback rather than forced onto unrelated
-infrastructure. Snapped geometry produced **zero** spurious crossing pairs.
-The ledger's top-ranked crossings all come from two pre-existing geocode
-misses from the phase-02 ingest (`Square D` matched to Cambridge, MA — labeled
-*unconfirmed*; `Killian` ~150 km off) whose straight lines now run across the
-map — visible, labeled `buffered_estimate`, and documented in
-`docs/DATA-NOTES.md` §5 as a finding, not hidden.
+And the locations themselves are held to the same standard (see
+`docs/DATA-NOTES.md` §6): coordinates come **only** from the release
+folder's own Finding-guide method — OSM Overpass power-infrastructure name
+matches (unique, in the endpoint's hinted state) plus Nominatim hits in that
+state, each point reverse-geocode-confirmed. The earlier HIFLD and
+state-centroid fallbacks were removed: they were not in the guide, and they
+drew the nationwide starburst lines (state centroids as shared hubs) and the
+`Square D → Cambridge, MA` point.
+
+**Honest numbers:** **127 of 168 projects are mapped**; the 41 the guide
+could not locate are listed in `data/processed/unmapped_projects.csv` and
+excluded from the map and pairs — never plotted at a guessed point. Of the
+mapped set the snap rate is **74.8 % (95 of 127)**; the rest are disclosed
+as buffered estimates rather than forced onto unrelated infrastructure. The
+ledger's top pairs are now all plausible SC–GA border projects (Lake
+Thurmond, Okatie/Aiken, Savannah area); the old top-ranked 0-distance
+"crossings" were geocode artifacts and are gone with the policy change —
+documented in `docs/DATA-NOTES.md` §6, not hidden.

@@ -151,11 +151,16 @@ def snap_point(p5070: Point, ways, tree):
 
 
 def main() -> None:
-    # preserve the phase-02 straight geojson once (legacy distances need it)
-    if not STRAIGHT_CACHE.exists():
+    # Capture the straight (phase-02-style) geojson for legacy distances: recapture
+    # whenever the current geojson is straight (no geometry_source — i.e. build_data
+    # just reran under the guide-only policy); never overwrite with route-aware output.
+    cur = json.loads(GEOJSON.read_text(encoding="utf-8"))
+    if not any("geometry_source" in f["properties"] for f in cur["features"]):
         STRAIGHT_CACHE.write_text(GEOJSON.read_text(encoding="utf-8"))
     legacy_feats = json.loads(STRAIGHT_CACHE.read_text(encoding="utf-8"))["features"]
-    assert len(legacy_feats) == 168, f"legacy features = {len(legacy_feats)}, want 168"
+    assert len(legacy_feats) == len(cur["features"]), (
+        f"legacy features = {len(legacy_feats)}, current = {len(cur['features'])} — "
+        "stale cache; delete _cache/gridlock_projects_straight.geojson and rerun build_data")
 
     els = fetch_power()
     n_line = sum(1 for e in els if (e.get("tags") or {}).get("power") == "line")

@@ -102,5 +102,59 @@ and they pre-date this phase (the identical pairs are 0.0 m in the cached
 straight geojson). Root cause is phase-02 geocode debt: `Square D`
 (Nominatim, *unconfirmed*) → Cambridge, MA, making DESC_16 a 1,777 km line
 (9 crossings); `Killian` (~150 km off, *likely*) making DESC_13 a 204 km line
-(2 crossings). Disclosed in README; not silently fixed (phase-02
-automated-QA answer stands — fix requires user direction).
+(2 crossings). Disclosed in README; ~~not silently fixed~~ **superseded by
+§6 — user directed the guide-only location policy, which fixes these.**
+
+## 6. Guide-only location policy (post-03.5, user direction)
+
+**Trigger:** user report with screenshots — *"use only data given in the
+Sperry Tech Challenge folder cause all the data currently looks jagety and
+overlap dots are not on overlaps…"*; via AskUserQuestion the user chose
+**"Guide method only"**: records and coordinates only from the release
+folder; endpoints located ONLY by the folder's own Finding-guide method.
+
+**Rules now enforced in `backend/build_data.py`:**
+
+- **Removed (not in the guide):** HIFLD layer entirely; `STATE_CENTROID`
+  fallback; Nominatim out-of-territory hits (the old code flagged
+  `[out-of-territory]` but still returned them — that shipped `Square D` to
+  Cambridge, MA).
+- **Overpass matches** (substations + lines from the 03.5 power pull, both
+  the guide's "query ALL of a utility's tagged infrastructure" method): must
+  be unique (exact beat containment; ≥2 distinct locations at the winning
+  score → reject to Nominatim, never guess) and inside the endpoint's
+  **hinted state** (SC for DESC, GA for GPC — rough rects, `STATE_BOX`,
+  ~0.3° border fudge).
+- **Nominatim matches:** display address must name the **hinted state**
+  (not just any of SC/GA); 1 req/s + backoff kept.
+- **Reverse confirm (the guide's own "confirm against the description" step,
+  mechanized):** every non-starter endpoint is reverse-geocoded once
+  (memoized); a definitive wrong-state address drops the row. Network
+  failure never drops a row.
+- **Unlocatable projects:** stay in `projects.csv` with an `UNMAPPED` note,
+  listed in `unmapped_projects.csv`, **excluded from geojson, centers and
+  pairs** — one located endpoint → single-point center (guide: one point IS
+  the center), none → unmapped. Never plotted at a guessed point.
+- Stale cached gazetteer rows from disallowed sources/states are dropped on
+  load so those keys re-resolve under the new rules.
+
+**Result (this run):** 168 projects → **127 mapped / 41 unmapped**; 142
+gazetteer endpoints (83 nominatim, 45 overpass, 14 starter; 93 likely /
+49 confirmed — no unconfirmed tier survives: a label can no longer pass
+while being wrong-state); 31 golden-route pairs (was 211 phase-02 / 120
+pre-state-filter); snap rate **74.8 % (95 of 127)**; **zero crossing rows**
+remain — the old 34 were straight-line artifacts of the removed fallbacks.
+Reverse rejects this run: 6 points (AL ×3, FL ×1, SC-for-GA ×2), incl.
+`HAMMOND → Hammond Crossroads, SC` (killed GPC_87's 400 km line) and
+`FARLEY → Joseph M. Farley Nuclear, AL`.
+
+**Golden impact: none.** The starter 10 rows keep workbook coords verbatim,
+so LEGACY 6/6 and ROUTE 6/6 are byte-identical to the 03.5 hand-verified
+values (`check_07` green). Starter *endpoint names* that fail the policy
+(`PURRYSBURG`, `THURMOND DAM (USA)`, `Hooks Sub`…) only affect the
+gazetteer's live rows — the workbook geometry wins for those projects.
+
+**Known ceiling:** name-only matching cannot fully replicate the guide's
+manual PDF cross-check; some surviving points are `likely` (e.g. generic
+names like `ANNISTON` that Nominatim places in GA). Disclosed via per-row
+confidence + the reverse-confirmed filter; not hand-fixed (24h clock).

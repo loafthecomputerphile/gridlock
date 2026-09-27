@@ -14,6 +14,7 @@ const TIERS: { id: TierFilter; label: string }[] = [
 
 export default function App() {
   const { rows, loading, error, tier, windowOnly } = useStore()
+  const locatedCount = useStore((s) => s.projects.length)
   const setTier = useStore((s) => s.setTier)
   const setWindowOnly = useStore((s) => s.setWindowOnly)
   const setMapExpanded = useStore((s) => s.setMapExpanded)
@@ -156,10 +157,12 @@ export default function App() {
 
       {/* honesty footer (report) */}
       <footer className="shrink-0 border-t border-rule bg-surface-2 px-4 py-1 text-[10.5px] text-ink-dim">
-        Route-aware corridors: this build moves past the brief&apos;s straight-line sketches by
-        snapping projects to real OSM power lines where infrastructure exists within 10&nbsp;km
-        (grounding tag per project: snapped / buffered / fallback), and declaring a 10&nbsp;km
-        uncertainty buffer where it doesn&apos;t. Distances are computed separations between
+        Locations follow the release folder&apos;s Finding-guide method only (OSM power
+        infrastructure + in-state Nominatim); projects the guide couldn&apos;t locate are
+        excluded from this map, never plotted at a guessed point ({locatedCount} of 168 shown).
+        Route-aware corridors snap to real OSM power lines within 10&nbsp;km (grounding tag
+        per project: snapped / buffered / fallback), with a declared 10&nbsp;km uncertainty
+        buffer where no line exists. Distances are computed separations between
         corridor geometries — not as-built clearances. Tiers &amp; score from the v0.3 engine;
         ≥160&nbsp;m halo bands are schematic. Basemap ©{' '}
         <a href="https://openfreemap.org/" className="underline">OpenFreeMap</a>, ©{' '}

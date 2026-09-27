@@ -39,6 +39,8 @@ class Health(BaseModel):
     status: str
     phases_done: list[str]
     data_files: list[str]
+    projects_total: int
+    projects_located: int
 
 
 class OverlapRow(BaseModel):
@@ -88,22 +90,24 @@ class PairDetail(OverlapRow):
     project_b_detail: ProjectRow
 
 
-def _load_projects() -> list[dict]:
+def _load_projects() -> tuple[list[dict], int]:
     meta = pd.read_csv(PROC / "projects.csv", dtype=str, keep_default_na=False)
     feats = json.loads((PROC / "gridlock_projects.geojson").read_text(encoding="utf-8"))["features"]
     geo = {f["properties"]["project_id"]: f for f in feats}
     rows = []
     for _, r in meta.iterrows():
-        f = geo[r["project_id"]]
+        f = geo.get(r["project_id"])  # unmapped (guide-only policy) — no geometry row
+        if f is None:
+            continue
         rows.append({**r.to_dict(),
                      "geometry_basis": f["properties"]["geometry_basis"],
                      "geometry_source": f["properties"].get("geometry_source", ""),
                      "confidence": f["properties"]["confidence"],
                      "geometry": f["geometry"]})
-    return rows
+    return rows, len(meta)
 
 
-PROJECTS = _load_projects()
+PROJECTS, PROJECTS_TOTAL = _load_projects()
 BY_ID = {p["project_id"]: p for p in PROJECTS}
 
 
@@ -114,7 +118,8 @@ def health() -> Health:
     done = re.findall(r"^\|\s*(\d{2})\s*\|\s*[\w.-]+\.md\s*\|[^|]*\|\s*done\s*\|", state, re.M)
     files = sorted(p.name for p in PROC.iterdir()
                    if p.is_file() and not p.name.startswith("."))
-    return Health(status="ok", phases_done=done, data_files=files)
+    return Health(status="ok", phases_done=done, data_files=files,
+                  projects_total=PROJECTS_TOTAL, projects_located=len(PROJECTS))
 
 
 @app.get("/api/projects", response_model=list[ProjectRow])

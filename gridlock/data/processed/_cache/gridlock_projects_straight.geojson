@@ -33,15 +33,15 @@
     "endpoint_a": "Union Pier",
     "endpoint_b": "",
     "in_service_date": "2027-12-31",
-    "confidence": "confirmed",
+    "confidence": "likely",
     "geometry_basis": "straight corridor (endpoint geocode)",
     "geometry_note": "corridor proximity, not surveyed distance"
    },
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -84.50947594099995,
-     33.55304442100004
+     -79.9255881,
+     32.784336
     ]
    }
   },
@@ -67,8 +67,8 @@
       32.2956335
      ],
      [
-      -80.86376335199998,
-      32.69792762800006
+      -80.8506626,
+      32.6901781
      ]
     ]
    }
@@ -111,21 +111,15 @@
     "endpoint_a": "Eastover",
     "endpoint_b": "Square D",
     "in_service_date": "2024-06-01",
-    "confidence": "unconfirmed",
+    "confidence": "likely",
     "geometry_basis": "straight corridor (endpoint geocode)",
     "geometry_note": "corridor proximity, not surveyed distance"
    },
    "geometry": {
-    "type": "LineString",
+    "type": "Point",
     "coordinates": [
-     [
-      -80.64187994099996,
-      33.887567938000075
-     ],
-     [
-      -71.0783276,
-      42.352065
-     ]
+     -80.6922594,
+     33.8771147
     ]
    }
   },
@@ -147,8 +141,8 @@
     "type": "LineString",
     "coordinates": [
      [
-      -80.72075811599996,
-      32.43655608300003
+      -80.7458787,
+      32.4239465
      ],
      [
       -80.5606622,
@@ -172,16 +166,10 @@
     "geometry_note": "corridor proximity, not surveyed distance"
    },
    "geometry": {
-    "type": "LineString",
+    "type": "Point",
     "coordinates": [
-     [
-      -80.72075811599996,
-      32.43655608300003
-     ],
-     [
-      -80.5606622,
-      32.3868607
-     ]
+     -80.5606622,
+     32.3868607
     ]
    }
   },
@@ -195,21 +183,15 @@
     "endpoint_a": "VCS1",
     "endpoint_b": "Denny Terrace",
     "in_service_date": "2026-12-31",
-    "confidence": "unconfirmed",
+    "confidence": "likely",
     "geometry_basis": "straight corridor (endpoint geocode)",
     "geometry_note": "corridor proximity, not surveyed distance"
    },
    "geometry": {
-    "type": "LineString",
+    "type": "Point",
     "coordinates": [
-     [
-      -80.9,
-      33.8
-     ],
-     [
-      -81.06145604699998,
-      34.05756276300008
-     ]
+     -81.06156105,
+     34.0576091
     ]
    }
   },
@@ -279,21 +261,15 @@
     "endpoint_a": "Hopkins",
     "endpoint_b": "CIP",
     "in_service_date": "2025-12-31",
-    "confidence": "unconfirmed",
+    "confidence": "likely",
     "geometry_basis": "straight corridor (endpoint geocode)",
     "geometry_note": "corridor proximity, not surveyed distance"
    },
    "geometry": {
-    "type": "LineString",
+    "type": "Point",
     "coordinates": [
-     [
-      -84.39814186799998,
-      30.45310437300003
-     ],
-     [
-      -80.6671613,
-      28.1726667
-     ]
+     -80.8770342,
+     33.9043212
     ]
    }
   },
@@ -335,21 +311,15 @@
     "endpoint_a": "Square D",
     "endpoint_b": "Hopkins",
     "in_service_date": "2024-09-30",
-    "confidence": "unconfirmed",
+    "confidence": "likely",
     "geometry_basis": "straight corridor (endpoint geocode)",
     "geometry_note": "corridor proximity, not surveyed distance"
    },
    "geometry": {
-    "type": "LineString",
+    "type": "Point",
     "coordinates": [
-     [
-      -71.0783276,
-      42.352065
-     ],
-     [
-      -84.39814186799998,
-      30.45310437300003
-     ]
+     -80.8770342,
+     33.9043212
     ]
    }
   },
@@ -393,57 +363,13 @@
     "type": "LineString",
     "coordinates": [
      [
-      -82.05347072699999,
-      33.561547716000064
+      -82.1646667,
+      33.7410515
      ],
      [
       -79.0914166,
       34.170585
      ]
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "project_id": "DESC_18",
-    "name": "Edenwood Sub: #1 & #2 230-115kV Autobanks, Replace with 336MVA",
-    "utility": "Dominion Energy South Carolina",
-    "type": "substation",
-    "endpoint_a": "Edenwood Sub",
-    "endpoint_b": "",
-    "in_service_date": "2024-12-25",
-    "confidence": "unconfirmed",
-    "geometry_basis": "straight corridor (endpoint geocode)",
-    "geometry_note": "corridor proximity, not surveyed distance"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -80.9,
-     33.8
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "project_id": "DESC_19",
-    "name": "Williams St Sub: Replace Sw House & Relays, AM Williams Sub: Replace Sw House, and McMeekin Sub: Add Sw House",
-    "utility": "Dominion Energy South Carolina",
-    "type": "substation",
-    "endpoint_a": "Williams St Sub",
-    "endpoint_b": "",
-    "in_service_date": "2028-12-31",
-    "confidence": "unconfirmed",
-    "geometry_basis": "straight corridor (endpoint geocode)",
-    "geometry_note": "corridor proximity, not surveyed distance"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -83.391373,
-     42.2712828
     ]
    }
   },
@@ -479,15 +405,15 @@
     "endpoint_a": "Summerville",
     "endpoint_b": "",
     "in_service_date": "2024-12-31",
-    "confidence": "confirmed",
+    "confidence": "likely",
     "geometry_basis": "straight corridor (endpoint geocode)",
     "geometry_note": "corridor proximity, not surveyed distance"
    },
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -85.3375288,
-     34.47191445
+     -80.22083169999999,
+     32.987370299999995
     ]
    }
   },
@@ -501,7 +427,7 @@
     "endpoint_a": "Canadys",
     "endpoint_b": "Ritter",
     "in_service_date": "2026-06-01",
-    "confidence": "confirmed",
+    "confidence": "likely",
     "geometry_basis": "straight corridor (endpoint geocode)",
     "geometry_note": "corridor proximity, not surveyed distance"
    },
@@ -509,12 +435,12 @@
     "type": "LineString",
     "coordinates": [
      [
-      -80.62039299099996,
-      33.06433632900007
+      -80.6196529,
+      33.0565161
      ],
      [
-      -81.6342151,
-      30.4548001
+      -80.6303822,
+      32.7896202
      ]
     ]
    }
@@ -529,7 +455,7 @@
     "endpoint_a": "Yemassee",
     "endpoint_b": "Ritter",
     "in_service_date": "2026-06-01",
-    "confidence": "confirmed",
+    "confidence": "likely",
     "geometry_basis": "straight corridor (endpoint geocode)",
     "geometry_note": "corridor proximity, not surveyed distance"
    },
@@ -537,35 +463,13 @@
     "type": "LineString",
     "coordinates": [
      [
-      -80.86376335199998,
-      32.69792762800006
+      -80.8506626,
+      32.6901781
      ],
      [
-      -81.6342151,
-      30.4548001
+      -80.6303822,
+      32.7896202
      ]
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "project_id": "DESC_24",
-    "name": "Riverport Tap: Construct Tap",
-    "utility": "Dominion Energy South Carolina",
-    "type": "line",
-    "endpoint_a": "Riverport Tap",
-    "endpoint_b": "",
-    "in_service_date": "2025-12-31",
-    "confidence": "unconfirmed",
-    "geometry_basis": "straight corridor (endpoint geocode)",
-    "geometry_note": "corridor proximity, not surveyed distance"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -80.9,
-     33.8
     ]
    }
   },
@@ -641,8 +545,8 @@
       32.8303196
      ],
      [
-      -81.6342151,
-      30.4548001
+      -80.6303822,
+      32.7896202
      ]
     ]
    }
@@ -657,21 +561,15 @@
     "endpoint_a": "VCS2",
     "endpoint_b": "Ward",
     "in_service_date": "2029-12-31",
-    "confidence": "unconfirmed",
+    "confidence": "likely",
     "geometry_basis": "straight corridor (endpoint geocode)",
     "geometry_note": "corridor proximity, not surveyed distance"
    },
    "geometry": {
-    "type": "LineString",
+    "type": "Point",
     "coordinates": [
-     [
-      -80.9,
-      33.8
-     ],
-     [
-      -81.729829,
-      33.857915
-     ]
+     -81.729829,
+     33.857915
     ]
    }
   },
@@ -707,15 +605,15 @@
     "endpoint_a": "Summerville",
     "endpoint_b": "",
     "in_service_date": "2024-12-31",
-    "confidence": "confirmed",
+    "confidence": "likely",
     "geometry_basis": "straight corridor (endpoint geocode)",
     "geometry_note": "corridor proximity, not surveyed distance"
    },
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -85.3375288,
-     34.47191445
+     -80.22083169999999,
+     32.987370299999995
     ]
    }
   },
@@ -857,15 +755,15 @@
     "endpoint_a": "Dawson",
     "endpoint_b": "",
     "in_service_date": "2025-10-01",
-    "confidence": "confirmed",
+    "confidence": "likely",
     "geometry_basis": "straight corridor (endpoint geocode)",
     "geometry_note": "corridor proximity, not surveyed distance"
    },
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -84.13357535,
-     34.3781185
+     -80.8447234,
+     33.49865
     ]
    }
   },
@@ -879,7 +777,7 @@
     "endpoint_a": "Urquhart",
     "endpoint_b": "Toolebeck",
     "in_service_date": "2026-08-12",
-    "confidence": "confirmed",
+    "confidence": "likely",
     "geometry_basis": "straight corridor (endpoint geocode)",
     "geometry_note": "corridor proximity, not surveyed distance"
    },
@@ -887,8 +785,8 @@
     "type": "LineString",
     "coordinates": [
      [
-      -81.91026152799998,
-      33.43316119400004
+      -81.1253914,
+      33.8475316
      ],
      [
       -81.66932715,
@@ -907,7 +805,7 @@
     "endpoint_a": "Williams",
     "endpoint_b": "Summerville",
     "in_service_date": "2027-05-01",
-    "confidence": "confirmed",
+    "confidence": "likely",
     "geometry_basis": "straight corridor (endpoint geocode)",
     "geometry_note": "corridor proximity, not surveyed distance"
    },
@@ -919,8 +817,8 @@
       33.0176985
      ],
      [
-      -85.3375288,
-      34.47191445
+      -80.22083169999999,
+      32.987370299999995
      ]
     ]
    }
@@ -957,15 +855,15 @@
     "endpoint_a": "Jack Primus",
     "endpoint_b": "",
     "in_service_date": "2027-12-31",
-    "confidence": "confirmed",
+    "confidence": "likely",
     "geometry_basis": "straight corridor (endpoint geocode)",
     "geometry_note": "corridor proximity, not surveyed distance"
    },
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -79.90460193599995,
-     32.919444456000065
+     -79.9044954,
+     32.9193841
     ]
    }
   },
@@ -1007,7 +905,7 @@
     "endpoint_a": "Eastover",
     "endpoint_b": "Sumter",
     "in_service_date": "2026-05-31",
-    "confidence": "confirmed",
+    "confidence": "likely",
     "geometry_basis": "straight corridor (endpoint geocode)",
     "geometry_note": "corridor proximity, not surveyed distance"
    },
@@ -1015,8 +913,8 @@
     "type": "LineString",
     "coordinates": [
      [
-      -80.64187994099996,
-      33.887567938000075
+      -80.6922594,
+      33.8771147
      ],
      [
       -80.32397610000001,
@@ -1035,21 +933,15 @@
     "endpoint_a": "Cameron Jct",
     "endpoint_b": "Elloree",
     "in_service_date": "2026-12-31",
-    "confidence": "unconfirmed",
+    "confidence": "confirmed",
     "geometry_basis": "straight corridor (endpoint geocode)",
     "geometry_note": "corridor proximity, not surveyed distance"
    },
    "geometry": {
-    "type": "LineString",
+    "type": "Point",
     "coordinates": [
-     [
-      -94.2683356,
-      39.7388008
-     ],
-     [
-      -80.5797245,
-      33.5323844
-     ]
+     -80.5797245,
+     33.5323844
     ]
    }
   },
@@ -1099,8 +991,8 @@
     "type": "LineString",
     "coordinates": [
      [
-      -81.91026152799998,
-      33.43316119400004
+      -81.1253914,
+      33.8475316
      ],
      [
       -81.9128731,
@@ -1119,21 +1011,15 @@
     "endpoint_a": "Cameron Jct",
     "endpoint_b": "Cameron",
     "in_service_date": "2028-12-31",
-    "confidence": "unconfirmed",
+    "confidence": "confirmed",
     "geometry_basis": "straight corridor (endpoint geocode)",
     "geometry_note": "corridor proximity, not surveyed distance"
    },
    "geometry": {
-    "type": "LineString",
+    "type": "Point",
     "coordinates": [
-     [
-      -94.2683356,
-      39.7388008
-     ],
-     [
-      -80.70899589999999,
-      33.563666350000005
-     ]
+     -80.70899589999999,
+     33.563666350000005
     ]
    }
   },
@@ -1180,16 +1066,10 @@
     "geometry_note": "corridor proximity, not surveyed distance"
    },
    "geometry": {
-    "type": "LineString",
+    "type": "Point",
     "coordinates": [
-     [
-      -84.505209,
-      33.7592737
-     ],
-     [
-      -84.47677999999996,
-      33.82283800000005
-     ]
+     -84.505209,
+     33.7592737
     ]
    }
   },
@@ -1281,15 +1161,15 @@
     "endpoint_a": "NORCROSS",
     "endpoint_b": "",
     "in_service_date": "2025-06-01",
-    "confidence": "confirmed",
+    "confidence": "likely",
     "geometry_basis": "straight corridor (endpoint geocode)",
     "geometry_note": "corridor proximity, not surveyed distance"
    },
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -84.21379044799994,
-     33.93247966700005
+     -84.2135309,
+     33.9412127
     ]
    }
   },
@@ -1318,28 +1198,6 @@
   {
    "type": "Feature",
    "properties": {
-    "project_id": "GPC_11",
-    "name": "SMART VALVE INSTALLATION",
-    "utility": "Georgia Power",
-    "type": "substation",
-    "endpoint_a": "SMART VALVE INSTALLATION",
-    "endpoint_b": "",
-    "in_service_date": "2025-06-01",
-    "confidence": "unconfirmed",
-    "geometry_basis": "straight corridor (endpoint geocode)",
-    "geometry_note": "corridor proximity, not surveyed distance"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -83.4,
-     32.7
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
     "project_id": "GPC_12",
     "name": "THALMANN AND COLERAIN 23O KV LINE RELAY PANEL UPGRADES",
     "utility": "Georgia Power",
@@ -1347,37 +1205,15 @@
     "endpoint_a": "THALMANN",
     "endpoint_b": "",
     "in_service_date": "2025-06-01",
-    "confidence": "confirmed",
+    "confidence": "likely",
     "geometry_basis": "straight corridor (endpoint geocode)",
     "geometry_note": "corridor proximity, not surveyed distance"
    },
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -81.68088286399995,
-     31.29349783400005
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "project_id": "GPC_13",
-    "name": "VILLA RICA LOW SIDE BREAKER",
-    "utility": "Georgia Power",
-    "type": "substation",
-    "endpoint_a": "VILLA RICA LOW SIDE BREAKER",
-    "endpoint_b": "",
-    "in_service_date": "2025-06-01",
-    "confidence": "confirmed",
-    "geometry_basis": "straight corridor (endpoint geocode)",
-    "geometry_note": "corridor proximity, not surveyed distance"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -84.85634553899996,
-     33.74072807400006
+     -81.6887199,
+     31.2907813
     ]
    }
   },
@@ -1391,15 +1227,15 @@
     "endpoint_a": "CAMDEN INDUSTRIAL PARK",
     "endpoint_b": "",
     "in_service_date": "2025-06-01",
-    "confidence": "confirmed",
+    "confidence": "likely",
     "geometry_basis": "straight corridor (endpoint geocode)",
     "geometry_note": "corridor proximity, not surveyed distance"
    },
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -80.54108195799995,
-     34.302185939000026
+     -81.6800799,
+     30.8387263
     ]
    }
   },
@@ -1413,109 +1249,15 @@
     "endpoint_a": "JEFFERSON STREET#3",
     "endpoint_b": "NORTHWEST",
     "in_service_date": "2025-12-01",
-    "confidence": "unconfirmed",
-    "geometry_basis": "straight corridor (endpoint geocode)",
-    "geometry_note": "corridor proximity, not surveyed distance"
-   },
-   "geometry": {
-    "type": "LineString",
-    "coordinates": [
-     [
-      -84.7688479,
-      33.3940883
-     ],
-     [
-      -82.3397947,
-      29.6560953
-     ]
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "project_id": "GPC_16",
-    "name": "ANTHONY SHOALS STATCOM SYSTEM",
-    "utility": "Georgia Power",
-    "type": "substation",
-    "endpoint_a": "ANTHONY SHOALS STATCOM SYSTEM",
-    "endpoint_b": "",
-    "in_service_date": "2025-12-31",
-    "confidence": "confirmed",
+    "confidence": "likely",
     "geometry_basis": "straight corridor (endpoint geocode)",
     "geometry_note": "corridor proximity, not surveyed distance"
    },
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -82.63624199999998,
-     34.001806000000045
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "project_id": "GPC_17",
-    "name": "CC - CASS PINE- HILL VIEW 230 KV LINE- CC IMPROVEMENTS",
-    "utility": "Georgia Power",
-    "type": "line",
-    "endpoint_a": "CASS PINE- HILL VIEW",
-    "endpoint_b": "",
-    "in_service_date": "2025-12-31",
-    "confidence": "unconfirmed",
-    "geometry_basis": "straight corridor (endpoint geocode)",
-    "geometry_note": "corridor proximity, not surveyed distance"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -83.4,
-     32.7
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "project_id": "GPC_18",
-    "name": "CC - PROJECT CHRONOS- SK/HYUNDAI",
-    "utility": "Georgia Power",
-    "type": "line",
-    "endpoint_a": "PROJECT CHRONOS- SK/HYUNDAI",
-    "endpoint_b": "",
-    "in_service_date": "2025-12-31",
-    "confidence": "unconfirmed",
-    "geometry_basis": "straight corridor (endpoint geocode)",
-    "geometry_note": "corridor proximity, not surveyed distance"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -83.4,
-     32.7
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "project_id": "GPC_19",
-    "name": "CC - QTS FAYETTEVILLE TRANSMISSION NEEDS",
-    "utility": "Georgia Power",
-    "type": "line",
-    "endpoint_a": "QTS FAYETTEVILLE TRANSMISSION NEEDS",
-    "endpoint_b": "",
-    "in_service_date": "2026-04-01",
-    "confidence": "confirmed",
-    "geometry_basis": "straight corridor (endpoint geocode)",
-    "geometry_note": "corridor proximity, not surveyed distance"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -78.91615293799998,
-     35.02042192000005
+     -84.7688479,
+     33.3940883
     ]
    }
   },
@@ -1534,16 +1276,10 @@
     "geometry_note": "corridor proximity, not surveyed distance"
    },
    "geometry": {
-    "type": "LineString",
+    "type": "Point",
     "coordinates": [
-     [
-      -84.505209,
-      33.7592737
-     ],
-     [
-      -81.90258871899994,
-      34.16891113200006
-     ]
+     -84.505209,
+     33.7592737
     ]
    }
   },
@@ -1578,28 +1314,6 @@
   {
    "type": "Feature",
    "properties": {
-    "project_id": "GPC_22",
-    "name": "CC - GARRETT ROAD SWITCHING STATION - TRAE LANE",
-    "utility": "Georgia Power",
-    "type": "substation",
-    "endpoint_a": "GARRETT ROAD SWITCHING STATION",
-    "endpoint_b": "",
-    "in_service_date": "2026-06-01",
-    "confidence": "unconfirmed",
-    "geometry_basis": "straight corridor (endpoint geocode)",
-    "geometry_note": "corridor proximity, not surveyed distance"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -83.4,
-     32.7
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
     "project_id": "GPC_23",
     "name": "CC - STONEWALL TELL ROAD (TA REALTY)",
     "utility": "Georgia Power",
@@ -1616,28 +1330,6 @@
     "coordinates": [
      -84.5527443,
      33.6055359
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "project_id": "GPC_24",
-    "name": "EAST POINT RELAY MODERNIZATION",
-    "utility": "Georgia Power",
-    "type": "substation",
-    "endpoint_a": "EAST POINT RELAY MODERNIZATION",
-    "endpoint_b": "",
-    "in_service_date": "2026-06-01",
-    "confidence": "unconfirmed",
-    "geometry_basis": "straight corridor (endpoint geocode)",
-    "geometry_note": "corridor proximity, not surveyed distance"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -83.4,
-     32.7
     ]
    }
   },
@@ -1672,28 +1364,6 @@
   {
    "type": "Feature",
    "properties": {
-    "project_id": "GPC_26",
-    "name": "GOAT ROCK 230KV SWITCH, JUMPER, & LINE TRAP REPLACEMENT",
-    "utility": "Georgia Power",
-    "type": "substation",
-    "endpoint_a": "GOAT ROCK",
-    "endpoint_b": "",
-    "in_service_date": "2026-06-01",
-    "confidence": "confirmed",
-    "geometry_basis": "straight corridor (endpoint geocode)",
-    "geometry_note": "corridor proximity, not surveyed distance"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -85.08260704499997,
-     32.60824715600006
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
     "project_id": "GPC_27",
     "name": "GORDON-N DUBLIN 115KV (GORDON-ENGL MCI J) REBUILD",
     "utility": "Georgia Power",
@@ -1701,15 +1371,15 @@
     "endpoint_a": "GORDON-N DUBLIN",
     "endpoint_b": "",
     "in_service_date": "2026-06-01",
-    "confidence": "confirmed",
+    "confidence": "likely",
     "geometry_basis": "straight corridor (endpoint geocode)",
     "geometry_note": "corridor proximity, not surveyed distance"
    },
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -84.92635341799996,
-     34.44112436000006
+     -84.8499036,
+     34.4900206
     ]
    }
   },
@@ -1728,38 +1398,10 @@
     "geometry_note": "corridor proximity, not surveyed distance"
    },
    "geometry": {
-    "type": "LineString",
-    "coordinates": [
-     [
-      -85.03082065000001,
-      30.5758288
-     ],
-     [
-      -84.33346165,
-      33.60593095
-     ]
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "project_id": "GPC_29",
-    "name": "GRADY 230/115KV RELAY MODERNIZATION",
-    "utility": "Georgia Power",
-    "type": "substation",
-    "endpoint_a": "GRADY",
-    "endpoint_b": "",
-    "in_service_date": "2026-06-01",
-    "confidence": "confirmed",
-    "geometry_basis": "straight corridor (endpoint geocode)",
-    "geometry_note": "corridor proximity, not surveyed distance"
-   },
-   "geometry": {
     "type": "Point",
     "coordinates": [
-     -85.03082065000001,
-     30.5758288
+     -84.33346165,
+     33.60593095
     ]
    }
   },
@@ -1773,93 +1415,15 @@
     "endpoint_a": "GRID",
     "endpoint_b": "GAINESVILLE #2 EQUIPMENT REPLACEMENT",
     "in_service_date": "2026-06-01",
-    "confidence": "unconfirmed",
-    "geometry_basis": "straight corridor (endpoint geocode)",
-    "geometry_note": "corridor proximity, not surveyed distance"
-   },
-   "geometry": {
-    "type": "LineString",
-    "coordinates": [
-     [
-      -84.3804241,
-      33.7540941
-     ],
-     [
-      -83.4,
-      32.7
-     ]
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "project_id": "GPC_31",
-    "name": "HAMMOND - WEISS DAM 115KV LINE REBUILD",
-    "utility": "Georgia Power",
-    "type": "line",
-    "endpoint_a": "HAMMOND",
-    "endpoint_b": "WEISS DAM",
-    "in_service_date": "2026-06-01",
-    "confidence": "unconfirmed",
-    "geometry_basis": "straight corridor (endpoint geocode)",
-    "geometry_note": "corridor proximity, not surveyed distance"
-   },
-   "geometry": {
-    "type": "LineString",
-    "coordinates": [
-     [
-      -80.85674184999999,
-      33.7318414
-     ],
-     [
-      -85.7416327,
-      34.1745401
-     ]
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "project_id": "GPC_32",
-    "name": "KATHLEEN AREA IMPROVEMENTS",
-    "utility": "Georgia Power",
-    "type": "line",
-    "endpoint_a": "KATHLEEN AREA IMPROVEMENTS",
-    "endpoint_b": "",
-    "in_service_date": "2026-06-01",
-    "confidence": "unconfirmed",
+    "confidence": "likely",
     "geometry_basis": "straight corridor (endpoint geocode)",
     "geometry_note": "corridor proximity, not surveyed distance"
    },
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -83.4,
-     32.7
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "project_id": "GPC_33",
-    "name": "KLONDIKE RELAY MODERNIZATION",
-    "utility": "Georgia Power",
-    "type": "substation",
-    "endpoint_a": "KLONDIKE RELAY MODERNIZATION",
-    "endpoint_b": "",
-    "in_service_date": "2026-06-01",
-    "confidence": "confirmed",
-    "geometry_basis": "straight corridor (endpoint geocode)",
-    "geometry_note": "corridor proximity, not surveyed distance"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -84.12644802999995,
-     33.638013416000035
+     -84.3804241,
+     33.7540941
     ]
    }
   },
@@ -1888,28 +1452,6 @@
   {
    "type": "Feature",
    "properties": {
-    "project_id": "GPC_35",
-    "name": "PALMYRA REACTOR REMOVAL",
-    "utility": "Georgia Power",
-    "type": "substation",
-    "endpoint_a": "PALMYRA REACTOR REMOVAL",
-    "endpoint_b": "",
-    "in_service_date": "2026-06-01",
-    "confidence": "unconfirmed",
-    "geometry_basis": "straight corridor (endpoint geocode)",
-    "geometry_note": "corridor proximity, not surveyed distance"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -83.4,
-     32.7
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
     "project_id": "GPC_2",
     "name": "SAV: MCINTOSH - PURRYSBURG 230KV REACTORS",
     "utility": "Georgia Power",
@@ -1932,28 +1474,6 @@
   {
    "type": "Feature",
    "properties": {
-    "project_id": "GPC_36",
-    "name": "SCOTTDALE RELAY MODERNIZATION",
-    "utility": "Georgia Power",
-    "type": "substation",
-    "endpoint_a": "SCOTTDALE RELAY MODERNIZATION",
-    "endpoint_b": "",
-    "in_service_date": "2026-06-01",
-    "confidence": "unconfirmed",
-    "geometry_basis": "straight corridor (endpoint geocode)",
-    "geometry_note": "corridor proximity, not surveyed distance"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -83.4,
-     32.7
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
     "project_id": "GPC_37",
     "name": "UNION CITY - YATES 230 KV WHITE LINE REBUILD",
     "utility": "Georgia Power",
@@ -1961,7 +1481,7 @@
     "endpoint_a": "UNION CITY",
     "endpoint_b": "YATES",
     "in_service_date": "2026-04-01",
-    "confidence": "confirmed",
+    "confidence": "likely",
     "geometry_basis": "straight corridor (endpoint geocode)",
     "geometry_note": "corridor proximity, not surveyed distance"
    },
@@ -1969,12 +1489,12 @@
     "type": "LineString",
     "coordinates": [
      [
-      -84.50947594099995,
-      33.55304442100004
+      -84.5424299,
+      33.5870558
      ],
      [
-      -84.89651825599998,
-      33.461273875000074
+      -84.8949385,
+      33.463447
      ]
     ]
    }
@@ -1989,7 +1509,7 @@
     "endpoint_a": "UNION CITY",
     "endpoint_b": "YATES",
     "in_service_date": "2026-06-01",
-    "confidence": "confirmed",
+    "confidence": "likely",
     "geometry_basis": "straight corridor (endpoint geocode)",
     "geometry_note": "corridor proximity, not surveyed distance"
    },
@@ -1997,101 +1517,13 @@
     "type": "LineString",
     "coordinates": [
      [
-      -84.50947594099995,
-      33.55304442100004
+      -84.5424299,
+      33.5870558
      ],
      [
-      -84.89651825599998,
-      33.461273875000074
+      -84.8949385,
+      33.463447
      ]
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "project_id": "GPC_39",
-    "name": "CC - PROJECT PAYTON BAINBRIDGE",
-    "utility": "Georgia Power",
-    "type": "line",
-    "endpoint_a": "PROJECT PAYTON BAINBRIDGE",
-    "endpoint_b": "",
-    "in_service_date": "2026-06-30",
-    "confidence": "unconfirmed",
-    "geometry_basis": "straight corridor (endpoint geocode)",
-    "geometry_note": "corridor proximity, not surveyed distance"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -83.4,
-     32.7
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "project_id": "GPC_40",
-    "name": "OHARA BREAKER REPLACEMENT",
-    "utility": "Georgia Power",
-    "type": "substation",
-    "endpoint_a": "OHARA BREAKER REPLACEMENT",
-    "endpoint_b": "",
-    "in_service_date": "2026-10-01",
-    "confidence": "confirmed",
-    "geometry_basis": "straight corridor (endpoint geocode)",
-    "geometry_note": "corridor proximity, not surveyed distance"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -84.36726694999999,
-     33.482023792000064
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "project_id": "GPC_41",
-    "name": "DRESDEN LINE PROTECTIVE RELAYING",
-    "utility": "Georgia Power",
-    "type": "substation",
-    "endpoint_a": "DRESDEN LINE PROTECTIVE RELAYING",
-    "endpoint_b": "",
-    "in_service_date": "2026-12-01",
-    "confidence": "confirmed",
-    "geometry_basis": "straight corridor (endpoint geocode)",
-    "geometry_note": "corridor proximity, not surveyed distance"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -84.90548155699997,
-     33.35158806600003
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "project_id": "GPC_42",
-    "name": "CC - CASS PINE 230/25 NEW SUB - QCELLS - CC IMPROVEMENTS",
-    "utility": "Georgia Power",
-    "type": "substation",
-    "endpoint_a": "CASS PINE 230/25 NEW SUB",
-    "endpoint_b": "",
-    "in_service_date": "2026-12-31",
-    "confidence": "unconfirmed",
-    "geometry_basis": "straight corridor (endpoint geocode)",
-    "geometry_note": "corridor proximity, not surveyed distance"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -83.4,
-     32.7
     ]
    }
   },
@@ -2142,28 +1574,6 @@
       -84.3902038,
       33.6417761
      ]
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "project_id": "GPC_45",
-    "name": "CC - EMBLEM RIVERSIDE CUSTOMER SUB (FLEXENTIAL)",
-    "utility": "Georgia Power",
-    "type": "substation",
-    "endpoint_a": "EMBLEM RIVERSIDE CUSTOMER SUB",
-    "endpoint_b": "",
-    "in_service_date": "2027-03-01",
-    "confidence": "unconfirmed",
-    "geometry_basis": "straight corridor (endpoint geocode)",
-    "geometry_note": "corridor proximity, not surveyed distance"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -83.4,
-     32.7
     ]
    }
   },
@@ -2226,28 +1636,6 @@
   {
    "type": "Feature",
    "properties": {
-    "project_id": "GPC_48",
-    "name": "CC - GULLATT ROAD TRANSMISSION IMPROVEMENTS",
-    "utility": "Georgia Power",
-    "type": "line",
-    "endpoint_a": "GULLATT ROAD TRANSMISSION IMPROVEMENTS",
-    "endpoint_b": "",
-    "in_service_date": "2027-06-01",
-    "confidence": "unconfirmed",
-    "geometry_basis": "straight corridor (endpoint geocode)",
-    "geometry_note": "corridor proximity, not surveyed distance"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -83.4,
-     32.7
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
     "project_id": "GPC_49",
     "name": "CC - MICROSOFT - SHUGART (CCO06)",
     "utility": "Georgia Power",
@@ -2292,28 +1680,6 @@
   {
    "type": "Feature",
    "properties": {
-    "project_id": "GPC_51",
-    "name": "CC - TA REALTY ELLENWOOD NETWORK IMPROVEMENTS",
-    "utility": "Georgia Power",
-    "type": "line",
-    "endpoint_a": "TA REALTY ELLENWOOD NETWORK IMPROVEMENTS",
-    "endpoint_b": "",
-    "in_service_date": "2027-06-01",
-    "confidence": "unconfirmed",
-    "geometry_basis": "straight corridor (endpoint geocode)",
-    "geometry_note": "corridor proximity, not surveyed distance"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -83.4,
-     32.7
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
     "project_id": "GPC_52",
     "name": "DOYLE - LG&E MONROE 230KV - JACKS CREEK LOOP IN",
     "utility": "Georgia Power",
@@ -2321,21 +1687,15 @@
     "endpoint_a": "DOYLE",
     "endpoint_b": "LG&E MONROE",
     "in_service_date": "2027-06-01",
-    "confidence": "unconfirmed",
+    "confidence": "confirmed",
     "geometry_basis": "straight corridor (endpoint geocode)",
     "geometry_note": "corridor proximity, not surveyed distance"
    },
    "geometry": {
-    "type": "LineString",
+    "type": "Point",
     "coordinates": [
-     [
-      -83.69878605,
-      33.8379245
-     ],
-     [
-      -83.4,
-      32.7
-     ]
+     -83.69878605,
+     33.8379245
     ]
    }
   },
@@ -2349,7 +1709,7 @@
     "endpoint_a": "JESUP",
     "endpoint_b": "OFFERMAN",
     "in_service_date": "2027-06-01",
-    "confidence": "confirmed",
+    "confidence": "likely",
     "geometry_basis": "straight corridor (endpoint geocode)",
     "geometry_note": "corridor proximity, not surveyed distance"
    },
@@ -2361,8 +1721,8 @@
       31.603106
      ],
      [
-      -82.14372979399997,
-      31.423014770000066
+      -82.111785,
+      31.40966
      ]
     ]
    }
@@ -2377,7 +1737,7 @@
     "endpoint_a": "LAWRENCEVILLE",
     "endpoint_b": "WINDER",
     "in_service_date": "2027-06-01",
-    "confidence": "confirmed",
+    "confidence": "likely",
     "geometry_basis": "straight corridor (endpoint geocode)",
     "geometry_note": "corridor proximity, not surveyed distance"
    },
@@ -2389,8 +1749,8 @@
       33.985981
      ],
      [
-      -83.75316277799999,
-      33.99555534900003
+      -83.7184368,
+      33.9919085
      ]
     ]
    }
@@ -2433,21 +1793,15 @@
     "endpoint_a": "SANDERSVILLE #1",
     "endpoint_b": "WADLEY PRI.",
     "in_service_date": "2027-06-01",
-    "confidence": "unconfirmed",
+    "confidence": "likely",
     "geometry_basis": "straight corridor (endpoint geocode)",
     "geometry_note": "corridor proximity, not surveyed distance"
    },
    "geometry": {
-    "type": "LineString",
+    "type": "Point",
     "coordinates": [
-     [
-      -82.919749,
-      33.244385
-     ],
-     [
-      -83.4,
-      32.7
-     ]
+     -82.919749,
+     33.244385
     ]
    }
   },
@@ -2523,8 +1877,8 @@
       33.7540941
      ],
      [
-      -83.69884066299994,
-      32.927129455000056
+      -83.7029575,
+      32.9329147
      ]
     ]
    }
@@ -2539,7 +1893,7 @@
     "endpoint_a": "ATHENA",
     "endpoint_b": "EAST WATKINSVILLE",
     "in_service_date": "2027-12-31",
-    "confidence": "confirmed",
+    "confidence": "likely",
     "geometry_basis": "straight corridor (endpoint geocode)",
     "geometry_note": "corridor proximity, not surveyed distance"
    },
@@ -2547,35 +1901,13 @@
     "type": "LineString",
     "coordinates": [
      [
-      -83.34612491499996,
-      33.97661739100005
+      -83.3730675,
+      33.959713
      ],
      [
-      -83.38446942899998,
-      33.86037743500003
+      -83.3995868,
+      33.8712
      ]
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "project_id": "GPC_60",
-    "name": "CC - HILL VIEW & GRASSY HOLLOW SUB - CC IMPROVEMENTS",
-    "utility": "Georgia Power",
-    "type": "substation",
-    "endpoint_a": "HILL VIEW",
-    "endpoint_b": "",
-    "in_service_date": "2027-12-31",
-    "confidence": "unconfirmed",
-    "geometry_basis": "straight corridor (endpoint geocode)",
-    "geometry_note": "corridor proximity, not surveyed distance"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -77.6671963,
-     35.4404395
     ]
    }
   },
@@ -2617,59 +1949,15 @@
     "endpoint_a": "AULTMAN ROAD-PERRY",
     "endpoint_b": "",
     "in_service_date": "2028-06-01",
-    "confidence": "confirmed",
+    "confidence": "likely",
     "geometry_basis": "straight corridor (endpoint geocode)",
     "geometry_note": "corridor proximity, not surveyed distance"
    },
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -83.70200699999998,
-     32.455453000000034
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "project_id": "GPC_63",
-    "name": "CC - EAST VILLA RICA AREA SWITCHING STATION (CC IMPROVEMENT)",
-    "utility": "Georgia Power",
-    "type": "substation",
-    "endpoint_a": "EAST VILLA RICA AREA SWITCHING STATION",
-    "endpoint_b": "",
-    "in_service_date": "2028-06-01",
-    "confidence": "confirmed",
-    "geometry_basis": "straight corridor (endpoint geocode)",
-    "geometry_note": "corridor proximity, not surveyed distance"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -84.85634553899996,
-     33.74072807400006
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "project_id": "GPC_64",
-    "name": "CC - VILLA RICA UPGRADES (CC NETWORK IMPROVEMENTS)",
-    "utility": "Georgia Power",
-    "type": "line",
-    "endpoint_a": "VILLA RICA UPGRADES",
-    "endpoint_b": "",
-    "in_service_date": "2028-06-01",
-    "confidence": "confirmed",
-    "geometry_basis": "straight corridor (endpoint geocode)",
-    "geometry_note": "corridor proximity, not surveyed distance"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -84.85634553899996,
-     33.74072807400006
+     -83.7371615,
+     32.5556398
     ]
    }
   },
@@ -2683,7 +1971,7 @@
     "endpoint_a": "FITZGERALD",
     "endpoint_b": "PITTS",
     "in_service_date": "2028-06-01",
-    "confidence": "confirmed",
+    "confidence": "likely",
     "geometry_basis": "straight corridor (endpoint geocode)",
     "geometry_note": "corridor proximity, not surveyed distance"
    },
@@ -2695,36 +1983,8 @@
       31.72933455
      ],
      [
-      -83.56279799999999,
-      31.986578000000065
-     ]
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "project_id": "GPC_66",
-    "name": "JACK MCDONOUGH - NORTHWEST (BLACK) 230KV RECONDUCTOR",
-    "utility": "Georgia Power",
-    "type": "line",
-    "endpoint_a": "JACK MCDONOUGH",
-    "endpoint_b": "NORTHWEST",
-    "in_service_date": "2028-06-01",
-    "confidence": "unconfirmed",
-    "geometry_basis": "straight corridor (endpoint geocode)",
-    "geometry_note": "corridor proximity, not surveyed distance"
-   },
-   "geometry": {
-    "type": "LineString",
-    "coordinates": [
-     [
-      -84.47677999999996,
-      33.82283800000005
-     ],
-     [
-      -82.3397947,
-      29.6560953
+      -83.5407214,
+      31.9446209
      ]
     ]
    }
@@ -2760,50 +2020,6 @@
   {
    "type": "Feature",
    "properties": {
-    "project_id": "GPC_68",
-    "name": "PLANT YATES BREAKER AND HALF STATION",
-    "utility": "Georgia Power",
-    "type": "plant",
-    "endpoint_a": "PLANT YATES BREAKER",
-    "endpoint_b": "",
-    "in_service_date": "2028-06-01",
-    "confidence": "confirmed",
-    "geometry_basis": "straight corridor (endpoint geocode)",
-    "geometry_note": "corridor proximity, not surveyed distance"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -84.89651825599998,
-     33.461273875000074
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "project_id": "GPC_69",
-    "name": "SMART VALVES AT EAST VILLA RICA SWITCHING STATION",
-    "utility": "Georgia Power",
-    "type": "substation",
-    "endpoint_a": "SMART VALVES AT EAST VILLA RICA SWITCHING STATION",
-    "endpoint_b": "",
-    "in_service_date": "2028-06-01",
-    "confidence": "confirmed",
-    "geometry_basis": "straight corridor (endpoint geocode)",
-    "geometry_note": "corridor proximity, not surveyed distance"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -84.85634553899996,
-     33.74072807400006
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
     "project_id": "GPC_70",
     "name": "SOUTH MACON 115KV BUSES 1 & 2 REPLACEMENT",
     "utility": "Georgia Power",
@@ -2833,7 +2049,7 @@
     "endpoint_a": "UNION CITY",
     "endpoint_b": "YATES",
     "in_service_date": "2028-06-01",
-    "confidence": "confirmed",
+    "confidence": "likely",
     "geometry_basis": "straight corridor (endpoint geocode)",
     "geometry_note": "corridor proximity, not surveyed distance"
    },
@@ -2841,12 +2057,12 @@
     "type": "LineString",
     "coordinates": [
      [
-      -84.50947594099995,
-      33.55304442100004
+      -84.5424299,
+      33.5870558
      ],
      [
-      -84.89651825599998,
-      33.461273875000074
+      -84.8949385,
+      33.463447
      ]
     ]
    }
@@ -2876,28 +2092,6 @@
       -84.9648625,
       32.5675126
      ]
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "project_id": "GPC_73",
-    "name": "ASHLEY PARK-WANSLEY 500KV",
-    "utility": "Georgia Power",
-    "type": "line",
-    "endpoint_a": "ASHLEY PARK-WANSLEY",
-    "endpoint_b": "",
-    "in_service_date": "2029-06-01",
-    "confidence": "confirmed",
-    "geometry_basis": "straight corridor (endpoint geocode)",
-    "geometry_note": "corridor proximity, not surveyed distance"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -85.03357495799997,
-     33.41233788100004
     ]
    }
   },
@@ -3000,16 +2194,10 @@
     "geometry_note": "corridor proximity, not surveyed distance"
    },
    "geometry": {
-    "type": "LineString",
+    "type": "Point",
     "coordinates": [
-     [
-      -81.90258871899994,
-      34.16891113200006
-     ],
-     [
-      -83.8283004,
-      33.4467303
-     ]
+     -83.8283004,
+     33.4467303
     ]
    }
   },
@@ -3035,8 +2223,8 @@
       33.6676103
      ],
      [
-      -84.12644802999995,
-      33.638013416000035
+      -84.1265833,
+      33.6456653
      ]
     ]
    }
@@ -3051,21 +2239,15 @@
     "endpoint_a": "GLENWOOD SPRINGS",
     "endpoint_b": "PORTERDALE PRIMARY",
     "in_service_date": "2029-06-01",
-    "confidence": "unconfirmed",
+    "confidence": "likely",
     "geometry_basis": "straight corridor (endpoint geocode)",
     "geometry_note": "corridor proximity, not surveyed distance"
    },
    "geometry": {
-    "type": "LineString",
+    "type": "Point",
     "coordinates": [
-     [
-      -83.3956318,
-      33.3127901
-     ],
-     [
-      -83.4,
-      32.7
-     ]
+     -83.3956318,
+     33.3127901
     ]
    }
   },
@@ -3079,21 +2261,15 @@
     "endpoint_a": "LLOYD SHOALS",
     "endpoint_b": "PORTERDALE PRIMARY",
     "in_service_date": "2029-06-01",
-    "confidence": "unconfirmed",
+    "confidence": "likely",
     "geometry_basis": "straight corridor (endpoint geocode)",
     "geometry_note": "corridor proximity, not surveyed distance"
    },
    "geometry": {
-    "type": "LineString",
+    "type": "Point",
     "coordinates": [
-     [
-      -83.84327110799995,
-      33.320730798000056
-     ],
-     [
-      -83.4,
-      32.7
-     ]
+     -83.8340046,
+     33.3299972
     ]
    }
   },
@@ -3119,8 +2295,8 @@
       33.6142204
      ],
      [
-      -85.28887716799994,
-      31.25125636200005
+      -84.2593662,
+      34.0973201
      ]
     ]
    }
@@ -3163,7 +2339,7 @@
     "endpoint_a": "MCMANUS",
     "endpoint_b": "WEST BRUNSWICK",
     "in_service_date": "2029-06-01",
-    "confidence": "confirmed",
+    "confidence": "likely",
     "geometry_basis": "straight corridor (endpoint geocode)",
     "geometry_note": "corridor proximity, not surveyed distance"
    },
@@ -3171,8 +2347,8 @@
     "type": "LineString",
     "coordinates": [
      [
-      -81.54592304199997,
-      31.212857477000057
+      -81.54526759999999,
+      31.21306495
      ],
      [
       -81.5586568,
@@ -3199,8 +2375,8 @@
     "type": "LineString",
     "coordinates": [
      [
-      -84.21379044799994,
-      33.93247966700005
+      -84.2135309,
+      33.9412127
      ],
      [
       -84.3193797,
@@ -3219,7 +2395,7 @@
     "endpoint_a": "SOUTH BAINBRIDGE",
     "endpoint_b": "SINAI",
     "in_service_date": "2029-06-01",
-    "confidence": "confirmed",
+    "confidence": "likely",
     "geometry_basis": "straight corridor (endpoint geocode)",
     "geometry_note": "corridor proximity, not surveyed distance"
    },
@@ -3231,8 +2407,8 @@
       32.6087711
      ],
      [
-      -84.90080033899994,
-      30.66385771800003
+      -83.5240155,
+      33.9530213
      ]
     ]
    }
@@ -3280,16 +2456,10 @@
     "geometry_note": "corridor proximity, not surveyed distance"
    },
    "geometry": {
-    "type": "LineString",
+    "type": "Point",
     "coordinates": [
-     [
-      -84.3375713,
-      33.7516721
-     ],
-     [
-      -80.85674184999999,
-      33.7318414
-     ]
+     -84.3375713,
+     33.7516721
     ]
    }
   },
@@ -3315,8 +2485,8 @@
       31.3030105
      ],
      [
-      -81.54977842899996,
-      30.418261921000067
+      -84.4074141,
+      33.7838957
      ]
     ]
    }
@@ -3331,43 +2501,15 @@
     "endpoint_a": "ATKINSON",
     "endpoint_b": "NORTHWEST",
     "in_service_date": "2030-06-01",
-    "confidence": "unconfirmed",
-    "geometry_basis": "straight corridor (endpoint geocode)",
-    "geometry_note": "corridor proximity, not surveyed distance"
-   },
-   "geometry": {
-    "type": "LineString",
-    "coordinates": [
-     [
-      -82.8839362,
-      31.3030105
-     ],
-     [
-      -82.3397947,
-      29.6560953
-     ]
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "project_id": "GPC_90",
-    "name": "CC - NORTH GEORGIA DATA NETWORK UPGRADES",
-    "utility": "Georgia Power",
-    "type": "line",
-    "endpoint_a": "NORTH GEORGIA DATA NETWORK UPGRADES",
-    "endpoint_b": "",
-    "in_service_date": "2030-06-01",
-    "confidence": "confirmed",
+    "confidence": "likely",
     "geometry_basis": "straight corridor (endpoint geocode)",
     "geometry_note": "corridor proximity, not surveyed distance"
    },
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -81.63998013699995,
-     30.329359209000074
+     -82.8839362,
+     31.3030105
     ]
    }
   },
@@ -3381,21 +2523,15 @@
     "endpoint_a": "CORNELIA",
     "endpoint_b": "TALLULAH LODGE",
     "in_service_date": "2030-06-01",
-    "confidence": "unconfirmed",
+    "confidence": "likely",
     "geometry_basis": "straight corridor (endpoint geocode)",
     "geometry_note": "corridor proximity, not surveyed distance"
    },
    "geometry": {
-    "type": "LineString",
+    "type": "Point",
     "coordinates": [
-     [
-      -83.5271166,
-      34.5114883
-     ],
-     [
-      -83.4,
-      32.7
-     ]
+     -83.5271166,
+     34.5114883
     ]
    }
   },
@@ -3437,7 +2573,7 @@
     "endpoint_a": "EAST POINT",
     "endpoint_b": "UNION CITY",
     "in_service_date": "2030-06-01",
-    "confidence": "confirmed",
+    "confidence": "likely",
     "geometry_basis": "straight corridor (endpoint geocode)",
     "geometry_note": "corridor proximity, not surveyed distance"
    },
@@ -3449,8 +2585,8 @@
       33.675453000000005
      ],
      [
-      -84.50947594099995,
-      33.55304442100004
+      -84.5424299,
+      33.5870558
      ]
     ]
    }
@@ -3492,16 +2628,10 @@
     "geometry_note": "corridor proximity, not surveyed distance"
    },
    "geometry": {
-    "type": "LineString",
+    "type": "Point",
     "coordinates": [
-     [
-      -85.11632374999999,
-      31.22361375
-     ],
-     [
-      -84.440221,
-      32.379482
-     ]
+     -84.440221,
+     32.379482
     ]
    }
   },
@@ -3564,56 +2694,6 @@
   {
    "type": "Feature",
    "properties": {
-    "project_id": "GPC_98",
-    "name": "GOAT ROCK REACTORS INSTALLATION",
-    "utility": "Georgia Power",
-    "type": "substation",
-    "endpoint_a": "GOAT ROCK REACTORS INSTALLATION",
-    "endpoint_b": "",
-    "in_service_date": "2030-06-01",
-    "confidence": "confirmed",
-    "geometry_basis": "straight corridor (endpoint geocode)",
-    "geometry_note": "corridor proximity, not surveyed distance"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -85.08260704499997,
-     32.60824715600006
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "project_id": "GPC_99",
-    "name": "GOLDENS CREEK - WARRENTON PRIMARY 230KV REBUILD",
-    "utility": "Georgia Power",
-    "type": "line",
-    "endpoint_a": "GOLDENS CREEK",
-    "endpoint_b": "WARRENTON PRIMARY",
-    "in_service_date": "2030-06-01",
-    "confidence": "unconfirmed",
-    "geometry_basis": "straight corridor (endpoint geocode)",
-    "geometry_note": "corridor proximity, not surveyed distance"
-   },
-   "geometry": {
-    "type": "LineString",
-    "coordinates": [
-     [
-      -83.9268703,
-      36.7217515
-     ],
-     [
-      -82.68740599999995,
-      33.380584000000056
-     ]
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
     "project_id": "GPC_100",
     "name": "GORDON-SANDERSVILLE #1 115KV LINE REBUILD (DEEPSTEP-SAND #6)",
     "utility": "Georgia Power",
@@ -3621,37 +2701,15 @@
     "endpoint_a": "GORDON-SANDERSVILLE #1",
     "endpoint_b": "",
     "in_service_date": "2030-06-01",
-    "confidence": "confirmed",
+    "confidence": "likely",
     "geometry_basis": "straight corridor (endpoint geocode)",
     "geometry_note": "corridor proximity, not surveyed distance"
    },
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -84.92635341799996,
-     34.44112436000006
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "project_id": "GPC_101",
-    "name": "GOSHEN AREA STRATEGIC SOLUTION",
-    "utility": "Georgia Power",
-    "type": "line",
-    "endpoint_a": "GOSHEN AREA STRATEGIC SOLUTION",
-    "endpoint_b": "",
-    "in_service_date": "2030-06-01",
-    "confidence": "confirmed",
-    "geometry_basis": "straight corridor (endpoint geocode)",
-    "geometry_note": "corridor proximity, not surveyed distance"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -81.99516499999999,
-     33.31961700000005
+     -82.7939388,
+     32.9915177
     ]
    }
   },
@@ -3673,8 +2731,8 @@
     "type": "LineString",
     "coordinates": [
      [
-      -83.57946774799996,
-      33.97785707000003
+      -83.4194043,
+      33.985298
      ],
      [
       -83.7531307,
@@ -3698,16 +2756,10 @@
     "geometry_note": "corridor proximity, not surveyed distance"
    },
    "geometry": {
-    "type": "LineString",
+    "type": "Point",
     "coordinates": [
-     [
-      -82.39925699999998,
-      31.22328300000004
-     ],
-     [
-      -83.22798689999999,
-      30.88164845
-     ]
+     -83.22798689999999,
+     30.88164845
     ]
    }
   },
@@ -3721,43 +2773,15 @@
     "endpoint_a": "NEW CAVENDER DRIVE",
     "endpoint_b": "TRIBUTARY",
     "in_service_date": "2030-06-01",
-    "confidence": "unconfirmed",
-    "geometry_basis": "straight corridor (endpoint geocode)",
-    "geometry_note": "corridor proximity, not surveyed distance"
-   },
-   "geometry": {
-    "type": "LineString",
-    "coordinates": [
-     [
-      -83.4,
-      32.7
-     ],
-     [
-      -84.6426467,
-      33.7129313
-     ]
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "project_id": "GPC_105",
-    "name": "NORTH SPA 230KV STRATEGIC PROJECT",
-    "utility": "Georgia Power",
-    "type": "line",
-    "endpoint_a": "NORTH SPA",
-    "endpoint_b": "",
-    "in_service_date": "2030-06-01",
-    "confidence": "unconfirmed",
+    "confidence": "likely",
     "geometry_basis": "straight corridor (endpoint geocode)",
     "geometry_note": "corridor proximity, not surveyed distance"
    },
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -73.852174,
-     43.019556
+     -84.6426467,
+     33.7129313
     ]
    }
   },
@@ -3771,21 +2795,15 @@
     "endpoint_a": "TALLULAH LODGE",
     "endpoint_b": "TOCCOA",
     "in_service_date": "2030-06-01",
-    "confidence": "unconfirmed",
+    "confidence": "confirmed",
     "geometry_basis": "straight corridor (endpoint geocode)",
     "geometry_note": "corridor proximity, not surveyed distance"
    },
    "geometry": {
-    "type": "LineString",
+    "type": "Point",
     "coordinates": [
-     [
-      -83.4,
-      32.7
-     ],
-     [
-      -83.35273405000001,
-      34.58094625
-     ]
+     -83.35273405000001,
+     34.58094625
     ]
    }
   },
@@ -3814,50 +2832,6 @@
       -84.5899009,
       33.7475523
      ]
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "project_id": "GPC_108",
-    "name": "THOMASTON 230 NEW BUILD SUB",
-    "utility": "Georgia Power",
-    "type": "substation",
-    "endpoint_a": "THOMASTON 230 NEW BUILD SUB",
-    "endpoint_b": "",
-    "in_service_date": "2030-11-01",
-    "confidence": "unconfirmed",
-    "geometry_basis": "straight corridor (endpoint geocode)",
-    "geometry_note": "corridor proximity, not surveyed distance"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -83.4,
-     32.7
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "project_id": "GPC_109",
-    "name": "BAINBRIDGE TRANSMISSION: EAST RIVER ROAD, EAST BAINBRIDGE",
-    "utility": "Georgia Power",
-    "type": "line",
-    "endpoint_a": "BAINBRIDGE TRANSMISSION",
-    "endpoint_b": "",
-    "in_service_date": "2030-12-31",
-    "confidence": "unconfirmed",
-    "geometry_basis": "straight corridor (endpoint geocode)",
-    "geometry_note": "corridor proximity, not surveyed distance"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -76.2777552,
-     36.8126135
     ]
    }
   },
@@ -3893,7 +2867,7 @@
     "endpoint_a": "EAST POINT",
     "endpoint_b": "UNION CITY",
     "in_service_date": "2031-05-01",
-    "confidence": "confirmed",
+    "confidence": "likely",
     "geometry_basis": "straight corridor (endpoint geocode)",
     "geometry_note": "corridor proximity, not surveyed distance"
    },
@@ -3905,8 +2879,8 @@
       33.675453000000005
      ],
      [
-      -84.50947594099995,
-      33.55304442100004
+      -84.5424299,
+      33.5870558
      ]
     ]
    }
@@ -3949,15 +2923,15 @@
     "endpoint_a": "BOWEN #10",
     "endpoint_b": "",
     "in_service_date": "2031-06-01",
-    "confidence": "confirmed",
+    "confidence": "likely",
     "geometry_basis": "straight corridor (endpoint geocode)",
     "geometry_note": "corridor proximity, not surveyed distance"
    },
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -84.92301438799996,
-     34.12405231900004
+     -84.3937672,
+     33.715905
     ]
    }
   },
@@ -3986,28 +2960,6 @@
       -82.39746554999999,
       32.80856115
      ]
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "project_id": "GPC_115",
-    "name": "ARKWRIGHT BUS AND JUMPER REPLACEMENT",
-    "utility": "Georgia Power",
-    "type": "line",
-    "endpoint_a": "ARKWRIGHT BUS",
-    "endpoint_b": "",
-    "in_service_date": "2033-06-01",
-    "confidence": "confirmed",
-    "geometry_basis": "straight corridor (endpoint geocode)",
-    "geometry_note": "corridor proximity, not surveyed distance"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -83.69884066299994,
-     32.927129455000056
     ]
    }
   },
@@ -4077,21 +3029,15 @@
     "endpoint_a": "EVANS PRIMARY",
     "endpoint_b": "THURMOND DAM (USA) #6",
     "in_service_date": "2033-06-01",
-    "confidence": "unconfirmed",
+    "confidence": "confirmed",
     "geometry_basis": "straight corridor (endpoint geocode)",
     "geometry_note": "corridor proximity, not surveyed distance"
    },
    "geometry": {
-    "type": "LineString",
+    "type": "Point",
     "coordinates": [
-     [
-      -82.168648,
-      33.543994
-     ],
-     [
-      -83.4,
-      32.7
-     ]
+     -82.168648,
+     33.543994
     ]
    }
   },
@@ -4154,28 +3100,6 @@
   {
    "type": "Feature",
    "properties": {
-    "project_id": "GPC_120",
-    "name": "THOMSON PRIMARY 230/115KV SECOND TRANSFORMER",
-    "utility": "Georgia Power",
-    "type": "substation",
-    "endpoint_a": "THOMSON PRIMARY",
-    "endpoint_b": "",
-    "in_service_date": "2033-06-01",
-    "confidence": "confirmed",
-    "geometry_basis": "straight corridor (endpoint geocode)",
-    "geometry_note": "corridor proximity, not surveyed distance"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -82.41278457699997,
-     33.45263552600005
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
     "project_id": "GPC_121",
     "name": "WINDER PRIMARY 230KV BUS 1-2 PARALLEL BUS-TIE INSTALLATION",
     "utility": "Georgia Power",
@@ -4205,7 +3129,7 @@
     "endpoint_a": "PINE GROVE PRIMARY",
     "endpoint_b": "WEST VALDOSTA",
     "in_service_date": "2033-12-31",
-    "confidence": "confirmed",
+    "confidence": "likely",
     "geometry_basis": "straight corridor (endpoint geocode)",
     "geometry_note": "corridor proximity, not surveyed distance"
    },
@@ -4217,8 +3141,8 @@
       30.88164845
      ],
      [
-      -83.25125299999996,
-      30.83264900000006
+      -83.3148748,
+      30.8157571
      ]
     ]
    }
@@ -4266,16 +3190,10 @@
     "geometry_note": "corridor proximity, not surveyed distance"
    },
    "geometry": {
-    "type": "LineString",
+    "type": "Point",
     "coordinates": [
-     [
-      -82.168648,
-      33.543994
-     ],
-     [
-      -82.41278457699997,
-      33.45263552600005
-     ]
+     -82.168648,
+     33.543994
     ]
    }
   }

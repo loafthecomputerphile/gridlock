@@ -23,7 +23,9 @@ TOL = 1.0  # meters
 
 def main() -> None:
     rows = engine.build_overlaps()  # rewrites overlaps.csv deterministically (same as check_03)
-    assert len(rows) >= 200, f"too few rows: {len(rows)}"
+    # floor after the guide-only policy shrank the mapped set (was 200 pre-policy;
+    # now = scored pairs + 25 excluded exemplars over 127 located projects)
+    assert len(rows) >= 50, f"too few rows: {len(rows)}"
     print(f"PASS {len(rows)} rows")
 
     for r in rows:
