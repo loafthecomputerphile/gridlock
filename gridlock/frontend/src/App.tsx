@@ -129,7 +129,7 @@ export default function App() {
       {/* header — Concept C command strip */}
       <header className="flex shrink-0 items-center gap-4 border-b border-rule bg-surface px-4 py-2">
         <div className="flex items-baseline gap-2">
-          <span className="text-[15px] font-bold tracking-[0.18em]">CHUD</span>
+          <span className="text-[22px] font-bold tracking-[0.18em]">C.H.U.D</span>
           <span className="text-[11px] text-ink-dim">DESC × Georgia Power corridor overlaps</span>
         </div>
 

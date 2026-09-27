@@ -13,9 +13,11 @@
     "@tailwindcss/vite": "^4.3.3",
     "@tanstack/react-table": "^9.2.4",
     "maplibre-gl": "^6.11.2",
+    "playwright": "^1.63.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "tailwindcss": "^4.3.3",
+    "testreel": "^0.2.0",
     "zustand": "^5.0.15"
   },
   "devDependencies": {
