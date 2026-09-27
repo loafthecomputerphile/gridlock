@@ -150,6 +150,16 @@ export default function Drawer() {
                   closest point {mid[1].toFixed(3)}, {mid[0].toFixed(3)}
                 </span>
               )}
+              {detail.hifld_ref && (
+                <span
+                  className="text-ink-dim"
+                  title={`Nearest HIFLD line: ${detail.hifld_ref.sub_1 ?? '?'} — ${detail.hifld_ref.sub_2 ?? '?'} (${detail.hifld_ref.status ?? 'status ?'}), HIFLD/ORNL reference layer`}
+                >
+                  nearest HIFLD: {detail.hifld_ref.voltage_class} kV class
+                  {detail.hifld_ref.owner ? ` · ${detail.hifld_ref.owner}` : ''} ·{' '}
+                  {(detail.hifld_ref.dist_m / 1000).toFixed(1)} km
+                </span>
+              )}
             </div>
 
             <div className="mb-3 flex gap-3">

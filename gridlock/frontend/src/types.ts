@@ -49,7 +49,18 @@ export interface ProjectRow {
   geometry: { type: string; coordinates: unknown }
 }
 
+export interface HifldRef {
+  voltage_class: string | null
+  voltage_v: number | null
+  owner: string | null
+  status: string | null
+  sub_1: string | null
+  sub_2: string | null
+  dist_m: number
+}
+
 export interface PairDetail extends OverlapRow {
   project_a_detail: ProjectRow
   project_b_detail: ProjectRow
+  hifld_ref: HifldRef | null
 }

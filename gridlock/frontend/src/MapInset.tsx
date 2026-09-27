@@ -58,9 +58,13 @@ export default function MapInset() {
   const toggleTier = useStore((s) => s.toggleTier)
   const setMapExpanded = useStore((s) => s.setMapExpanded)
   const [showProjects, setShowProjects] = useState(true)
+  const [showHifld, setShowHifld] = useState(true)
   const [legendOpen, setLegendOpen] = useState(true)
   const [webgl2, setWebgl2] = useState(true)
   const applyRef = useRef<() => void>(() => {})
+  // HIFLD reference overlay (user request): fetched once, applied when ready
+  const hifldRef = useRef<FeatureCollection | null>(null)
+  const hifldLoading = useRef(false)
 
   // init once
   useEffect(() => {
@@ -139,6 +143,22 @@ export default function MapInset() {
   useEffect(() => {
     const map = mapRef.current
     if (!map || !rows.length) return
+
+    if (!hifldRef.current && !hifldLoading.current) {
+      hifldLoading.current = true
+      fetch('/api/ref/hifld-lines')
+        .then((r) => (r.ok ? r.json() : null))
+        .then((fc: FeatureCollection | null) => {
+          hifldLoading.current = false
+          if (fc?.features?.length) {
+            hifldRef.current = fc
+            applyRef.current()
+          }
+        })
+        .catch(() => {
+          hifldLoading.current = false
+        })
+    }
 
     const apply = () => {
       const projFC: FeatureCollection = {
@@ -268,6 +288,40 @@ export default function MapInset() {
         const ovl = map.getSource('overlaps')
         if (ovl && 'setData' in ovl) (ovl as { setData: (d: unknown) => void }).setData(haloFC)
       }
+
+      // HIFLD reference lines — sits under our corridors (beforeId), muted slate
+      if (hifldRef.current) {
+        const hs = map.getSource('hifld-lines')
+        if (hs && 'setData' in hs) {
+          ;(hs as { setData: (d: unknown) => void }).setData(hifldRef.current)
+        } else {
+          map.addSource('hifld-lines', { type: 'geojson', data: hifldRef.current })
+          map.addLayer(
+            {
+              id: 'hifld-lines',
+              type: 'line',
+              source: 'hifld-lines',
+              layout: {
+                visibility: showHifld ? 'visible' : 'none',
+              },
+              paint: {
+                'line-color': '#64748b',
+                'line-opacity': 0.5,
+                'line-width': [
+                  'match',
+                  ['get', 'VOLT_CLASS'],
+                  '500', 2.4,
+                  '220-287', 1.7,
+                  '100-161', 1.1,
+                  0.7,
+                ],
+              },
+            },
+            // under our corridors so overlay never buries the proposal
+            map.getLayer('project-lines') ? 'project-lines' : undefined,
+          )
+        }
+      }
     }
 
     // style.load (init effect) invokes the latest apply; also apply now if
@@ -318,6 +372,13 @@ export default function MapInset() {
     const t = setTimeout(() => map.resize(), 60)
     return () => clearTimeout(t)
   }, [expanded])
+
+  // HIFLD overlay toggle (layer may not exist yet — creation reads default true)
+  useEffect(() => {
+    const map = mapRef.current
+    if (!map || !map.getLayer('hifld-lines')) return
+    map.setLayoutProperty('hifld-lines', 'visibility', showHifld ? 'visible' : 'none')
+  }, [showHifld])
 
   const toggleProjects = () => {
     const map = mapRef.current
@@ -388,6 +449,13 @@ export default function MapInset() {
         })}
         <div className="my-1.5 h-px bg-rule" />
         <div className="mb-1 font-semibold tracking-wide text-ink-dim uppercase">What you see</div>
+        <div
+          className="flex items-start gap-1.5"
+          title="HIFLD_US_Electric_Power_Transmission_Lines (HIFLD/ORNL), SC/GA bbox subset, width by VOLT_CLASS. Reference only — corridor scoring never uses it."
+        >
+          <span className="text-ink-dim">┃</span>
+          <span>grey lines: HIFLD existing transmission network (reference)</span>
+        </div>
         <div className="flex items-start gap-1.5">
           <span className="text-ink-dim">—</span>
           <span>thin line: transmission corridor — the power lines between two points</span>
@@ -462,6 +530,13 @@ export default function MapInset() {
       <div className="absolute top-2 right-2 z-10 flex gap-1.5">
         <button className={chip} onClick={toggleProjects} title="Toggle project corridors">
           {showProjects ? 'hide' : 'show'} corridors
+        </button>
+        <button
+          className={chip}
+          onClick={() => setShowHifld((v) => !v)}
+          title="Toggle HIFLD existing transmission lines (HIFLD/ORNL, SC/GA subset)"
+        >
+          {showHifld ? 'hide' : 'show'} HIFLD
         </button>
         <button
           className={chip}

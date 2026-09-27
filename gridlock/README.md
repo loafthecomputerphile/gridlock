@@ -75,3 +75,11 @@ ledger's top pairs are now all plausible SC–GA border projects (Lake
 Thurmond, Okatie/Aiken, Savannah area); the old top-ranked 0-distance
 "crossings" were geocode artifacts and are gone with the policy change —
 documented in `docs/DATA-NOTES.md` §6, not hidden.
+
+**Reference overlay:** the map can also show the national **HIFLD** electric
+transmission-lines layer (HIFLD/ORNL via ArcGIS, SC/GA bbox subset cached at
+`data/processed/_cache/hifld_lines.geojson`, 6,611 lines) as a toggleable
+grey underlay, and each pair's detail drawer links its closest point to the
+nearest HIFLD line (`voltage class · owner · distance`). Purely
+display + disclosure — it never feeds scoring or endpoint location
+(`uv run python backend/fetch_hifld_lines.py` to refresh the cache).

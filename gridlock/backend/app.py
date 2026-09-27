@@ -13,10 +13,14 @@ import re
 from pathlib import Path
 
 import pandas as pd
+import shapely
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import Response
 from pydantic import BaseModel
+from pyproj import Transformer
+from shapely.geometry import shape as shapely_shape
+from shapely.ops import transform as shapely_transform
 
 from . import engine
 
@@ -88,6 +92,7 @@ class ProjectRow(BaseModel):
 class PairDetail(OverlapRow):
     project_a_detail: ProjectRow
     project_b_detail: ProjectRow
+    hifld_ref: dict | None = None  # nearest HIFLD transmission line (overlay+link)
 
 
 def _load_projects() -> tuple[list[dict], int]:
@@ -109,6 +114,41 @@ def _load_projects() -> tuple[list[dict], int]:
 
 PROJECTS, PROJECTS_TOTAL = _load_projects()
 BY_ID = {p["project_id"]: p for p in PROJECTS}
+
+
+# ---------- HIFLD reference overlay (user: "load this into the map") ----------
+# Display + pair linking only (overlay+link gate) — never feeds scoring or
+# endpoint location. nearest-line ref per pair, computed once at startup.
+HIFLD_PATH = ROOT / "data" / "processed" / "_cache" / "hifld_lines.geojson"
+
+
+def _load_hifld_refs() -> dict[str, dict]:
+    if not HIFLD_PATH.exists():
+        return {}
+    feats = json.loads(HIFLD_PATH.read_text(encoding="utf-8"))["features"]
+    to5070 = Transformer.from_crs("EPSG:4326", "EPSG:5070", always_xy=True)
+    geoms = [shapely_transform(to5070.transform, shapely_shape(f["geometry"]))
+             for f in feats]
+    tree = shapely.STRtree(geoms)
+    refs: dict[str, dict] = {}
+    for r in OVERLAPS:
+        seg = shapely_transform(to5070.transform, shapely_shape(r["shortest_line"]))
+        i = tree.nearest(seg)
+        p = feats[i]["properties"]
+        v = p.get("VOLTAGE")
+        refs[r["overlap_id"]] = {
+            "voltage_class": p.get("VOLT_CLASS"),
+            "voltage_v": v if isinstance(v, (int, float)) and v > 0 else None,
+            "owner": p.get("OWNER"),
+            "status": p.get("STATUS"),
+            "sub_1": p.get("SUB_1"),
+            "sub_2": p.get("SUB_2"),
+            "dist_m": round(geoms[i].distance(seg), 1),
+        }
+    return refs
+
+
+HIFLD_REFS = _load_hifld_refs()
 
 
 # ---------- endpoints ----------
@@ -151,7 +191,18 @@ def pair(pair_id: str) -> dict:
         raise HTTPException(status_code=404, detail=f"unknown pair_id: {pair_id}")
     return {**row,
             "project_a_detail": BY_ID[row["project_a"]],
-            "project_b_detail": BY_ID[row["project_b"]]}
+            "project_b_detail": BY_ID[row["project_b"]],
+            "hifld_ref": HIFLD_REFS.get(row["overlap_id"])}
+
+
+@app.get("/api/ref/hifld-lines")
+def hifld_lines() -> Response:
+    """Cached HIFLD transmission lines (SC/GA bbox) as GeoJSON for the map overlay."""
+    if not HIFLD_PATH.exists():
+        raise HTTPException(status_code=404,
+                            detail="run backend.fetch_hifld_lines first")
+    return Response(HIFLD_PATH.read_text(encoding="utf-8"),
+                    media_type="application/geo+json")
 
 
 @app.get("/api/export/overlaps.csv")

@@ -158,3 +158,32 @@ gazetteer's live rows — the workbook geometry wins for those projects.
 manual PDF cross-check; some surviving points are `likely` (e.g. generic
 names like `ANNISTON` that Nominatim places in GA). Disclosed via per-row
 confidence + the reverse-confirmed filter; not hand-fixed (24h clock).
+
+## 7. HIFLD reference overlay + pair link (user-gated)
+
+**Trigger:** user pointed at the ArcGIS HIFLD transmission-lines map viewer
+and asked why it wasn't loaded and linked into our map; via AskUserQuestion
+the user chose **"Overlay + link"** (not snap) — display + per-pair
+nearest-line linking only, so the §6 guide-only location policy and the
+locked scoring stay untouched. This supersedes §6's "HIFLD removed" for the
+map layer itself: HIFLD returns as a *reference* layer, never as a geocode
+source.
+
+- **Source:** `HIFLD_US_Electric_Power_Transmission_Lines` FeatureServer
+  (HIFLD/ORNL, national), queried once for the build bbox by
+  `backend/fetch_hifld_lines.py`, cached offline at
+  `data/processed/_cache/hifld_lines.geojson` — **6,611 features, 8.7 MB**
+  (fields: VOLTAGE, VOLT_CLASS, OWNER, STATUS, SUB_1, SUB_2).
+- **Map:** toggleable grey line layer under the corridors
+  (`GET /api/ref/hifld-lines`), width matched on VOLT_CLASS
+  (500 → 2.4 > 220-287 → 1.7 > 100-161 → 1.1 > default 0.7), `hide/show
+  HIFLD` chip, legend line naming the layer.
+- **Pair link:** nearest HIFLD line per overlap row computed once at startup
+  (STRtree in EPSG:5070); the drawer shows
+  `nearest HIFLD: {VOLT_CLASS} kV class · {owner} · {dist} km` with a
+  substation-to-substation tooltip (`hifld_ref` on `/api/pairs/{id}`).
+- **Boundary:** display + disclosure only — never feeds scoring, corridor
+  geometry or endpoint location (the overlay+link gate). Refresh the cache
+  with `uv run python backend/fetch_hifld_lines.py`.
+- **Check:** `check_03` asserts the endpoint serves >5000 features and a
+  pair's `hifld_ref.dist_m` is finite.

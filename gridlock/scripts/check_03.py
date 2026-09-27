@@ -115,6 +115,17 @@ def main() -> None:
     assert len(r.text.splitlines()) - 1 == len(rows), "CSV rows != API rows"
     print(f"PASS CSV header == starter header ({len(rows)} rows, API == disk)")
 
+    # HIFLD overlay + link (user-gated: display + pair link only, never scoring)
+    r = c.get("/api/ref/hifld-lines")
+    assert r.status_code == 200, f"hifld-lines {r.status_code}"
+    fc = r.json()
+    assert fc["type"] == "FeatureCollection" and len(fc["features"]) > 5000, \
+        f"hifld features = {len(fc.get('features', []))}"
+    ref = c.get(f"/api/pairs/{rows[0]['overlap_id']}").json().get("hifld_ref")
+    assert ref and ref["dist_m"] >= 0 and "voltage_class" in ref, f"hifld_ref = {ref}"
+    print(f"PASS HIFLD overlay+link ({len(fc['features'])} lines, "
+          f"pair ref dist_m={ref['dist_m']} m)")
+
     print("ALL CHECKS PASS")
 
 
