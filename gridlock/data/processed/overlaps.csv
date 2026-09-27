@@ -1,0 +1,237 @@
+overlap_id,distance_mi,time_gap (day),utility_a,project_id_a,project_name_a,utility_b,project_id_b,project_name_b
+OVL_1,11.59,153,Dominion Energy South Carolina,DESC_6,Union Pier 115-13.8 kV Sub: Tap,Georgia Power,GPC_71,UNION CITY - YATES 230KV (BLACK) LINE REBUILD
+OVL_2,11.59,578,Dominion Energy South Carolina,DESC_6,Union Pier 115-13.8 kV Sub: Tap,Georgia Power,GPC_38,UNION CITY - YATES 230KV (WHITE) SWITCH AND TRAP REPLACEMENT
+OVL_3,11.59,639,Dominion Energy South Carolina,DESC_6,Union Pier 115-13.8 kV Sub: Tap,Georgia Power,GPC_37,UNION CITY - YATES 230 KV WHITE LINE REBUILD
+OVL_4,4.44,883,Dominion Energy South Carolina,DESC_6,Union Pier 115-13.8 kV Sub: Tap,Georgia Power,GPC_93,EAST POINT - UNION CITY 230KV BLACK LINE RECONDUCTOR
+OVL_5,4.44,1217,Dominion Energy South Carolina,DESC_6,Union Pier 115-13.8 kV Sub: Tap,Georgia Power,GPC_111,EAST POINT - UNION CITY (WHITE) 230KV REBUILD
+OVL_6,137.54,944,Dominion Energy South Carolina,DESC_13,Wateree-Killian 230kV: Rebuild,Georgia Power,GPC_31,HAMMOND - WEISS DAM 115KV LINE REBUILD
+OVL_7,95.01,517,Dominion Energy South Carolina,DESC_13,Wateree-Killian 230kV: Rebuild,Georgia Power,GPC_87,ANNISTON - HAMMOND 230KV LINE
+OVL_8,472.61,943,Dominion Energy South Carolina,DESC_16,Square D - Hopkins 115kV: Rebuild,Georgia Power,GPC_47,POSSUM BRANCH - YATES COMMON 115KV REBUILD (YATES TO CLEM)
+OVL_9,426.73,1187,Dominion Energy South Carolina,DESC_16,Square D - Hopkins 115kV: Rebuild,Georgia Power,GPC_61,DYER ROAD - EAST ROANOKE 115KV (REBUILD)
+OVL_10,498.01,1705,Dominion Energy South Carolina,DESC_16,Square D - Hopkins 115kV: Rebuild,Georgia Power,GPC_74,BLAKELY PRIMARY - HUCKLEBERRY 115KV REBUILD
+OVL_11,473.78,427,Dominion Energy South Carolina,DESC_16,Square D - Hopkins 115kV: Rebuild,Georgia Power,GPC_15,JEFFERSON STREET#3 - NORTHWEST (WHITE) 115 KV RECONDUCTOR
+OVL_12,457.11,1340,Dominion Energy South Carolina,DESC_16,Square D - Hopkins 115kV: Rebuild,Georgia Power,GPC_66,JACK MCDONOUGH - NORTHWEST (BLACK) 230KV RECONDUCTOR
+OVL_13,409.94,1523,Dominion Energy South Carolina,DESC_16,Square D - Hopkins 115kV: Rebuild,Georgia Power,GPC_72,FIRST AVENUE - NORTH COLUMBUS 115KV LINE REBUILD
+OVL_14,383.81,2435,Dominion Energy South Carolina,DESC_16,Square D - Hopkins 115kV: Rebuild,Georgia Power,GPC_114,HATCH - WADLEY 500 KV LINE STRATEGIC PROJECT
+OVL_15,356.66,609,Dominion Energy South Carolina,DESC_16,Square D - Hopkins 115kV: Rebuild,Georgia Power,GPC_31,HAMMOND - WEISS DAM 115KV LINE REBUILD
+OVL_16,330.52,2070,Dominion Energy South Carolina,DESC_16,Square D - Hopkins 115kV: Rebuild,Georgia Power,GPC_87,ANNISTON - HAMMOND 230KV LINE
+OVL_17,156.47,152,Dominion Energy South Carolina,DESC_17,Stevens Creek - Hooks 115kV/LR Plumb Branch 46kV,Georgia Power,GPC_31,HAMMOND - WEISS DAM 115KV LINE REBUILD
+OVL_18,116.56,1613,Dominion Energy South Carolina,DESC_17,Stevens Creek - Hooks 115kV/LR Plumb Branch 46kV,Georgia Power,GPC_87,ANNISTON - HAMMOND 230KV LINE
+OVL_19,89.41,1461,Dominion Energy South Carolina,DESC_22,Canadys-Ritter 115KV-Rebld SPDC 230/115KV 1272 (Approx 18 Miles),Georgia Power,GPC_88,ATKINSON - NORTHSIDE DRIVE 115KV REBUILD
+OVL_20,110.31,914,Dominion Energy South Carolina,DESC_22,Canadys-Ritter 115KV-Rebld SPDC 230/115KV 1272 (Approx 18 Miles),Georgia Power,GPC_72,FIRST AVENUE - NORTH COLUMBUS 115KV LINE REBUILD
+OVL_21,75.61,1461,Dominion Energy South Carolina,DESC_23,Yemassee– Ritter 230kV #1 & #2: Construct SPDC with B-1272,Georgia Power,GPC_88,ATKINSON - NORTHSIDE DRIVE 115KV REBUILD
+OVL_22,108.72,914,Dominion Energy South Carolina,DESC_23,Yemassee– Ritter 230kV #1 & #2: Construct SPDC with B-1272,Georgia Power,GPC_72,FIRST AVENUE - NORTH COLUMBUS 115KV LINE REBUILD
+OVL_23,97.03,2191,Dominion Energy South Carolina,DESC_26,Church Creek - Ritter 230kV - Replace 38 Large Angles and Dead Ends,Georgia Power,GPC_88,ATKINSON - NORTHSIDE DRIVE 115KV REBUILD
+OVL_24,4.09,3074,Dominion Energy South Carolina,DESC_2,Hooks - Thurmond 115kV Tie: Rebuild,Georgia Power,GPC_1,EVANS PRIMARY - THURMOND DAM (USA) #5 115KV REBUILD
+OVL_25,25.64,3165,Dominion Energy South Carolina,DESC_34,Dawson 230kV Sub and Fold-in: Construct and Rebuild,Georgia Power,GPC_123,DAWSON CROSSING - GAINESVILLE #1 115 KV
+OVL_26,98.14,244,Dominion Energy South Carolina,DESC_36,Williams-Summerville 230kV: Upgrade to SPDC B1272 ACSR,Georgia Power,GPC_61,DYER ROAD - EAST ROANOKE 115KV (REBUILD)
+OVL_27,69.03,2223,Dominion Energy South Carolina,DESC_36,Williams-Summerville 230kV: Upgrade to SPDC B1272 ACSR,Georgia Power,GPC_118,MCEVER ROAD - SHOAL CREEK 115KV REBUILD PHASE III
+OVL_28,69.03,762,Dominion Energy South Carolina,DESC_36,Williams-Summerville 230kV: Upgrade to SPDC B1272 ACSR,Georgia Power,GPC_82,MCEVER ROAD - SHOAL CREEK 115KV REBUILD
+OVL_29,48.61,1127,Dominion Energy South Carolina,DESC_36,Williams-Summerville 230kV: Upgrade to SPDC B1272 ACSR,Georgia Power,GPC_91,CORNELIA - TALLULAH LODGE 115KV REBUILD
+OVL_30,43.23,1127,Dominion Energy South Carolina,DESC_36,Williams-Summerville 230kV: Upgrade to SPDC B1272 ACSR,Georgia Power,GPC_106,TALLULAH LODGE - TOCCOA 115 KV REBUILD
+OVL_31,43.61,244,Dominion Energy South Carolina,DESC_36,Williams-Summerville 230kV: Upgrade to SPDC B1272 ACSR,Georgia Power,GPC_59,ATHENA - EAST WATKINSVILLE 115 KV (REBUILD)
+OVL_32,40.75,334,Dominion Energy South Carolina,DESC_36,Williams-Summerville 230kV: Upgrade to SPDC B1272 ACSR,Georgia Power,GPC_31,HAMMOND - WEISS DAM 115KV LINE REBUILD
+OVL_33,36.0,334,Dominion Energy South Carolina,DESC_36,Williams-Summerville 230kV: Upgrade to SPDC B1272 ACSR,Georgia Power,GPC_20,ADAMSVILLE - BUZZARD ROOST 230KV REBUILD AND JUMPER UPGRADE
+OVL_34,98.06,1127,Dominion Energy South Carolina,DESC_36,Williams-Summerville 230kV: Upgrade to SPDC B1272 ACSR,Georgia Power,GPC_99,GOLDENS CREEK - WARRENTON PRIMARY 230KV REBUILD
+OVL_35,2.18,1127,Dominion Energy South Carolina,DESC_36,Williams-Summerville 230kV: Upgrade to SPDC B1272 ACSR,Georgia Power,GPC_87,ANNISTON - HAMMOND 230KV LINE
+OVL_36,13.94,762,Dominion Energy South Carolina,DESC_36,Williams-Summerville 230kV: Upgrade to SPDC B1272 ACSR,Georgia Power,GPC_77,BUZZARD ROOST - FACTORY SHOALS 230KV NEW LINE
+OVL_37,297.37,213,Dominion Energy South Carolina,DESC_41,Cameron Jct – Elloree 46 kV Rebuild,Georgia Power,GPC_31,HAMMOND - WEISS DAM 115KV LINE REBUILD
+OVL_38,255.22,1248,Dominion Energy South Carolina,DESC_41,Cameron Jct – Elloree 46 kV Rebuild,Georgia Power,GPC_99,GOLDENS CREEK - WARRENTON PRIMARY 230KV REBUILD
+OVL_39,337.95,1248,Dominion Energy South Carolina,DESC_41,Cameron Jct – Elloree 46 kV Rebuild,Georgia Power,GPC_87,ANNISTON - HAMMOND 230KV LINE
+OVL_40,300.87,944,Dominion Energy South Carolina,DESC_44,Cameron Jct – Cameron – St Matthews 46 kV Rebuild,Georgia Power,GPC_31,HAMMOND - WEISS DAM 115KV LINE REBUILD
+OVL_41,258.93,517,Dominion Energy South Carolina,DESC_44,Cameron Jct – Cameron – St Matthews 46 kV Rebuild,Georgia Power,GPC_99,GOLDENS CREEK - WARRENTON PRIMARY 230KV REBUILD
+OVL_42,341.51,517,Dominion Energy South Carolina,DESC_44,Cameron Jct – Cameron – St Matthews 46 kV Rebuild,Georgia Power,GPC_87,ANNISTON - HAMMOND 230KV LINE
+OVL_43,6.44,244,Dominion Energy South Carolina,DESC_6,Union Pier 115-13.8 kV Sub: Tap,Georgia Power,GPC_46,MORROW - YATES COMMON 115KV LINE UPGRADE
+OVL_44,35.86,409,Dominion Energy South Carolina,DESC_23,Yemassee– Ritter 230kV #1 & #2: Construct SPDC with B-1272,Georgia Power,GPC_57,CC - TOMOCHICHI 500/230KV SOLUTION (CC NETWORK IMPROVEMENTS)
+OVL_45,1.97,578,Dominion Energy South Carolina,DESC_43,Urquhart – Aiken PSA 46 kV: Rebuild,Georgia Power,GPC_25,FENWICK STREET - SAND BAR FERRY 115KV (RECONDUCTOR/REBUILD)
+OVL_46,27.83,2223,Dominion Energy South Carolina,DESC_36,Williams-Summerville 230kV: Upgrade to SPDC B1272 ACSR,Georgia Power,GPC_1,EVANS PRIMARY - THURMOND DAM (USA) #5 115KV REBUILD
+OVL_47,9.09,72,Dominion Energy South Carolina,DESC_35,Urquhart – Toolebeck 115kV line: Rebuild,Georgia Power,GPC_25,FENWICK STREET - SAND BAR FERRY 115KV (RECONDUCTOR/REBUILD)
+OVL_48,326.55,152,Dominion Energy South Carolina,DESC_44,Cameron Jct – Cameron – St Matthews 46 kV Rebuild,Georgia Power,GPC_77,BUZZARD ROOST - FACTORY SHOALS 230KV NEW LINE
+OVL_49,5.65,152,Dominion Energy South Carolina,DESC_3,Jasper – Okatie 230 kV #2: Construct,Georgia Power,GPC_2,SAV: MCINTOSH - PURRYSBURG 230KV REACTORS
+OVL_50,488.57,213,Dominion Energy South Carolina,DESC_16,Square D - Hopkins 115kV: Rebuild,Georgia Power,GPC_4,MITCHELL - NORTH TIFTON 230KV RECONDUCTOR
+OVL_51,132.9,213,Dominion Energy South Carolina,DESC_12,VCS1-Denny Terrace 230kV & VCS1-Pineland 230kV: Rebuild Single Circuit Sections,Georgia Power,GPC_31,HAMMOND - WEISS DAM 115KV LINE REBUILD
+OVL_52,138.03,152,Dominion Energy South Carolina,DESC_24,Riverport Tap: Construct Tap,Georgia Power,GPC_31,HAMMOND - WEISS DAM 115KV LINE REBUILD
+OVL_53,4.4,578,Dominion Energy South Carolina,DESC_6,Union Pier 115-13.8 kV Sub: Tap,Georgia Power,GPC_23,CC - STONEWALL TELL ROAD (TA REALTY)
+OVL_54,22.1,409,Dominion Energy South Carolina,DESC_22,Canadys-Ritter 115KV-Rebld SPDC 230/115KV 1272 (Approx 18 Miles),Georgia Power,GPC_57,CC - TOMOCHICHI 500/230KV SOLUTION (CC NETWORK IMPROVEMENTS)
+OVL_55,139.66,334,Dominion Energy South Carolina,DESC_36,Williams-Summerville 230kV: Upgrade to SPDC B1272 ACSR,Georgia Power,GPC_27,GORDON-N DUBLIN 115KV (GORDON-ENGL MCI J) REBUILD
+OVL_56,73.88,152,Dominion Energy South Carolina,DESC_27,VCS2-Ward 230kV: Rebuild Line,Georgia Power,GPC_87,ANNISTON - HAMMOND 230KV LINE
+OVL_57,301.11,213,Dominion Energy South Carolina,DESC_41,Cameron Jct – Elloree 46 kV Rebuild,Georgia Power,GPC_20,ADAMSVILLE - BUZZARD ROOST 230KV REBUILD AND JUMPER UPGRADE
+OVL_58,102.25,1492,Dominion Energy South Carolina,DESC_36,Williams-Summerville 230kV: Upgrade to SPDC B1272 ACSR,Georgia Power,GPC_112,AVERY - HOPEWELL 115KV RECONDUCTOR
+OVL_59,16.3,2800,Dominion Energy South Carolina,DESC_34,Dawson 230kV Sub and Fold-in: Construct and Rebuild,Georgia Power,GPC_119,MCGRAU FORD - MIDDLE FORK 500KV LINE PROJECT
+OVL_60,114.13,1309,Dominion Energy South Carolina,DESC_27,VCS2-Ward 230kV: Rebuild Line,Georgia Power,GPC_31,HAMMOND - WEISS DAM 115KV LINE REBUILD
+OVL_61,36.97,883,Dominion Energy South Carolina,DESC_6,Union Pier 115-13.8 kV Sub: Tap,Georgia Power,GPC_104,NEW CAVENDER DRIVE - TRIBUTARY 230KV LINE
+OVL_62,304.64,944,Dominion Energy South Carolina,DESC_44,Cameron Jct – Cameron – St Matthews 46 kV Rebuild,Georgia Power,GPC_20,ADAMSVILLE - BUZZARD ROOST 230KV REBUILD AND JUMPER UPGRADE
+OVL_63,452.02,1340,Dominion Energy South Carolina,DESC_16,Square D - Hopkins 115kV: Rebuild,Georgia Power,GPC_65,FITZGERALD - PITTS 115 KV LINE REBUILD
+OVL_64,7.55,517,Dominion Energy South Carolina,DESC_3,Jasper – Okatie 230 kV #2: Construct,Georgia Power,GPC_3,SAV: GOSHEN (SAV) - MCINTOSH 115KV LINE REBUILD
+OVL_65,61.49,1127,Dominion Energy South Carolina,DESC_36,Williams-Summerville 230kV: Upgrade to SPDC B1272 ACSR,Georgia Power,GPC_102,JEFFERSON ROAD - WINDER PRIMARY 115KV REBUILD
+OVL_66,138.03,523,Dominion Energy South Carolina,DESC_18,"Edenwood Sub: #1 & #2 230-115kV Autobanks, Replace with 336MVA",Georgia Power,GPC_31,HAMMOND - WEISS DAM 115KV LINE REBUILD
+OVL_67,139.66,1127,Dominion Energy South Carolina,DESC_36,Williams-Summerville 230kV: Upgrade to SPDC B1272 ACSR,Georgia Power,GPC_100,GORDON-SANDERSVILLE #1 115KV LINE REBUILD (DEEPSTEP-SAND #6)
+OVL_68,93.67,1248,Dominion Energy South Carolina,DESC_12,VCS1-Denny Terrace 230kV & VCS1-Pineland 230kV: Rebuild Single Circuit Sections,Georgia Power,GPC_87,ANNISTON - HAMMOND 230KV LINE
+OVL_69,97.56,1984,Dominion Energy South Carolina,DESC_18,"Edenwood Sub: #1 & #2 230-115kV Autobanks, Replace with 336MVA",Georgia Power,GPC_87,ANNISTON - HAMMOND 230KV LINE
+OVL_70,97.56,1613,Dominion Energy South Carolina,DESC_24,Riverport Tap: Construct Tap,Georgia Power,GPC_87,ANNISTON - HAMMOND 230KV LINE
+OVL_71,323.01,883,Dominion Energy South Carolina,DESC_41,Cameron Jct – Elloree 46 kV Rebuild,Georgia Power,GPC_77,BUZZARD ROOST - FACTORY SHOALS 230KV NEW LINE
+OVL_72,73.26,31,Dominion Energy South Carolina,DESC_36,Williams-Summerville 230kV: Upgrade to SPDC B1272 ACSR,Georgia Power,GPC_54,LAWRENCEVILLE - WINDER 115KV LINE REBUILD
+OVL_73,73.26,31,Dominion Energy South Carolina,DESC_36,Williams-Summerville 230kV: Upgrade to SPDC B1272 ACSR,Georgia Power,GPC_55,LAWRENCEVILLE - WINDER PRIMARY 230KV LINE REBUILD
+OVL_74,110.86,334,Dominion Energy South Carolina,DESC_36,Williams-Summerville 230kV: Upgrade to SPDC B1272 ACSR,Georgia Power,GPC_21,BLANKETS CREEK – WOODSTOCK 115KV LINE REBUILD
+OVL_75,5.97,213,Dominion Energy South Carolina,DESC_6,Union Pier 115-13.8 kV Sub: Tap,Georgia Power,GPC_49,CC - MICROSOFT - SHUGART (CCO06)
+OVL_76,22.12,0,Dominion Energy South Carolina,DESC_6,Union Pier 115-13.8 kV Sub: Tap,Georgia Power,GPC_61,DYER ROAD - EAST ROANOKE 115KV (REBUILD)
+OVL_77,28.84,153,Dominion Energy South Carolina,DESC_6,Union Pier 115-13.8 kV Sub: Tap,Georgia Power,GPC_67,PITTMAN ROAD - WEST POINT DAM (USA) 115KV REBUILD
+OVL_78,94.19,152,Dominion Energy South Carolina,DESC_32,Batesburg - Saluda County 115kV: Rebuild,Georgia Power,GPC_31,HAMMOND - WEISS DAM 115KV LINE REBUILD
+OVL_79,214.48,244,Dominion Energy South Carolina,DESC_16,Square D - Hopkins 115kV: Rebuild,Georgia Power,GPC_14,CAMDEN INDUSTRIAL PARK
+OVL_80,83.78,152,Dominion Energy South Carolina,DESC_17,Stevens Creek - Hooks 115kV/LR Plumb Branch 46kV,Georgia Power,GPC_25,FENWICK STREET - SAND BAR FERRY 115KV (RECONDUCTOR/REBUILD)
+OVL_81,14.34,365,Dominion Energy South Carolina,DESC_5,Okatie-Bluffton 115kV: Rebuild,Georgia Power,GPC_2,SAV: MCINTOSH - PURRYSBURG 230KV REACTORS
+OVL_82,44.38,334,Dominion Energy South Carolina,DESC_36,Williams-Summerville 230kV: Upgrade to SPDC B1272 ACSR,Georgia Power,GPC_25,FENWICK STREET - SAND BAR FERRY 115KV (RECONDUCTOR/REBUILD)
+OVL_83,101.52,578,Dominion Energy South Carolina,DESC_6,Union Pier 115-13.8 kV Sub: Tap,Georgia Power,GPC_28,GRADY - MORROW (WHITE) 115KV REBUILD
+OVL_84,9.81,365,Dominion Energy South Carolina,DESC_6,Union Pier 115-13.8 kV Sub: Tap,Georgia Power,GPC_44,MORROW - MOUNTAIN VIEW 115 KV REBUILD
+OVL_85,140.73,153,Dominion Energy South Carolina,DESC_6,Union Pier 115-13.8 kV Sub: Tap,Georgia Power,GPC_66,JACK MCDONOUGH - NORTHWEST (BLACK) 230KV RECONDUCTOR
+OVL_86,113.26,152,Dominion Energy South Carolina,DESC_25,Wagener 115kV Tap: Construct Tap,Georgia Power,GPC_31,HAMMOND - WEISS DAM 115KV LINE REBUILD
+OVL_87,9.55,456,Dominion Energy South Carolina,DESC_6,Union Pier 115-13.8 kV Sub: Tap,Georgia Power,GPC_40,OHARA BREAKER REPLACEMENT
+OVL_88,50.12,365,Dominion Energy South Carolina,DESC_23,Yemassee– Ritter 230kV #1 & #2: Construct SPDC with B-1272,Georgia Power,GPC_3,SAV: GOSHEN (SAV) - MCINTOSH 115KV LINE REBUILD
+OVL_89,53.77,0,Dominion Energy South Carolina,DESC_23,Yemassee– Ritter 230kV #1 & #2: Construct SPDC with B-1272,Georgia Power,GPC_2,SAV: MCINTOSH - PURRYSBURG 230KV REACTORS
+OVL_90,10.77,578,Dominion Energy South Carolina,DESC_6,Union Pier 115-13.8 kV Sub: Tap,Georgia Power,GPC_34,MORROW 115KV RELAY UPGRADE
+OVL_91,370.94,365,Dominion Energy South Carolina,DESC_9,Eastover - Square D 115kV: Rebuild,Georgia Power,GPC_14,CAMDEN INDUSTRIAL PARK
+OVL_92,13.59,365,Dominion Energy South Carolina,DESC_6,Union Pier 115-13.8 kV Sub: Tap,Georgia Power,GPC_43,GRADY-WEST END 115KV REBUILD
+OVL_93,30.81,154,Dominion Energy South Carolina,DESC_6,Union Pier 115-13.8 kV Sub: Tap,Georgia Power,GPC_58,GRID - ARKWRIGHT - LLOYD SHOALS 115KV
+OVL_94,80.19,578,Dominion Energy South Carolina,DESC_6,Union Pier 115-13.8 kV Sub: Tap,Georgia Power,GPC_20,ADAMSVILLE - BUZZARD ROOST 230KV REBUILD AND JUMPER UPGRADE
+OVL_95,42.23,578,Dominion Energy South Carolina,DESC_6,Union Pier 115-13.8 kV Sub: Tap,Georgia Power,GPC_30,GRID - GAINESVILLE #2 EQUIPMENT REPLACEMENT
+OVL_96,37.58,365,Dominion Energy South Carolina,DESC_22,Canadys-Ritter 115KV-Rebld SPDC 230/115KV 1272 (Approx 18 Miles),Georgia Power,GPC_3,SAV: GOSHEN (SAV) - MCINTOSH 115KV LINE REBUILD
+OVL_97,88.73,152,Dominion Energy South Carolina,DESC_32,Batesburg - Saluda County 115kV: Rebuild,Georgia Power,GPC_20,ADAMSVILLE - BUZZARD ROOST 230KV REBUILD AND JUMPER UPGRADE
+OVL_98,62.1,31,Dominion Energy South Carolina,DESC_36,Williams-Summerville 230kV: Upgrade to SPDC B1272 ACSR,Georgia Power,GPC_52,DOYLE - LG&E MONROE 230KV - JACKS CREEK LOOP IN
+OVL_99,41.04,0,Dominion Energy South Carolina,DESC_22,Canadys-Ritter 115KV-Rebld SPDC 230/115KV 1272 (Approx 18 Miles),Georgia Power,GPC_2,SAV: MCINTOSH - PURRYSBURG 230KV REACTORS
+OVL_100,80.42,579,Dominion Energy South Carolina,DESC_13,Wateree-Killian 230kV: Rebuild,Georgia Power,GPC_3,SAV: GOSHEN (SAV) - MCINTOSH 115KV LINE REBUILD
+OVL_101,161.51,1,Dominion Energy South Carolina,DESC_40,Eastover – Sumter 115kV DEP Tie: Rebuild with 1272 ACSR,Georgia Power,GPC_31,HAMMOND - WEISS DAM 115KV LINE REBUILD
+OVL_102,32.1,365,Dominion Energy South Carolina,DESC_23,Yemassee– Ritter 230kV #1 & #2: Construct SPDC with B-1272,Georgia Power,GPC_12,THALMANN AND COLERAIN 23O KV LINE RELAY PANEL UPGRADES
+OVL_103,92.61,72,Dominion Energy South Carolina,DESC_35,Urquhart – Toolebeck 115kV line: Rebuild,Georgia Power,GPC_31,HAMMOND - WEISS DAM 115KV LINE REBUILD
+OVL_104,45.83,365,Dominion Energy South Carolina,DESC_22,Canadys-Ritter 115KV-Rebld SPDC 230/115KV 1272 (Approx 18 Miles),Georgia Power,GPC_12,THALMANN AND COLERAIN 23O KV LINE RELAY PANEL UPGRADES
+OVL_105,202.8,578,Dominion Energy South Carolina,DESC_42,Elloree – Santee City 46 kV: Rebuild,Georgia Power,GPC_31,HAMMOND - WEISS DAM 115KV LINE REBUILD
+OVL_106,56.01,243,Dominion Energy South Carolina,DESC_34,Dawson 230kV Sub and Fold-in: Construct and Rebuild,Georgia Power,GPC_31,HAMMOND - WEISS DAM 115KV LINE REBUILD
+OVL_107,22.81,578,Dominion Energy South Carolina,DESC_6,Union Pier 115-13.8 kV Sub: Tap,Georgia Power,GPC_33,KLONDIKE RELAY MODERNIZATION
+OVL_108,23.18,153,Dominion Energy South Carolina,DESC_6,Union Pier 115-13.8 kV Sub: Tap,Georgia Power,GPC_68,PLANT YATES BREAKER AND HALF STATION
+OVL_109,97.82,244,Dominion Energy South Carolina,DESC_6,Union Pier 115-13.8 kV Sub: Tap,Georgia Power,GPC_47,POSSUM BRANCH - YATES COMMON 115KV REBUILD (YATES TO CLEM)
+OVL_110,89.02,213,Dominion Energy South Carolina,DESC_27,VCS2-Ward 230kV: Rebuild Line,Georgia Power,GPC_77,BUZZARD ROOST - FACTORY SHOALS 230KV NEW LINE
+OVL_111,23.8,153,Dominion Energy South Carolina,DESC_6,Union Pier 115-13.8 kV Sub: Tap,Georgia Power,GPC_63,CC - EAST VILLA RICA AREA SWITCHING STATION (CC IMPROVEMENT)
+OVL_112,23.8,153,Dominion Energy South Carolina,DESC_6,Union Pier 115-13.8 kV Sub: Tap,Georgia Power,GPC_69,SMART VALVES AT EAST VILLA RICA SWITCHING STATION
+OVL_113,23.8,153,Dominion Energy South Carolina,DESC_6,Union Pier 115-13.8 kV Sub: Tap,Georgia Power,GPC_64,CC - VILLA RICA UPGRADES (CC NETWORK IMPROVEMENTS)
+OVL_114,164.52,30,Dominion Energy South Carolina,DESC_14,Hopkins-CIP 230kV: Rebuild,Georgia Power,GPC_15,JEFFERSON STREET#3 - NORTHWEST (WHITE) 115 KV RECONDUCTOR
+OVL_115,66.45,2223,Dominion Energy South Carolina,DESC_36,Williams-Summerville 230kV: Upgrade to SPDC B1272 ACSR,Georgia Power,GPC_121,WINDER PRIMARY 230KV BUS 1-2 PARALLEL BUS-TIE INSTALLATION
+OVL_116,71.37,1613,Dominion Energy South Carolina,DESC_25,Wagener 115kV Tap: Construct Tap,Georgia Power,GPC_87,ANNISTON - HAMMOND 230KV LINE
+OVL_117,23.74,1978,Dominion Energy South Carolina,DESC_2,Hooks - Thurmond 115kV Tie: Rebuild,Georgia Power,GPC_87,ANNISTON - HAMMOND 230KV LINE
+OVL_118,81.94,2223,Dominion Energy South Carolina,DESC_36,Williams-Summerville 230kV: Upgrade to SPDC B1272 ACSR,Georgia Power,GPC_119,MCGRAU FORD - MIDDLE FORK 500KV LINE PROJECT
+OVL_119,137.42,2709,Dominion Energy South Carolina,DESC_17,Stevens Creek - Hooks 115kV/LR Plumb Branch 46kV,Georgia Power,GPC_117,EVANS PRIMARY - THURMOND DAM (USA) #6 115KV REBUILD
+OVL_120,102.0,3287,Dominion Energy South Carolina,DESC_17,Stevens Creek - Hooks 115kV/LR Plumb Branch 46kV,Georgia Power,GPC_124,EVANS PRIMARY - THOMSON PRIMARY 115KV REBUILD
+OVL_121,94.28,2709,Dominion Energy South Carolina,DESC_17,Stevens Creek - Hooks 115kV/LR Plumb Branch 46kV,Georgia Power,GPC_1,EVANS PRIMARY - THURMOND DAM (USA) #5 115KV REBUILD
+OVL_122,52.12,3074,Dominion Energy South Carolina,DESC_1,Stevens Creek - Hooks 115kV/LR Plumb Branch 46kV Rebuilds,Georgia Power,GPC_117,EVANS PRIMARY - THURMOND DAM (USA) #6 115KV REBUILD
+OVL_123,14.48,3652,Dominion Energy South Carolina,DESC_1,Stevens Creek - Hooks 115kV/LR Plumb Branch 46kV Rebuilds,Georgia Power,GPC_124,EVANS PRIMARY - THOMSON PRIMARY 115KV REBUILD
+OVL_124,8.01,3074,Dominion Energy South Carolina,DESC_1,Stevens Creek - Hooks 115kV/LR Plumb Branch 46kV Rebuilds,Georgia Power,GPC_1,EVANS PRIMARY - THURMOND DAM (USA) #5 115KV REBUILD
+OVL_125,43.89,2223,Dominion Energy South Carolina,DESC_36,Williams-Summerville 230kV: Upgrade to SPDC B1272 ACSR,Georgia Power,GPC_117,EVANS PRIMARY - THURMOND DAM (USA) #6 115KV REBUILD
+OVL_126,26.12,2801,Dominion Energy South Carolina,DESC_36,Williams-Summerville 230kV: Upgrade to SPDC B1272 ACSR,Georgia Power,GPC_124,EVANS PRIMARY - THOMSON PRIMARY 115KV REBUILD
+OVL_127,9.46,517,Dominion Energy South Carolina,DESC_1,Stevens Creek - Hooks 115kV/LR Plumb Branch 46kV Rebuilds,Georgia Power,GPC_25,FENWICK STREET - SAND BAR FERRY 115KV (RECONDUCTOR/REBUILD)
+OVL_128,50.34,3074,Dominion Energy South Carolina,DESC_2,Hooks - Thurmond 115kV Tie: Rebuild,Georgia Power,GPC_117,EVANS PRIMARY - THURMOND DAM (USA) #6 115KV REBUILD
+OVL_129,12.44,3652,Dominion Energy South Carolina,DESC_2,Hooks - Thurmond 115kV Tie: Rebuild,Georgia Power,GPC_124,EVANS PRIMARY - THOMSON PRIMARY 115KV REBUILD
+OVL_130,103.37,1461,Dominion Energy South Carolina,DESC_22,Canadys-Ritter 115KV-Rebld SPDC 230/115KV 1272 (Approx 18 Miles),Georgia Power,GPC_90,CC - NORTH GEORGIA DATA NETWORK UPGRADES
+OVL_131,89.22,1461,Dominion Energy South Carolina,DESC_23,Yemassee– Ritter 230kV #1 & #2: Construct SPDC with B-1272,Georgia Power,GPC_90,CC - NORTH GEORGIA DATA NETWORK UPGRADES
+OVL_132,102.03,2191,Dominion Energy South Carolina,DESC_26,Church Creek - Ritter 230kV - Replace 38 Large Angles and Dead Ends,Georgia Power,GPC_90,CC - NORTH GEORGIA DATA NETWORK UPGRADES
+OVL_133,14.81,730,Dominion Energy South Carolina,DESC_5,Okatie-Bluffton 115kV: Rebuild,Georgia Power,GPC_3,SAV: GOSHEN (SAV) - MCINTOSH 115KV LINE REBUILD
+OVL_134,10.06,883,Dominion Energy South Carolina,DESC_6,Union Pier 115-13.8 kV Sub: Tap,Georgia Power,GPC_92,EAST POINT - TRIBUTARY 230KV REBUILD
+OVL_135,16.41,1389,Dominion Energy South Carolina,DESC_35,Urquhart – Toolebeck 115kV line: Rebuild,Georgia Power,GPC_101,GOSHEN AREA STRATEGIC SOLUTION
+OVL_136,10.3,883,Dominion Energy South Carolina,DESC_43,Urquhart – Aiken PSA 46 kV: Rebuild,Georgia Power,GPC_101,GOSHEN AREA STRATEGIC SOLUTION
+OVL_137,64.08,1309,Dominion Energy South Carolina,DESC_13,Wateree-Killian 230kV: Rebuild,Georgia Power,GPC_14,CAMDEN INDUSTRIAL PARK
+OVL_138,28.98,1096,Dominion Energy South Carolina,DESC_23,Yemassee– Ritter 230kV #1 & #2: Construct SPDC with B-1272,Georgia Power,GPC_83,MCMANUS - WEST BRUNSWICK 115KV REBUILD
+OVL_139,78.93,1127,Dominion Energy South Carolina,DESC_36,Williams-Summerville 230kV: Upgrade to SPDC B1272 ACSR,Georgia Power,GPC_96,GAINESVILLE #2 - MCEVER ROAD 115 KV REBUILD
+OVL_140,128.27,1644,Dominion Energy South Carolina,DESC_26,Church Creek - Ritter 230kV - Replace 38 Large Angles and Dead Ends,Georgia Power,GPC_72,FIRST AVENUE - NORTH COLUMBUS 115KV LINE REBUILD
+OVL_141,43.41,1096,Dominion Energy South Carolina,DESC_22,Canadys-Ritter 115KV-Rebld SPDC 230/115KV 1272 (Approx 18 Miles),Georgia Power,GPC_83,MCMANUS - WEST BRUNSWICK 115KV REBUILD
+OVL_142,130.89,517,Dominion Energy South Carolina,DESC_31,Coit – Gills Creek 115kV: Construct,Georgia Power,GPC_31,HAMMOND - WEISS DAM 115KV LINE REBUILD
+OVL_143,56.04,1613,Dominion Energy South Carolina,DESC_32,Batesburg - Saluda County 115kV: Rebuild,Georgia Power,GPC_87,ANNISTON - HAMMOND 230KV LINE
+OVL_144,91.88,1978,Dominion Energy South Carolina,DESC_31,Coit – Gills Creek 115kV: Construct,Georgia Power,GPC_87,ANNISTON - HAMMOND 230KV LINE
+OVL_145,33.74,1978,Dominion Energy South Carolina,DESC_1,Stevens Creek - Hooks 115kV/LR Plumb Branch 46kV Rebuilds,Georgia Power,GPC_87,ANNISTON - HAMMOND 230KV LINE
+OVL_146,321.83,2070,Dominion Energy South Carolina,DESC_16,Square D - Hopkins 115kV: Rebuild,Georgia Power,GPC_101,GOSHEN AREA STRATEGIC SOLUTION
+OVL_147,19.04,943,Dominion Energy South Carolina,DESC_6,Union Pier 115-13.8 kV Sub: Tap,Georgia Power,GPC_8,GRID - BREMEN - CROOKED CREEK (APC) 115 KV PROJECT
+OVL_148,13.7,883,Dominion Energy South Carolina,DESC_6,Union Pier 115-13.8 kV Sub: Tap,Georgia Power,GPC_107,TRIBUTARY - THORNTON RD 230KV REBUILD
+OVL_149,74.16,2588,Dominion Energy South Carolina,DESC_36,Williams-Summerville 230kV: Upgrade to SPDC B1272 ACSR,Georgia Power,GPC_123,DAWSON CROSSING - GAINESVILLE #1 115 KV
+OVL_150,18.69,517,Dominion Energy South Carolina,DESC_7,"Okatie 230-115kV Substation, Jasper – Yemassee 230kV #1 Fold-in",Georgia Power,GPC_2,SAV: MCINTOSH - PURRYSBURG 230KV REACTORS
+OVL_151,21.75,882,Dominion Energy South Carolina,DESC_7,"Okatie 230-115kV Substation, Jasper – Yemassee 230kV #1 Fold-in",Georgia Power,GPC_3,SAV: GOSHEN (SAV) - MCINTOSH 115KV LINE REBUILD
+OVL_152,16.48,943,Dominion Energy South Carolina,DESC_6,Union Pier 115-13.8 kV Sub: Tap,Georgia Power,GPC_6,ADAMSVILLE - JACK MCDONOUGH 230KV LINE REBUILD
+OVL_153,17.76,486,Dominion Energy South Carolina,DESC_36,Williams-Summerville 230kV: Upgrade to SPDC B1272 ACSR,Georgia Power,GPC_16,ANTHONY SHOALS STATCOM SYSTEM
+OVL_154,70.16,1248,Dominion Energy South Carolina,DESC_32,Batesburg - Saluda County 115kV: Rebuild,Georgia Power,GPC_77,BUZZARD ROOST - FACTORY SHOALS 230KV NEW LINE
+OVL_155,49.76,1389,Dominion Energy South Carolina,DESC_35,Urquhart – Toolebeck 115kV line: Rebuild,Georgia Power,GPC_87,ANNISTON - HAMMOND 230KV LINE
+OVL_156,66.5,517,Dominion Energy South Carolina,DESC_2,Hooks - Thurmond 115kV Tie: Rebuild,Georgia Power,GPC_31,HAMMOND - WEISS DAM 115KV LINE REBUILD
+OVL_157,313.22,609,Dominion Energy South Carolina,DESC_16,Square D - Hopkins 115kV: Rebuild,Georgia Power,GPC_25,FENWICK STREET - SAND BAR FERRY 115KV (RECONDUCTOR/REBUILD)
+OVL_158,55.31,1979,Dominion Energy South Carolina,DESC_43,Urquhart – Aiken PSA 46 kV: Rebuild,Georgia Power,GPC_117,EVANS PRIMARY - THURMOND DAM (USA) #6 115KV REBUILD
+OVL_159,22.09,2557,Dominion Energy South Carolina,DESC_43,Urquhart – Aiken PSA 46 kV: Rebuild,Georgia Power,GPC_124,EVANS PRIMARY - THOMSON PRIMARY 115KV REBUILD
+OVL_160,18.75,1979,Dominion Energy South Carolina,DESC_43,Urquhart – Aiken PSA 46 kV: Rebuild,Georgia Power,GPC_1,EVANS PRIMARY - THURMOND DAM (USA) #5 115KV REBUILD
+OVL_161,76.71,944,Dominion Energy South Carolina,DESC_13,Wateree-Killian 230kV: Rebuild,Georgia Power,GPC_2,SAV: MCINTOSH - PURRYSBURG 230KV REACTORS
+OVL_162,75.57,975,Dominion Energy South Carolina,DESC_36,Williams-Summerville 230kV: Upgrade to SPDC B1272 ACSR,Georgia Power,GPC_86,BAY CREEK - CONYERS 230KV REBUILD
+OVL_163,75.57,2223,Dominion Energy South Carolina,DESC_36,Williams-Summerville 230kV: Upgrade to SPDC B1272 ACSR,Georgia Power,GPC_116,BAY CREEK - CONYERS 230KV LIMITING ELEMENT REPLACEMENT
+OVL_164,505.32,730,Dominion Energy South Carolina,DESC_9,Eastover - Square D 115kV: Rebuild,Georgia Power,GPC_31,HAMMOND - WEISS DAM 115KV LINE REBUILD
+OVL_165,483.05,2191,Dominion Energy South Carolina,DESC_9,Eastover - Square D 115kV: Rebuild,Georgia Power,GPC_87,ANNISTON - HAMMOND 230KV LINE
+OVL_166,121.81,1462,Dominion Energy South Carolina,DESC_40,Eastover – Sumter 115kV DEP Tie: Rebuild with 1272 ACSR,Georgia Power,GPC_87,ANNISTON - HAMMOND 230KV LINE
+OVL_167,133.76,1492,Dominion Energy South Carolina,DESC_36,Williams-Summerville 230kV: Upgrade to SPDC B1272 ACSR,Georgia Power,GPC_113,BOWEN #10 500/230KV AUTOBANK REPLACEMENT
+OVL_168,29.46,2800,Dominion Energy South Carolina,DESC_34,Dawson 230kV Sub and Fold-in: Construct and Rebuild,Georgia Power,GPC_118,MCEVER ROAD - SHOAL CREEK 115KV REBUILD PHASE III
+OVL_169,29.46,1339,Dominion Energy South Carolina,DESC_34,Dawson 230kV Sub and Fold-in: Construct and Rebuild,Georgia Power,GPC_82,MCEVER ROAD - SHOAL CREEK 115KV REBUILD
+OVL_170,17.46,1704,Dominion Energy South Carolina,DESC_34,Dawson 230kV Sub and Fold-in: Construct and Rebuild,Georgia Power,GPC_96,GAINESVILLE #2 - MCEVER ROAD 115 KV REBUILD
+OVL_171,17.05,2069,Dominion Energy South Carolina,DESC_34,Dawson 230kV Sub and Fold-in: Construct and Rebuild,Georgia Power,GPC_112,AVERY - HOPEWELL 115KV RECONDUCTOR
+OVL_172,114.78,1279,Dominion Energy South Carolina,DESC_5,Okatie-Bluffton 115kV: Rebuild,Georgia Power,GPC_72,FIRST AVENUE - NORTH COLUMBUS 115KV LINE REBUILD
+OVL_173,62.64,2485,Dominion Energy South Carolina,DESC_35,Urquhart – Toolebeck 115kV line: Rebuild,Georgia Power,GPC_117,EVANS PRIMARY - THURMOND DAM (USA) #6 115KV REBUILD
+OVL_174,28.88,3063,Dominion Energy South Carolina,DESC_35,Urquhart – Toolebeck 115kV line: Rebuild,Georgia Power,GPC_124,EVANS PRIMARY - THOMSON PRIMARY 115KV REBUILD
+OVL_175,24.03,2485,Dominion Energy South Carolina,DESC_35,Urquhart – Toolebeck 115kV line: Rebuild,Georgia Power,GPC_1,EVANS PRIMARY - THURMOND DAM (USA) #5 115KV REBUILD
+OVL_176,16.73,774,Dominion Energy South Carolina,DESC_5,Okatie-Bluffton 115kV: Rebuild,Georgia Power,GPC_57,CC - TOMOCHICHI 500/230KV SOLUTION (CC NETWORK IMPROVEMENTS)
+OVL_177,110.76,883,Dominion Energy South Carolina,DESC_6,Union Pier 115-13.8 kV Sub: Tap,Georgia Power,GPC_87,ANNISTON - HAMMOND 230KV LINE
+OVL_178,90.17,1613,Dominion Energy South Carolina,DESC_17,Stevens Creek - Hooks 115kV/LR Plumb Branch 46kV,Georgia Power,GPC_101,GOSHEN AREA STRATEGIC SOLUTION
+OVL_179,17.1,1978,Dominion Energy South Carolina,DESC_1,Stevens Creek - Hooks 115kV/LR Plumb Branch 46kV Rebuilds,Georgia Power,GPC_101,GOSHEN AREA STRATEGIC SOLUTION
+OVL_180,30.95,926,Dominion Energy South Carolina,DESC_7,"Okatie 230-115kV Substation, Jasper – Yemassee 230kV #1 Fold-in",Georgia Power,GPC_57,CC - TOMOCHICHI 500/230KV SOLUTION (CC NETWORK IMPROVEMENTS)
+OVL_181,94.11,762,Dominion Energy South Carolina,DESC_36,Williams-Summerville 230kV: Upgrade to SPDC B1272 ACSR,Georgia Power,GPC_84,NORCROSS - NORTH DRUID HILLS 115KV REBUILD
+OVL_182,91.54,699,Dominion Energy South Carolina,DESC_36,Williams-Summerville 230kV: Upgrade to SPDC B1272 ACSR,Georgia Power,GPC_9,NORCROSS 230KV BUS 1-3 SERIES BUS TIE BREAKER INSTALLATION
+OVL_183,23.89,2223,Dominion Energy South Carolina,DESC_36,Williams-Summerville 230kV: Upgrade to SPDC B1272 ACSR,Georgia Power,GPC_120,THOMSON PRIMARY 230/115KV SECOND TRANSFORMER
+OVL_184,18.56,561,Dominion Energy South Carolina,DESC_3,Jasper – Okatie 230 kV #2: Construct,Georgia Power,GPC_57,CC - TOMOCHICHI 500/230KV SOLUTION (CC NETWORK IMPROVEMENTS)
+OVL_185,101.31,1095,Dominion Energy South Carolina,DESC_21,Summerville: Replace and Spare 230-115kV 336MVA Auto Bank,Georgia Power,GPC_61,DYER ROAD - EAST ROANOKE 115KV (REBUILD)
+OVL_186,101.31,1095,Dominion Energy South Carolina,DESC_29,Summerville 115kV Loop: Rebuild,Georgia Power,GPC_61,DYER ROAD - EAST ROANOKE 115KV (REBUILD)
+OVL_187,150.76,760,Dominion Energy South Carolina,DESC_6,Union Pier 115-13.8 kV Sub: Tap,Georgia Power,GPC_15,JEFFERSON STREET#3 - NORTHWEST (WHITE) 115 KV RECONDUCTOR
+OVL_188,20.08,517,Dominion Energy South Carolina,DESC_2,Hooks - Thurmond 115kV Tie: Rebuild,Georgia Power,GPC_25,FENWICK STREET - SAND BAR FERRY 115KV (RECONDUCTOR/REBUILD)
+OVL_189,19.01,3074,Dominion Energy South Carolina,DESC_2,Hooks - Thurmond 115kV Tie: Rebuild,Georgia Power,GPC_120,THOMSON PRIMARY 230/115KV SECOND TRANSFORMER
+OVL_190,47.12,1127,Dominion Energy South Carolina,DESC_36,Williams-Summerville 230kV: Upgrade to SPDC B1272 ACSR,Georgia Power,GPC_101,GOSHEN AREA STRATEGIC SOLUTION
+OVL_191,44.27,883,Dominion Energy South Carolina,DESC_43,Urquhart – Aiken PSA 46 kV: Rebuild,Georgia Power,GPC_87,ANNISTON - HAMMOND 230KV LINE
+OVL_192,117.86,1431,Dominion Energy South Carolina,DESC_7,"Okatie 230-115kV Substation, Jasper – Yemassee 230kV #1 Fold-in",Georgia Power,GPC_72,FIRST AVENUE - NORTH COLUMBUS 115KV LINE REBUILD
+OVL_193,76.59,517,Dominion Energy South Carolina,DESC_1,Stevens Creek - Hooks 115kV/LR Plumb Branch 46kV Rebuilds,Georgia Power,GPC_31,HAMMOND - WEISS DAM 115KV LINE REBUILD
+OVL_194,49.52,1826,Dominion Energy South Carolina,DESC_26,Church Creek - Ritter 230kV - Replace 38 Large Angles and Dead Ends,Georgia Power,GPC_83,MCMANUS - WEST BRUNSWICK 115KV REBUILD
+OVL_195,161.35,883,Dominion Energy South Carolina,DESC_42,Elloree – Santee City 46 kV: Rebuild,Georgia Power,GPC_87,ANNISTON - HAMMOND 230KV LINE
+OVL_196,106.92,1066,Dominion Energy South Carolina,DESC_3,Jasper – Okatie 230 kV #2: Construct,Georgia Power,GPC_72,FIRST AVENUE - NORTH COLUMBUS 115KV LINE REBUILD
+OVL_197,26.35,518,Dominion Energy South Carolina,DESC_6,Union Pier 115-13.8 kV Sub: Tap,Georgia Power,GPC_84,NORCROSS - NORTH DRUID HILLS 115KV REBUILD
+OVL_198,109.62,2709,Dominion Energy South Carolina,DESC_17,Stevens Creek - Hooks 115kV/LR Plumb Branch 46kV,Georgia Power,GPC_120,THOMSON PRIMARY 230/115KV SECOND TRANSFORMER
+OVL_199,22.16,3074,Dominion Energy South Carolina,DESC_1,Stevens Creek - Hooks 115kV/LR Plumb Branch 46kV Rebuilds,Georgia Power,GPC_120,THOMSON PRIMARY 230/115KV SECOND TRANSFORMER
+OVL_200,121.85,517,Dominion Energy South Carolina,DESC_21,Summerville: Replace and Spare 230-115kV 336MVA Auto Bank,Georgia Power,GPC_31,HAMMOND - WEISS DAM 115KV LINE REBUILD
+OVL_201,121.85,517,Dominion Energy South Carolina,DESC_29,Summerville 115kV Loop: Rebuild,Georgia Power,GPC_31,HAMMOND - WEISS DAM 115KV LINE REBUILD
+OVL_202,26.1,518,Dominion Energy South Carolina,DESC_6,Union Pier 115-13.8 kV Sub: Tap,Georgia Power,GPC_78,CONYERS - KLONDIKE 230 KV SECOND LINE
+OVL_203,311.79,517,Dominion Energy South Carolina,DESC_44,Cameron Jct – Cameron – St Matthews 46 kV Rebuild,Georgia Power,GPC_106,TALLULAH LODGE - TOCCOA 115 KV REBUILD
+OVL_204,23.52,1978,Dominion Energy South Carolina,DESC_21,Summerville: Replace and Spare 230-115kV 336MVA Auto Bank,Georgia Power,GPC_100,GORDON-SANDERSVILLE #1 115KV LINE REBUILD (DEEPSTEP-SAND #6)
+OVL_205,23.52,517,Dominion Energy South Carolina,DESC_21,Summerville: Replace and Spare 230-115kV 336MVA Auto Bank,Georgia Power,GPC_27,GORDON-N DUBLIN 115KV (GORDON-ENGL MCI J) REBUILD
+OVL_206,23.52,1978,Dominion Energy South Carolina,DESC_29,Summerville 115kV Loop: Rebuild,Georgia Power,GPC_100,GORDON-SANDERSVILLE #1 115KV LINE REBUILD (DEEPSTEP-SAND #6)
+OVL_207,23.52,517,Dominion Energy South Carolina,DESC_29,Summerville 115kV Loop: Rebuild,Georgia Power,GPC_27,GORDON-N DUBLIN 115KV (GORDON-ENGL MCI J) REBUILD
+OVL_208,108.73,1309,Dominion Energy South Carolina,DESC_27,VCS2-Ward 230kV: Rebuild Line,Georgia Power,GPC_20,ADAMSVILLE - BUZZARD ROOST 230KV REBUILD AND JUMPER UPGRADE
+OVL_209,23.8,943,Dominion Energy South Carolina,DESC_6,Union Pier 115-13.8 kV Sub: Tap,Georgia Power,GPC_13,VILLA RICA LOW SIDE BREAKER
+OVL_210,80.75,1613,Dominion Energy South Carolina,DESC_14,Hopkins-CIP 230kV: Rebuild,Georgia Power,GPC_89,ATKINSON - NORTHWEST 115KV REBUILD
+OVL_211,175.57,883,Dominion Energy South Carolina,DESC_14,Hopkins-CIP 230kV: Rebuild,Georgia Power,GPC_66,JACK MCDONOUGH - NORTHWEST (BLACK) 230KV RECONDUCTOR
+OVL_212,27.26,243,Dominion Energy South Carolina,DESC_34,Dawson 230kV Sub and Fold-in: Construct and Rebuild,Georgia Power,GPC_21,BLANKETS CREEK – WOODSTOCK 115KV LINE REBUILD
+OVL_213,86.97,578,Dominion Energy South Carolina,DESC_43,Urquhart – Aiken PSA 46 kV: Rebuild,Georgia Power,GPC_31,HAMMOND - WEISS DAM 115KV LINE REBUILD
+OVL_214,166.14,152,Dominion Energy South Carolina,DESC_30,St George - Sumter 230kV Tie: Rebuild Line from Santee Substation - Duke/Progress Energy Tie,Georgia Power,GPC_31,HAMMOND - WEISS DAM 115KV LINE REBUILD
+OVL_215,26.74,395,Dominion Energy South Carolina,DESC_6,Union Pier 115-13.8 kV Sub: Tap,Georgia Power,GPC_41,DRESDEN LINE PROTECTIVE RELAYING
+OVL_216,31.45,152,Dominion Energy South Carolina,DESC_11,Burton-St Helena 115kV: Frogmore Distribution - St Helena,Georgia Power,GPC_2,SAV: MCINTOSH - PURRYSBURG 230KV REACTORS
+OVL_217,27.88,62,Dominion Energy South Carolina,DESC_33,Scout 230 kV Sub and Fold-in: Construct,Georgia Power,GPC_2,SAV: MCINTOSH - PURRYSBURG 230KV REACTORS
+OVL_218,29.37,427,Dominion Energy South Carolina,DESC_33,Scout 230 kV Sub and Fold-in: Construct,Georgia Power,GPC_3,SAV: GOSHEN (SAV) - MCINTOSH 115KV LINE REBUILD
+OVL_219,30.19,213,Dominion Energy South Carolina,DESC_17,Stevens Creek - Hooks 115kV/LR Plumb Branch 46kV,Georgia Power,GPC_14,CAMDEN INDUSTRIAL PARK
+OVL_220,28.49,364,Dominion Energy South Carolina,DESC_40,Eastover – Sumter 115kV DEP Tie: Rebuild with 1272 ACSR,Georgia Power,GPC_14,CAMDEN INDUSTRIAL PARK
+OVL_221,556.67,974,Dominion Energy South Carolina,DESC_16,Square D - Hopkins 115kV: Rebuild,Georgia Power,GPC_50,CC - SUMMER LAKE - VILLA RICA 230KV REBUILD (CC IMPROVMNT)
+OVL_222,308.37,1248,Dominion Energy South Carolina,DESC_41,Cameron Jct – Elloree 46 kV Rebuild,Georgia Power,GPC_106,TALLULAH LODGE - TOCCOA 115 KV REBUILD
+OVL_223,39.8,1613,Dominion Energy South Carolina,DESC_2,Hooks - Thurmond 115kV Tie: Rebuild,Georgia Power,GPC_77,BUZZARD ROOST - FACTORY SHOALS 230KV NEW LINE
+OVL_224,124.29,1613,Dominion Energy South Carolina,DESC_30,St George - Sumter 230kV Tie: Rebuild Line from Santee Substation - Duke/Progress Energy Tie,Georgia Power,GPC_87,ANNISTON - HAMMOND 230KV LINE
+OVL_225,161.56,517,Dominion Energy South Carolina,DESC_14,Hopkins-CIP 230kV: Rebuild,Georgia Power,GPC_50,CC - SUMMER LAKE - VILLA RICA 230KV REBUILD (CC IMPROVMNT)
+OVL_226,33.24,1139,Dominion Energy South Carolina,DESC_26,Church Creek - Ritter 230kV - Replace 38 Large Angles and Dead Ends,Georgia Power,GPC_57,CC - TOMOCHICHI 500/230KV SOLUTION (CC NETWORK IMPROVEMENTS)
+OVL_227,26.22,1978,Dominion Energy South Carolina,DESC_2,Hooks - Thurmond 115kV Tie: Rebuild,Georgia Power,GPC_101,GOSHEN AREA STRATEGIC SOLUTION
+OVL_228,273.12,669,Dominion Energy South Carolina,DESC_9,Eastover - Square D 115kV: Rebuild,Georgia Power,GPC_19,CC - QTS FAYETTEVILLE TRANSMISSION NEEDS
+OVL_229,31.45,517,Dominion Energy South Carolina,DESC_10,Burton-St Helena 115kV: Rebuild Burton-Frogmore Transmission Section,Georgia Power,GPC_2,SAV: MCINTOSH - PURRYSBURG 230KV REACTORS
+OVL_230,129.18,976,Dominion Energy South Carolina,DESC_33,Scout 230 kV Sub and Fold-in: Construct,Georgia Power,GPC_72,FIRST AVENUE - NORTH COLUMBUS 115KV LINE REBUILD
+OVL_231,33.3,882,Dominion Energy South Carolina,DESC_10,Burton-St Helena 115kV: Rebuild Burton-Frogmore Transmission Section,Georgia Power,GPC_3,SAV: GOSHEN (SAV) - MCINTOSH 115KV LINE REBUILD
+OVL_232,33.3,517,Dominion Energy South Carolina,DESC_11,Burton-St Helena 115kV: Frogmore Distribution - St Helena,Georgia Power,GPC_3,SAV: GOSHEN (SAV) - MCINTOSH 115KV LINE REBUILD
+OVL_233,30.52,608,Dominion Energy South Carolina,DESC_34,Dawson 230kV Sub and Fold-in: Construct and Rebuild,Georgia Power,GPC_55,LAWRENCEVILLE - WINDER PRIMARY 230KV LINE REBUILD
+OVL_234,30.52,608,Dominion Energy South Carolina,DESC_34,Dawson 230kV Sub and Fold-in: Construct and Rebuild,Georgia Power,GPC_54,LAWRENCEVILLE - WINDER 115KV LINE REBUILD
+OVL_235,28.89,1979,Dominion Energy South Carolina,DESC_43,Urquhart – Aiken PSA 46 kV: Rebuild,Georgia Power,GPC_120,THOMSON PRIMARY 230/115KV SECOND TRANSFORMER
+OVL_236,35.97,2485,Dominion Energy South Carolina,DESC_35,Urquhart – Toolebeck 115kV line: Rebuild,Georgia Power,GPC_120,THOMSON PRIMARY 230/115KV SECOND TRANSFORMER

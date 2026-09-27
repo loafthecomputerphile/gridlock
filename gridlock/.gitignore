@@ -1,0 +1,13 @@
+# envs
+.venv/
+node_modules/
+
+# builds
+frontend/dist/
+__pycache__/
+
+# secrets
+.env
+
+# NOTE: data/ is deliberately NOT ignored — release + processed are committed
+# (offline-first demo needs them in-repo).

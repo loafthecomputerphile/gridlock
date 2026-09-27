@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+/* Design tokens — three-layer architecture (skill: design-system).
+   Primitive hues are the LOCKED report palette; semantic layer derives UI roles.
+   Light basemap only; no dark theme (report color language). */
+@theme {
+  /* primitives — palette (phase 04 locked) */
+  --color-desc: #2563EB;
+  --color-gpc: #059669;
+  --color-touching: #DC2626;
+  --color-near: #F97316;
+  --color-mid: #FBBF24;
+  --color-far: #FDE68A;
+
+  /* semantic */
+  --color-surface: #ffffff;
+  --color-surface-2: #f8fafc;
+  --color-surface-3: #f1f5f9;
+  --color-ink: #0f172a;
+  --color-ink-dim: #64748b;
+  --color-rule: #e2e8f0;
+  --color-excluded-ink: #94a3b8;
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    margin: 0;
+    background: var(--color-surface);
+    color: var(--color-ink);
+    font: 13px/1.45 ui-sans-serif, system-ui, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* map hosts fill their pane */
+  .map-host .maplibregl-ctrl-attrib {
+    font-size: 10px;
+  }
+}
