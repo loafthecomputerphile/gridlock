@@ -37,7 +37,31 @@ const haloColor = [
 
 const utilityColor = ['match', ['get', 'util'], 'GPC', UTILITY.GPC, UTILITY.DESC] as const
 
-// Base halos sit dim; halo-focus/halo-dot-focus pop the hovered/selected pair.
+// Pair zone: circle centered at the gap midpoint with DIAMETER = the tier's
+// km limit (user spec) — tiering guarantees d < limit, so both projects sit
+// inside. crossing → no circle (rendered as a dot below).
+const TIER_DIAMETER_M: Record<string, number | undefined> = {
+  '<1.6 km': 1600,
+  '<8 km': 8000,
+  '<40 km': 40000,
+  excluded: 40000,
+}
+
+// Ring around a point, radius in meters. ponytail: equirectangular degrees —
+// <0.1% error at the ≤20 km radii we use; go spherical only if precision complaints.
+const circleRing = (lon: number, lat: number, r: number): [number, number][] => {
+  const dLat = r / 111320
+  const dLon = r / (111320 * Math.cos((lat * Math.PI) / 180))
+  const pts: [number, number][] = []
+  for (let i = 0; i < 64; i++) {
+    const a = (i / 64) * 2 * Math.PI
+    pts.push([lon + dLon * Math.cos(a), lat + dLat * Math.sin(a)])
+  }
+  pts.push(pts[0])
+  return pts
+}
+
+// Base circles sit dim; pair-circle-focus/halo-dot-focus pop the hovered/selected pair.
 // 0.35 was invisible for the pale <40/<8 tiers on the light basemap (user bug:
 // "cannot see 8 and 40 km lines when selected") — 0.65 keeps focus distinct.
 const DIM_OPACITY = 0.65
@@ -59,12 +83,16 @@ export default function MapInset() {
   const setMapExpanded = useStore((s) => s.setMapExpanded)
   const [showProjects, setShowProjects] = useState(true)
   const [showHifld, setShowHifld] = useState(true)
+  const [hifldStatus, setHifldStatus] = useState<'loading' | 'ok' | 'error'>('loading')
   const [legendOpen, setLegendOpen] = useState(true)
   const [webgl2, setWebgl2] = useState(true)
   const applyRef = useRef<() => void>(() => {})
   // HIFLD reference overlay (user request): fetched once, applied when ready
   const hifldRef = useRef<FeatureCollection | null>(null)
   const hifldLoading = useRef(false)
+  // toggle intent lives in a ref so layer creation (async, after fetch) reads
+  // the CURRENT choice even when the user toggled before the fetch resolved
+  const hifldVisRef = useRef(true)
 
   // init once
   useEffect(() => {
@@ -108,15 +136,15 @@ export default function MapInset() {
 
     // Delegated listeners live on the Map and survive setStyle — register
     // exactly once here (registering inside apply() would duplicate them).
-    map.on('mouseenter', 'halos', (e) => {
+    map.on('mouseenter', 'pair-circles', (e) => {
       map.getCanvas().style.cursor = 'pointer'
       setHover((e.features?.[0]?.properties?.id as string | undefined) ?? null)
     })
-    map.on('mouseleave', 'halos', () => {
+    map.on('mouseleave', 'pair-circles', () => {
       map.getCanvas().style.cursor = ''
       setHover(null)
     })
-    map.on('click', 'halos', (e) => {
+    map.on('click', 'pair-circles', (e) => {
       const f = e.features?.[0]
       if (f?.properties?.id) select(f.properties.id as string)
     })
@@ -139,26 +167,35 @@ export default function MapInset() {
     }
   }, [select, setHover])
 
+  // HIFLD overlay: fetched on its own (NOT gated on /api/overlaps rows) so a
+  // slow or failing 9 MB fetch can't be silently skipped — status surfaces in a chip.
+  useEffect(() => {
+    if (hifldLoading.current || hifldRef.current) return
+    hifldLoading.current = true
+    fetch('/api/ref/hifld-lines')
+      .then((r) => {
+        if (!r.ok) throw new Error(`HTTP ${r.status}`)
+        return r.json()
+      })
+      .then((fc: FeatureCollection) => {
+        hifldLoading.current = false
+        if (!fc?.features?.length) throw new Error('empty FeatureCollection')
+        hifldRef.current = fc
+        setHifldStatus('ok')
+        // no-op if the data effect hasn't run yet — it picks the ref up when it does
+        applyRef.current()
+      })
+      .catch((e) => {
+        hifldLoading.current = false
+        setHifldStatus('error')
+        console.warn('[map] HIFLD fetch failed:', e)
+      })
+  }, [])
+
   // sources + layers (style is async; run once data lands)
   useEffect(() => {
     const map = mapRef.current
     if (!map || !rows.length) return
-
-    if (!hifldRef.current && !hifldLoading.current) {
-      hifldLoading.current = true
-      fetch('/api/ref/hifld-lines')
-        .then((r) => (r.ok ? r.json() : null))
-        .then((fc: FeatureCollection | null) => {
-          hifldLoading.current = false
-          if (fc?.features?.length) {
-            hifldRef.current = fc
-            applyRef.current()
-          }
-        })
-        .catch(() => {
-          hifldLoading.current = false
-        })
-    }
 
     const apply = () => {
       const projFC: FeatureCollection = {
@@ -183,6 +220,25 @@ export default function MapInset() {
               ? ({ type: 'Point', coordinates: r.shortest_line.coordinates[0] } as const)
               : r.shortest_line,
         })),
+      }
+      // pair zones: tier-limit-diameter circle around each non-crossing pair
+      const circleFC: FeatureCollection = {
+        type: 'FeatureCollection',
+        features: rows.flatMap((r) => {
+          const dia = TIER_DIAMETER_M[r.tier]
+          if (dia === undefined) return [] // crossing → dot only
+          const [a, b] = r.shortest_line.coordinates
+          return [
+            {
+              type: 'Feature' as const,
+              properties: { id: r.overlap_id, tier: r.tier },
+              geometry: {
+                type: 'Polygon' as const,
+                coordinates: [circleRing((a[0] + b[0]) / 2, (a[1] + b[1]) / 2, dia / 2)],
+              },
+            },
+          ]
+        }),
       }
 
       const src = map.getSource('projects')
@@ -216,49 +272,71 @@ export default function MapInset() {
         })
       }
 
+      // pair zone circles — inserted under corridors (hifld → circles → corridors,
+      // bottom to top) so the translucent fills never mute the proposals
+      const circleBefore = map.getLayer('project-lines') ? 'project-lines' : undefined
+      if (!map.getSource('pair-circles')) {
+        const { hiddenTiers, hoverId, selectedId } = useStore.getState()
+        const focus = hoverId ?? selectedId ?? ''
+        const vis = tierVisible(hiddenTiers)
+        map.addSource('pair-circles', { type: 'geojson', data: circleFC })
+        map.addLayer(
+          {
+            id: 'pair-circles',
+            type: 'fill',
+            source: 'pair-circles',
+            filter: ['all', ['!=', ['get', 'tier'], 'crossing'], vis],
+            paint: { 'fill-color': haloColor as unknown as string, 'fill-opacity': 0.1 },
+          },
+          circleBefore,
+        )
+        map.addLayer(
+          {
+            id: 'pair-circle-edge',
+            type: 'line',
+            source: 'pair-circles',
+            filter: ['all', ['!=', ['get', 'tier'], 'crossing'], vis],
+            paint: {
+              'line-color': haloColor as unknown as string,
+              'line-width': 1.5,
+              'line-opacity': [
+                'case',
+                ['==', ['get', 'tier'], 'excluded'],
+                EXCLUDED_OPACITY,
+                // palest color needs the most opacity to read on light basemap
+                ['==', ['get', 'tier'], '<40 km'],
+                0.8,
+                DIM_OPACITY,
+              ],
+            },
+          },
+          circleBefore,
+        )
+        map.addLayer(
+          {
+            id: 'pair-circle-focus',
+            type: 'line',
+            source: 'pair-circles',
+            filter: ['all', ['==', ['get', 'id'], focus], ['!=', ['get', 'tier'], 'crossing'], vis],
+            paint: {
+              'line-color': haloColor as unknown as string,
+              'line-width': 3,
+              'line-opacity': 0.9,
+            },
+          },
+          circleBefore,
+        )
+      } else {
+        const cs = map.getSource('pair-circles')
+        if (cs && 'setData' in cs) (cs as { setData: (d: unknown) => void }).setData(circleFC)
+      }
+
       if (!map.getSource('overlaps')) {
         map.addSource('overlaps', { type: 'geojson', data: haloFC })
         // Fresh state at creation; the spotlight effect re-applies on change.
         const { hiddenTiers, hoverId, selectedId } = useStore.getState()
         const focus = hoverId ?? selectedId ?? ''
         const vis = tierVisible(hiddenTiers)
-        // dim base lines — the spotlight comes from halo-focus above
-        map.addLayer({
-          id: 'halos',
-          type: 'line',
-          source: 'overlaps',
-          filter: ['all', ['!=', ['get', 'tier'], 'crossing'], vis],
-          paint: {
-            'line-color': haloColor as unknown as string,
-            'line-width': 4,
-            'line-opacity': [
-              'case',
-              ['==', ['get', 'tier'], 'excluded'],
-              EXCLUDED_OPACITY,
-              // palest color needs the most opacity to read on light basemap
-              ['==', ['get', 'tier'], '<40 km'],
-              0.8,
-              DIM_OPACITY,
-            ],
-          },
-        })
-        map.addLayer({
-          id: 'halo-focus',
-          type: 'line',
-          source: 'overlaps',
-          filter: [
-            'all',
-            ['==', ['get', 'id'], focus],
-            ['!=', ['get', 'tier'], 'crossing'],
-            vis,
-          ],
-          paint: {
-            'line-color': haloColor as unknown as string,
-            'line-width': 6,
-            'line-opacity': 0.85,
-            'line-blur': 1.5,
-          },
-        })
         // touching pairs are zero-length lines → draw as dots
         map.addLayer({
           id: 'halo-dots',
@@ -302,18 +380,22 @@ export default function MapInset() {
               type: 'line',
               source: 'hifld-lines',
               layout: {
-                visibility: showHifld ? 'visible' : 'none',
+                visibility: hifldVisRef.current ? 'visible' : 'none',
               },
               paint: {
                 'line-color': '#64748b',
-                'line-opacity': 0.5,
+                'line-opacity': 0.65,
+                // 31% of lines are 'NOT AVAILABLE'/'Under 100' and fell to the
+                // 0.7px default = invisible at default zoom 6.3 — floor everything
                 'line-width': [
                   'match',
                   ['get', 'VOLT_CLASS'],
-                  '500', 2.4,
-                  '220-287', 1.7,
-                  '100-161', 1.1,
-                  0.7,
+                  '500', 2.6,
+                  '220-287', 2.0,
+                  '100-161', 1.4,
+                  'Under 100', 1.0,
+                  'NOT AVAILABLE', 1.0,
+                  1.0,
                 ],
               },
             },
@@ -333,13 +415,15 @@ export default function MapInset() {
   // spotlight + tier visibility (filters only — hover never moves the camera)
   useEffect(() => {
     const map = mapRef.current
-    if (!map || !map.getLayer('halo-focus')) return
+    if (!map || !map.getLayer('pair-circle-edge') || !map.getLayer('halo-dots')) return
     const focus = hoverId ?? selectedId ?? ''
     const vis = tierVisible(hiddenTiers)
-    map.setFilter('halos', ['all', ['!=', ['get', 'tier'], 'crossing'], vis] as never)
+    const notCrossing = ['!=', ['get', 'tier'], 'crossing'] as const
+    map.setFilter('pair-circles', ['all', notCrossing, vis] as never)
+    map.setFilter('pair-circle-edge', ['all', notCrossing, vis] as never)
     map.setFilter(
-      'halo-focus',
-      ['all', ['==', ['get', 'id'], focus], ['!=', ['get', 'tier'], 'crossing'], vis] as never,
+      'pair-circle-focus',
+      ['all', ['==', ['get', 'id'], focus], notCrossing, vis] as never,
     )
     map.setFilter('halo-dots', ['all', ['==', ['get', 'tier'], 'crossing'], vis] as never)
     map.setFilter(
@@ -352,10 +436,26 @@ export default function MapInset() {
   useEffect(() => {
     const map = mapRef.current
     if (!map || !selectedId) return
-    const coords = rows.find((r) => r.overlap_id === selectedId)?.shortest_line.coordinates
-    if (!coords?.length) return
-    const xs = coords.map((c) => c[0])
-    const ys = coords.map((c) => c[1])
+    const row = rows.find((r) => r.overlap_id === selectedId)
+    const coords = row?.shortest_line.coordinates
+    if (!row || !coords?.length) return
+    // frame the whole pair circle when one exists, else the gap segment (crossing)
+    const dia = TIER_DIAMETER_M[row.tier]
+    let xs: number[]
+    let ys: number[]
+    if (dia) {
+      const [a, b] = coords
+      const mLon = (a[0] + b[0]) / 2
+      const mLat = (a[1] + b[1]) / 2
+      const rad = dia / 2
+      const dLat = rad / 111320
+      const dLon = rad / (111320 * Math.cos((mLat * Math.PI) / 180))
+      xs = [mLon - dLon, mLon + dLon]
+      ys = [mLat - dLat, mLat + dLat]
+    } else {
+      xs = coords.map((c) => c[0])
+      ys = coords.map((c) => c[1])
+    }
     map.fitBounds(
       [
         [Math.min(...xs), Math.min(...ys)],
@@ -373,8 +473,10 @@ export default function MapInset() {
     return () => clearTimeout(t)
   }, [expanded])
 
-  // HIFLD overlay toggle (layer may not exist yet — creation reads default true)
+  // HIFLD overlay toggle — always record intent in the ref (layer creation
+  // reads it), push to the layer only once it exists
   useEffect(() => {
+    hifldVisRef.current = showHifld
     const map = mapRef.current
     if (!map || !map.getLayer('hifld-lines')) return
     map.setLayoutProperty('hifld-lines', 'visibility', showHifld ? 'visible' : 'none')
@@ -467,13 +569,16 @@ export default function MapInset() {
           <span className="text-ink-dim">●</span>
           <span>dot: single-endpoint project, or a touching pair (tier color)</span>
         </div>
-        <div className="flex items-start gap-1.5">
-          <span className="text-ink-dim">▬</span>
-          <span>band: straight-line gap between corridors — color = distance tier</span>
+        <div
+          className="flex items-start gap-1.5"
+          title="Circle centered between the two projects; its diameter is the tier limit itself (1.6 / 8 / 40 km), so both projects always sit inside."
+        >
+          <span className="text-ink-dim">◯</span>
+          <span>circle: pair zone — diameter = tier limit (1.6 / 8 / 40 km), color = tier</span>
         </div>
         <div className="flex items-start gap-1.5">
           <span className="text-ink-dim">✦</span>
-          <span>bright glow: hovered / selected pair — hover a row or a line</span>
+          <span>bright glow: hovered / selected pair — hover a row or a circle</span>
         </div>
         <div className="my-1.5 h-px bg-rule" />
         <div className="mb-1 font-semibold tracking-wide text-ink-dim uppercase">Corridor grounding</div>
@@ -531,6 +636,19 @@ export default function MapInset() {
         <button className={chip} onClick={toggleProjects} title="Toggle project corridors">
           {showProjects ? 'hide' : 'show'} corridors
         </button>
+        {hifldStatus === 'loading' && (
+          <span className={`${chip} text-ink-dim`} title="Fetching HIFLD transmission overlay…">
+            HIFLD loading…
+          </span>
+        )}
+        {hifldStatus === 'error' && (
+          <span
+            className={chip}
+            title="HIFLD overlay unavailable — is the backend running on :8000? If the cache is missing run: uv run python backend/fetch_hifld_lines.py"
+          >
+            HIFLD unavailable
+          </span>
+        )}
         <button
           className={chip}
           onClick={() => setShowHifld((v) => !v)}
